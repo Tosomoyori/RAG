@@ -1,0 +1,60 @@
+# ============================================================
+# RAG —— 根目录 .gitignore
+#
+# 注意：本目录现在是仓库自己的根目录，不再有上级仓库兜底，
+# 所以原先那份"局部 .gitignore"（里面写着"仓库根目录的 .gitignore
+# 会覆盖绝大多数条目"）在这里已经失效，条目必须写全。
+# ============================================================
+
+# ---------- 密钥 / 本地配置（绝对不能进仓库） ----------
+.env
+.env.*
+!.env.example
+
+.claude/settings.local.json
+.idea/
+
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.testdeps/
+
+# ---------- 模型权重 ----------
+# 合计约 8.3 GB，远超 GitHub 单文件/单仓库限制。
+# 本地用的时候重新下载即可，不要提交。
+#   mmarco-mMiniLMv2-L12-H384-v1/  精排（cross-encoder，多语言，两个语种共用）
+#   text2vec-base-chinese/         中文库的 embedding
+#   bge-base-en-v1.5/              英文库的 embedding
+mmarco-mMiniLMv2-L12-H384-v1/
+text2vec-base-chinese/
+bge-base-en-v1.5/
+
+# ---------- 运行产物 ----------
+# 向量库：由 doc.pdf 运行后自动重建，不需要版本管理
+chroma_db/
+# dedupe_store.py 清理重复块前的整库快照（本地回滚用，见 results/test_report.md）
+chroma_db_backup_dup/
+
+# 缓存层验证脚本的输出日志
+verify_memory.log
+verify_redis.log
+mini_redis_commands.log
+
+# ---------- 操作系统 ----------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ============================================================
+# 以下内容**故意不忽略**（它们体积很小，但是项目的交付物/证据）：
+#   doc.pdf                        语料本体，没有它项目无法复现
+#   chunks_preview_zh.md           中文库分块预览（answer_key_audit.md 的审计基准）
+#   chunks_preview_en.md           英文库分块预览
+#   redis_test/results/*.json     评测数据（eval_final.json 等）
+#   redis_test/results/*.txt      五轮记录、控制台留档
+#   redis_test/results/*.md       test_report.md / answer_key_audit.md 主报告
+# 若确实不想让评测数据进仓库，再把 redis_test/results/ 加进来。
+# ============================================================

@@ -43,7 +43,7 @@ from langchain_community.document_loaders import PyMuPDFLoader
 import cache
 from rag_langchain import (
     prompt, llm, load_store, make_retriever, make_chain,
-    split_fixed_width, query as rag_query, invalidate_caches,
+    split_by_tokens, query as rag_query, invalidate_caches,
     get_all_chunks_in_order, save_chunks_to_file,
     detect_lang, LANG_COLLECTIONS, LANG_MODELS, DEFAULT_LANG,
     _get_chroma_client,
@@ -178,12 +178,13 @@ async def upload_file(file: UploadFile = File(...)):
         if not text.strip():
             return UploadResponse(success=False, message="文件内容为空")
 
-        chunks = split_fixed_width(text)
-        if not chunks:
-            return UploadResponse(success=False, message="分块后无内容")
-
         # 按**文档语种**决定进哪个库、用哪个模型（中英各一个 collection）
         lang = detect_lang(text)
+
+        # 切块要用该语种的 tokenizer，所以必须排在 lang 之后
+        chunks = split_by_tokens(text, lang)
+        if not chunks:
+            return UploadResponse(success=False, message="分块后无内容")
 
         # 只替换**该语种**的 collection：先清空，再以 index 0 起重新编号入库。
         # 中文库和英文库互相独立——上传英文文档不会动到中文库，反之亦然。

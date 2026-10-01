@@ -14,7 +14,7 @@ RAG —— LangChain 版核心管道（在无缓存版基础上加入缓存层�
 
 对应关系（早期手写版 main.py）：
   load_pdf() / 打开 .md           -> PyMuPDFLoader 或直接读文本
-  split_by_chunk_size()           -> split_fixed_width()（保留原切法以保证评测口径）
+  split_by_chunk_size()           -> split_by_tokens()（按 token 切，两个语种口径一致）
   SentenceTransformer 嵌入         -> HuggingFaceEmbeddings（底层仍是 sentence-transformers）
   chromadb 客户端/集合/入库        -> langchain_chroma.Chroma + store.add_texts()
   retrieve()                     -> store.as_retriever(search_kwargs={"k": 20})
@@ -103,6 +103,12 @@ DEFAULT_SOURCE = "doc.pdf"
 # 检索参数提到模块级：它们要参与缓存 key 计算（改参数不应命中旧口径的答案）
 RETRIEVE_K = 20     # 向量召回条数
 RERANK_TOP_N = 5    # 精排后保留条数
+
+# 切块按 token 计（见 split_by_tokens）。
+# 256 是"模型上限 512 的一半"——留足余量，避免将来换模型或改配置时又踩到静默截断。
+# 40/256 ≈ 16% 重叠。两个值都可用环境变量覆盖，方便做 A/B 对比。
+CHUNK_TOKENS = int(os.getenv("CHUNK_TOKENS", 256))
+CHUNK_OVERLAP_TOKENS = int(os.getenv("CHUNK_OVERLAP_TOKENS", 40))
 
 # 语义缓存开关（默认关闭，见 SemanticCache 注释）
 SEMANTIC_CACHE_ENABLED = os.getenv("SEMANTIC_CACHE", "0") == "1"
@@ -301,20 +307,55 @@ def load_raw_text(path: str) -> str:
         return f.read()
 
 
-def split_fixed_width(text: str, chunk_size: int = 300, overlap: int = 50) -> List[str]:
-    """按固定长度切块，与原 split_by_chunk_size 逐字符等价。
+_tokenizers: Dict[str, Any] = {}
+_tokenizers_lock = threading.Lock()
 
-    为什么不换 RecursiveCharacterTextSplitter？
-    LangChain 自带的分割器更"聪明"（按句子/段落边界切），但会改变切块边界，
-    使手标的 true_indices 失效，Hit Rate/MRR 无法和旧版对比。
-    因此这里保留原切法——也说明一件事：切块本身很简单，LangChain 真正省的是
-    嵌入/入库/检索/重排/生成这些环节，而不是这 8 行 while。
+
+def _get_tokenizer(lang: str):
+    """按语种懒加载 tokenizer（只读词表，不加载模型权重，很轻）。"""
+    if lang not in _tokenizers:
+        with _tokenizers_lock:
+            if lang not in _tokenizers:
+                from transformers import AutoTokenizer
+                _tokenizers[lang] = AutoTokenizer.from_pretrained(LANG_MODELS[lang])
+    return _tokenizers[lang]
+
+
+def split_by_tokens(text: str, lang: str = DEFAULT_LANG,
+                    chunk_size: int = CHUNK_TOKENS,
+                    overlap: int = CHUNK_OVERLAP_TOKENS) -> List[str]:
+    """按 **token** 切块，tokenizer 用该语种 embedding 模型自己的那一个。
+
+    为什么从"按字符"改成"按 token"：
+      同样 300 个字符，中文约 250 token、英文约 52 token——差近 5 倍。
+      拿同一个字符数切两种语言，"一个块"在中英两侧承载的信息量完全不可比，
+      英文块会薄得离谱（检索精度和送进 LLM 的上下文都受影响）。
+      按 token 切，"块"在两个库里才是同一量级的东西。
+
+    为什么用 offset 对齐、而不是 decode 回文本：
+      实测 tok.decode(ids) **不能**还原原文——中文会被规整、英文会丢字符。
+      所以这里只用 tokenizer 算 token 的字符边界，再按字符位置切**原文**，
+      保证每个块都是原文的逐字子串（评测脚本依赖这个性质做逐字节比对）。
+
+    为什么 chunk_size 默认 256 而不是模型上限 512：
+      取一半留足余量；块本身不含特殊 token，但有余地就不会在
+      换模型/改配置时再次撞上静默截断。
     """
+    if not text:
+        return []
+    offsets = _get_tokenizer(lang)(
+        text, return_offsets_mapping=True, add_special_tokens=False)["offset_mapping"]
+    n = len(offsets)
+    if n == 0:
+        return []
+    step = max(chunk_size - overlap, 1)      # 防止 overlap >= chunk_size 时原地打转
     chunks, start = [], 0
-    while start < len(text):
-        end = min(start + chunk_size, len(text))
-        chunks.append(text[start:end])
-        start += chunk_size - overlap
+    while start < n:
+        end = min(start + chunk_size, n)
+        chunks.append(text[offsets[start][0]:offsets[end - 1][1]])
+        if end >= n:
+            break
+        start += step
     return chunks
 
 
@@ -353,7 +394,7 @@ def build_index(source_file: str, lang: Optional[str] = None,
                 store.delete(ids=old_ids)
         except Exception:
             pass  # 集合不存在时忽略
-    chunks = split_fixed_width(text)
+    chunks = split_by_tokens(text, lang)
     if chunks:
         store.add_texts(  # 一次批量嵌入 + 入库；嵌入过程自动走向量缓存
             chunks,

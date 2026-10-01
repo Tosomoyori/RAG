@@ -248,8 +248,22 @@ curl http://127.0.0.1:8000/cache/stats
 | `requirements.txt` | 新增 `redis>=5.0`（不装也能跑，会自动降级 memory） |
 | `.env.example`、`.gitignore` | **新增**。缓存配置说明 / 本项目忽略规则 |
 
-**没有改的**：切块逻辑、Chroma 用法、LCEL 链、评测口径 —— 所以 Hit Rate / MRR 与
+**没有改的**：Chroma 用法、LCEL 链、评测口径 —— 所以 Hit Rate / MRR 与
 无缓存版 / 缓存版可直接对比（缓存不影响检索结果，只影响要不要重算）。
+
+### 切块：按 token，不按字符
+
+`split_by_tokens()` 用**该语种 embedding 模型自己的 tokenizer** 切块，默认 256 token、
+重叠 40（`CHUNK_TOKENS` / `CHUNK_OVERLAP_TOKENS` 可用环境变量覆盖）。
+
+- **为什么不用字符**：同样 300 字符，中文约 250 token、英文只有约 52 token，差近 5 倍。
+  用同一个字符数切两种语言，"一个块"在中英两侧承载的信息量完全不可比。
+  实测改前 en 库每块中位仅 75 token，改后两库都是 256。
+- **为什么用 offset 而不是 decode**：实测 `tok.decode(ids)` **无法**还原原文
+  （中文会被规整、英文会丢字符）。所以只借 tokenizer 算 token 的字符边界，
+  再按字符位置切原文，保证每个块都是原文的**逐字子串**。
+- **为什么取 256 而不是模型上限 512**：留一半余量，避免将来换模型/改配置时
+  再次撞上"超长被静默截断"。
 
 ---
 

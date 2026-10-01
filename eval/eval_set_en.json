@@ -1,0 +1,161 @@
+{
+  "lang": "en",
+  "corpus": "ReAct.pdf",
+  "note": "ReAct 论文英文原版。块号对应 rag_en 库当前的切块（CHUNK_TOKENS=256）。切块参数一改，块号就会变，必须重新标注。",
+  "questions": [
+    {
+      "id": "en-01",
+      "type": "factual",
+      "q": "Which institutions are the authors affiliated with?",
+      "answers": [0],
+      "why": "块 0 含作者署名与单位：Princeton University 计算机系 + Google Research, Brain team"
+    },
+    {
+      "id": "en-02",
+      "type": "factual",
+      "q": "What are the four benchmarks used to evaluate ReAct?",
+      "answers": [14],
+      "why": "块 14 列出 HotPotQA / Fever / ALFWorld / WebShop 四个基准"
+    },
+    {
+      "id": "en-03",
+      "type": "conceptual",
+      "q": "Why does the paper call chain-of-thought reasoning a static black box?",
+      "answers": [12],
+      "why": "块 12：CoT 只用模型内部表征生成想法、不接地于外部世界，无法反应式推理或更新知识"
+    },
+    {
+      "id": "en-04",
+      "type": "conceptual",
+      "q": "What is the core idea behind ReAct's action space?",
+      "answers": [17],
+      "why": "块 17：把动作空间扩展为 Â = A ∪ L，L 是语言空间"
+    },
+    {
+      "id": "en-05",
+      "type": "conceptual",
+      "q": "How does a thought differ from an action in terms of effect on the environment?",
+      "answers": [17],
+      "why": "块 17：thought 不影响外部环境，因此没有 observation 反馈"
+    },
+    {
+      "id": "en-06",
+      "type": "factual",
+      "q": "Which language model was used as the frozen base model for the main prompting experiments?",
+      "answers": [18],
+      "why": "块 18：frozen large language model, PaLM-540B"
+    },
+    {
+      "id": "en-07",
+      "type": "factual",
+      "q": "What are the three actions available in the Wikipedia API used for HotpotQA and FEVER?",
+      "answers": [22],
+      "why": "块 22：search[entity]、lookup[string]、finish[answer]"
+    },
+    {
+      "id": "en-08",
+      "type": "factual",
+      "q": "What browser functionality does the lookup action simulate?",
+      "answers": [22],
+      "why": "块 22：lookup 返回页面中下一句含该字符串的话，模拟 Ctrl+F"
+    },
+    {
+      "id": "en-09",
+      "type": "numeric",
+      "q": "How many trajectories were sampled for the manual error analysis?",
+      "answers": [29],
+      "why": "块 29：ReAct 与 CoT 各随机抽 50 条，共 200 例"
+    },
+    {
+      "id": "en-10",
+      "type": "numeric",
+      "q": "What hallucination rate did chain-of-thought show in the manual error analysis?",
+      "answers": [28],
+      "why": "块 28 的 Table 2：Hallucination 一行，CoT 56%、ReAct 0%"
+    },
+    {
+      "id": "en-11",
+      "type": "conceptual",
+      "q": "What is the most frequent failure mode specific to ReAct?",
+      "answers": [30],
+      "why": "块 30：反复生成之前的想法和动作、陷入循环"
+    },
+    {
+      "id": "en-12",
+      "type": "numeric",
+      "q": "What was the range of relative performance gain on ALFWorld?",
+      "answers": [39],
+      "why": "块 39：相对提升 33% 到 90%，平均 62%"
+    },
+    {
+      "id": "en-13",
+      "type": "numeric",
+      "q": "How many unseen evaluation games were used in ALFWorld?",
+      "answers": [35],
+      "why": "块 35：134 unseen evaluation games"
+    },
+    {
+      "id": "en-14",
+      "type": "numeric",
+      "q": "What score and success rate did ReAct achieve on WebShop compared with the imitation learning baseline?",
+      "answers": [38],
+      "why": "块 38 的 Table 4：ReAct 66.6 / 40.0，IL 59.9 / 29.1"
+    },
+    {
+      "id": "en-15",
+      "type": "numeric",
+      "q": "How many trajectories were used for the bootstrapping finetuning approach?",
+      "answers": [27],
+      "why": "块 27：用 3000 条正确作答的轨迹微调 PaLM-8/62B"
+    },
+    {
+      "id": "en-16",
+      "type": "numeric",
+      "q": "How many CoT-SC samples does ReAct need to match CoT-SC's own performance?",
+      "answers": [31],
+      "why": "块 31：CoT-SC 要 21 个样本，ReAct+CoT-SC 只要 3~5 个就达到同等水平"
+    },
+    {
+      "id": "en-17",
+      "type": "factual",
+      "q": "What is the closest prior work to ReAct for interactive environments?",
+      "answers": [40],
+      "why": "块 40：Inner Monologue (Huang et al.)"
+    },
+    {
+      "id": "en-18",
+      "type": "numeric",
+      "q": "What was ReAct's overall success rate compared with the internal-monologue-style variant on ALFWorld?",
+      "answers": [41],
+      "why": "块 41：ReAct 71 vs ReAct-IM 53 的总体成功率"
+    },
+    {
+      "id": "en-19",
+      "type": "hard",
+      "q": "What did the authors do to make the ReAct-versus-Act comparison a fair and controlled one?",
+      "answers": [35],
+      "why": "块 35：Act 的提示用同一批轨迹但不含想法，任务实例随机选自训练集，两边都不占便宜。这题几乎不含可字面匹配的关键词，考的是语义召回"
+    },
+    {
+      "id": "en-20",
+      "type": "hard",
+      "q": "What limitation do the authors acknowledge about their interactive-decision results?",
+      "answers": [40],
+      "why": "块 40：与人类专家仍有明显差距，专家会做更多的商品探索和查询改写。同样属于低字面重叠的语义题"
+    },
+    {
+      "id": "en-21",
+      "type": "hard",
+      "q": "What evidence does the paper offer that reasoning helps decision making rather than just question answering?",
+      "answers": [15, 39],
+      "why": "两处：(1) 块 15 说明稀疏推理相对纯行动基线有一致优势；(2) 块 39 给出 ALFWorld 上 33%~90% 的相对提升。标两个块是因为答案分散在不同章节，单一标注会低估检索效果"
+    },
+    {
+      "id": "en-22",
+      "type": "conceptual",
+      "q": "What future directions does the conclusion suggest for improving ReAct?",
+      "answers": [47],
+      "why": "块 47：多任务训练扩大规模、与强化学习等范式结合"
+    }
+  ]
+}

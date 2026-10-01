@@ -1,10 +1,11 @@
-# RAG —— 带 Redis 缓存的 PDF 问答
+# RAG —— 带 Redis 缓存与上传任务队列的 PDF 问答
 
-在**无缓存版本**的基础上，**只加了"缓存"这一层**：
-RAG 管道（加载 → 切块 → 嵌入 → 入库 → 召回 → 精排 → 生成）逐行未变，接口与前端保持向后兼容，
-新增的是"同一个问题、同一段文本，不要重复算第二遍"的能力。
+在**无缓存版本**的基础上，先后叠加了两层能力，RAG 管道（加载 → 切块 → 嵌入 → 入库 → 召回 → 精排 → 生成）逐行未变，接口与前端保持向后兼容：
 
-> 本项目对应迭代计划里的两个主题：**缓存（已完成）** 与 **消息队列（预留，见文末）**。
+- **缓存层**（cache.py）：解决"同一个问题、同一段文本，不要重复算第二遍"；
+- **任务队列**（tasks.py，见[第八节](#八消息队列上传异步化与削峰)）：解决"/upload 同步阻塞几十秒"与"多人同时上传把 CPU 打满"。
+
+> 本项目对应迭代计划里的两个主题：**缓存（已完成）** 与 **消息队列（已完成）**。
 
 ---
 
@@ -138,14 +139,19 @@ cross-encoder 要把 `(问题, 片段)` 成对送进模型，召回 20 条就是
 
 | 接口 | 变化 |
 |---|---|
-| `POST /upload` | 响应新增 `cache_invalidated`；成功后自动提升缓存版本 |
+| `POST /upload` | **默认异步入队**（第八节）：存文件 + 入队 + 立刻返回 `task_id`；响应新增 `task_id` / `status`。传 `?sync=true` 保留旧的同步行为 |
+| `GET /status/{task_id}` | **新增**：上传任务状态轮询（`queued → processing → succeeded / failed`） |
 | `POST /ask` | 响应新增 `cache_hit` / `cache_type` / `elapsed_ms`；请求可传 `use_cache: false` 强制重算 |
 | `GET /cache/stats` | **新增**：后端类型、命中率、TTL、当前缓存版本 |
 | `POST /cache/clear` | **新增**：清空缓存，可传 `{"kinds": ["qa"]}` 定向清理 |
-| `GET /health` | **新增**：轻量健康检查 |
+| `GET /health` | **新增**：轻量健康检查（含任务队列后端与内置 worker 状态） |
+| `GET /` | 前端页面 |
 
 前端的"提问"旁边多了一个 **跳过缓存** 勾选框：勾上走完整链路，不勾走缓存，
 方便你亲眼对比"命中缓存"与"真实计算"的耗时差（答案区会显示徽标与毫秒数）。
+
+上传则是**立即返回任务号**，页面轮询 `/status/{task_id}` 展示排队 → 解析向量化 → 完成的全过程——
+一本大 PDF 不再让请求干等几十秒（这正是第八节消息队列的收益）。
 
 ---
 
@@ -155,17 +161,31 @@ cross-encoder 要把 `(问题, 片段)` 成对送进模型，召回 20 条就是
 cd RAG
 pip install -r requirements.txt
 
-# 1) 配置（与无缓存版相同的 DEEPSEEK_API_KEY，加缓存相关项）
+# 1) 配置（与无缓存版相同的 DEEPSEEK_API_KEY，加缓存/队列相关项）
 copy .env .env        # Windows；Linux/macOS 用 cp
 
-# 2) 启动 Redis（可选，没有也能跑，会自动降级为内存缓存）
+# 2) 启动 Redis（可选，没有也能跑，缓存与队列都会自动降级为进程内实现）
 redis-server                  # 本机默认 127.0.0.1:6379
 
-# 3) 启动服务
+# 3) 启动服务（默认已在 web 进程内内置一个任务 worker，单机开箱即用）
 python app.py                 # http://127.0.0.1:8000
 ```
 
 模型文件放在本项目根目录：`text2vec-base-chinese/`、`mmarco-mMiniLMv2-L12-H384-v1/`。
+
+### 运行独立 worker（可选：进程隔离 / 水平扩展）
+
+默认配置下单机不需要——`QUEUE_WORKER_IN_APP=1` 时 web 进程里有消费线程。
+要把"解析+嵌入+入库"的重活彻底从 web 进程剥离，或多开消费者分摊：
+
+```bash
+python worker.py                      # 终端 A（可开多个，Redis 消费组自动分流）
+set QUEUE_WORKER_IN_APP=0             # 可选：web 进程不再消费
+python app.py                         # 终端 B
+```
+
+worker 处理中途崩溃不会丢任务：消息留在 PEL，重启后 `XAUTOCLAIM` 自动认领重做
+（任务幂等：清库重入，向量缓存兜底重复计算）。
 
 ### 验证缓存层（不需要模型、不需要联网）
 
@@ -193,6 +213,20 @@ $env:VERIFY_LOG="verify_memory.log"; python verify_cache.py
 
 > 注意：`CACHE_BACKEND=redis` 时如果连不上 Redis，脚本会**直接报错而不是静默降级**，
 > 并在结果里标记 `Redis 后端可用性` 失败 —— 避免"以为测了 Redis，其实测的是内存"。
+
+### 验证任务队列（不需要模型、不需要 DeepSeek Key）
+
+```bash
+python verify_queue.py                        # 默认（auto，通常降级 memory）
+QUEUE_BACKEND=memory python verify_queue.py    # 只测进程内队列
+QUEUE_BACKEND=redis  python verify_queue.py    # 真实 Redis Stream
+```
+
+它注入**假 handler**（模拟成功/失败/耗时）把队列流转真实跑一遍：入队与状态、
+消费成功/失败路径、毒丸隔离、FIFO、**入队立即返回 vs 同步阻塞的耗时对比**、
+状态 TTL；Redis 模式下额外验证**跨实例消费（模拟独立 worker 进程）、ACK 防重、
+崩溃恢复（XAUTOCLAIM 认领重做）**。实测：memory 后端 **24/24**、
+Redis Stream 后端（mini redis 真实 RESP 往返）**28/28**，失败 0。
 
 ### 验证 Redis 后端的关键实现细节
 
@@ -240,13 +274,16 @@ curl http://127.0.0.1:8000/cache/stats
 |---|---|
 | `cache.py` | **新增**。三种缓存的读写封装 + Redis/内存双后端 + 版本号失效 + 命中统计 |
 | `rag_langchain.py` | 嵌入方法包一层向量缓存；`rerank()` → `rerank_cached()`；新增 `query()`（带缓存的问答入口）、`invalidate_caches()`、`SemanticCache` |
-| `app.py` | `/ask` 改走 `query()`；`/upload` 成功后失效缓存；新增 3 个运维接口；前端路径改到 `templates/` |
-| `templates/index.html` | 新增缓存命中徽标、耗时、跳过缓存开关、缓存统计面板 |
+| `app.py` | `/ask` 改走 `query()`；`/upload` 默认异步入队（`?sync=true` 保留同步路径）；新增 3 个运维接口与 `/status/{task_id}`；lifespan 拉起内置 worker；前端路径改到 `templates/` |
+| `tasks.py` | **新增（队列层）**。Redis Stream / 进程内双后端、任务状态机、消费循环（可注入 handler）、`process_upload_file()`（解析+切块+入库+失效缓存，同步/异步共用） |
+| `worker.py` | **新增（队列层）**。独立消费进程入口（`python worker.py`，可多开） |
+| `templates/index.html` | 新增缓存命中徽标、耗时、跳过缓存开关、缓存统计面板；上传改为轮询任务状态 |
 | `verify_cache.py` | **新增**。缓存层验证脚本（35 条用例，不依赖模型） |
+| `verify_queue.py` | **新增（队列层）**。队列验证脚本（memory 24 条 / redis 28 条用例，注入假 handler，不依赖模型） |
 | `verify_redis_backend.py` | **新增**。Redis 后端关键实现断言（TTL / SCAN / INCR，15 条用例） |
-| `tools/resp_client.py`、`tools/mini_redis_resp.py` | **新增**。纯标准库的最小 RESP 客户端/服务，用于在没有 `redis` 包时验证 Redis 路径 |
-| `requirements.txt` | 新增 `redis>=5.0`（不装也能跑，会自动降级 memory） |
-| `.env.example`、`.gitignore` | **新增**。缓存配置说明 / 本项目忽略规则 |
+| `tools/resp_client.py`、`tools/mini_redis_resp.py` | **新增**。纯标准库的最小 RESP 客户端/服务，用于在没有 `redis` 包时验证 Redis 路径；已扩展 XADD/XREADGROUP/XACK/XAUTOCLAIM 等 Stream 命令以覆盖队列路径 |
+| `requirements.txt` | 新增 `redis>=5.0`（不装也能跑，缓存与队列都会自动降级） |
+| `.env.example`、`.gitignore` | **新增**。缓存/队列配置说明 / 本项目忽略规则 |
 
 **没有改的**：Chroma 用法、LCEL 链、评测口径 —— 所以 Hit Rate / MRR 与
 无缓存版 / 缓存版可直接对比（缓存不影响检索结果，只影响要不要重算）。
@@ -267,30 +304,76 @@ curl http://127.0.0.1:8000/cache/stats
 
 ---
 
-## 八、下一步：消息队列（尚未实现）
+## 八、消息队列：上传异步化与削峰（已实现）
 
 缓存解决的是"**同样的活不要干第二遍**"，但它不解决另外两个问题：
 
-1. **上传阻塞**：`/upload` 现在仍在请求内同步完成解析、切块、嵌入、入库，
+1. **上传阻塞**：`/upload` 原来在请求内同步完成解析、切块、嵌入、入库，
    一本大 PDF 用户要等几十秒；
 2. **削峰**：多人同时上传时，请求会堆积在 FastAPI 进程里，把 CPU 占满。
 
-消息队列解决的是"**把必须马上做的事，改成排队慢慢做**"。改造方向：
+消息队列解决的是"**把必须马上做的事，改成排队慢慢做**"。实现见
+`tasks.py` + `worker.py`，链路如下：
 
 ```
-现在：/upload ──► 解析+嵌入+入库（同步，用户等待）──► 返回
-
-改造：/upload ──► 存文件 + 往队列扔一条消息 ──► 立刻返回 task_id
-                 （Redis Stream / RabbitMQ）
+/upload ──► 存文件 + 入队（XADD Redis Stream）──► 立刻返回 task_id
                         │
-                  worker 进程消费 ──► 解析+嵌入+入库 ──► 更新任务状态
+                  worker 消费（XREADGROUP）──► 解析+切块+嵌入+入库 ──► 更新任务状态
                         │
        前端拿 task_id 轮询 GET /status/{task_id}
 ```
 
-届时缓存层需要配合的一点：**入库完成后再 `bump_version()`**——
-现在的失效点在"收到文件"时，改成异步后应挪到"worker 入库成功"时，
-否则任务还在排队、用户就已经拿不到旧答案了（旧答案其实仍然正确）。
+### 后端选择：与缓存层同一套哲学
+
+| `QUEUE_BACKEND` | 行为 | 适用 |
+|---|---|---|
+| `auto`（默认） | 跟随缓存层探测结果：Redis 可用则用 **Redis Stream**（跨进程共享、可跑独立 worker），否则进程内队列 | 开发/演示 |
+| `redis` | 强制 Redis Stream，连不上**直接报错** | 生产（避免静默降级后 worker 进程消费不到任务） |
+| `memory` | 进程内队列（`queue.Queue`），web 进程内的后台线程消费 | 单机/离线调试 |
+
+为什么选 Redis Stream 而不是 RabbitMQ / `BLPOP`：
+项目已依赖 redis（缓存层在用），不引入新中间件；`BLPOP` 取出即丢、
+worker 崩溃即丢消息，而 Stream 的消息进组后留在 PEL 直到 `XACK`——
+worker 挂了，重启后 `XAUTOCLAIM` 认领重做（任务幂等：清库重入，
+向量缓存兜底重复计算，重做是安全的）。消费组（XREADGROUP）还天然支持
+多 worker 分摊，`python worker.py` 多开即水平扩展。
+
+一个容易踩的实现细节：**消费组必须在第一条消息入队之前创建**
+（`XGROUP CREATE` 的位点默认是队尾 `$`）——先 `XADD` 再建组，
+组诞生前的消息会被永远漏掉。所以 `ensure_ready()` 在 enqueue 侧就会调用。
+
+### 缓存层配合的一处关键改动：失效点后移
+
+队列化后缓存失效（`invalidate_caches()` → `bump_version()`）从
+**"收到文件"挪到了"worker 入库成功"**（`tasks.process_upload_file` 内部）：
+
+> 任务还在排队时，旧答案其实仍然正确——提前失效只会让用户在这段时间
+> 白白重算，而新答案又还没就绪。
+
+这个函数同时是 `?sync=true` 同步路径的实现（同一份代码，两条路径不会漂移）。
+
+### 任务状态与轮询
+
+- 状态机：`queued → processing → succeeded | failed`，存在 `rag:task:{task_id}`
+  （Redis）或进程内字典（memory），TTL 默认 24 小时（`TASK_TTL`）；
+- `GET /status/{task_id}` 404 = 任务不存在或已过期；
+- 失败的任务把错误写进状态（前端直接显示），**并照常 ACK**——不自动重试：
+  失败原因多半是文件本身的问题，重试一百次也一样，让用户改完重新上传才是正解。
+  崩溃恢复只针对"worker 没跑完 handler 就死掉"的场景（消息还在 PEL）。
+
+### 判断队列写得对不对的标准（与缓存层一脉相承）
+
+- **队列是功能层，不是加速层**：入队失败必须让 `/upload` 返回失败（用户重传），
+  不能学缓存 fail-open 静默吞掉——文件收了却没人处理是最坏的体验；
+- **毒丸隔离**：单个坏文件失败不拖垮队列，后续任务照常消费；
+- **状态可见性跟随队列后端**：任务状态跟队列走（队列在 Redis → 状态在 Redis），
+  而不是跟缓存后端走——否则 worker.py 进程写的状态，web 进程轮询永远 404。
 
 > LLM 缓存这类"边界"要格外小心：它必须可随时清空且不改变正确答案，
 > 这也是本项目坚持"缓存只是加速层、fail-open、版本号失效"的原因。
+
+### 还可以继续做的
+
+- 上传文件的类型/大小限制（目前只校验扩展名）；
+- 任务优先级与死信队列（连续失败的隔离区，而非单次 failed 即终止）；
+- `uploads/` 孤儿文件的定期清理（worker 崩溃时暂存文件会留下）。

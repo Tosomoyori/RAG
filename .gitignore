@@ -38,10 +38,13 @@ chroma_db/
 # dedupe_store.py 清理重复块前的整库快照（本地回滚用，见 results/test_report.md）
 chroma_db_backup_dup/
 
-# 缓存层验证脚本的输出日志
+# 缓存层/队列层验证脚本的输出日志
 verify_memory.log
 verify_redis.log
+verify_queue.log
 mini_redis_commands.log
+# 上传任务的暂存文件（worker 处理完即删；目录本身也纳入忽略）
+uploads/
 
 # ---------- 操作系统 ----------
 .DS_Store

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的 PDF 阅读助手（缓存版）</title>
+    <title>我的 PDF 阅读助手（缓存 + 任务队列版）</title>
     <style>
         body {
             font-family: sans-serif;
@@ -66,13 +66,16 @@
     </style>
 </head>
 <body>
-    <h1>📚 我的 RAG 助手 <span class="muted" style="font-size:14px;">缓存版</span></h1>
+    <h1>📚 我的 RAG 助手 <span class="muted" style="font-size:14px;">缓存 + 任务队列版</span></h1>
 
     <div style="margin-bottom: 25px; padding: 15px; border: 2px dashed #aaa; border-radius: 8px;">
         <h3 style="margin-top: 0;">📤 上传文档（PDF / Markdown）</h3>
         <input type="file" id="fileInput" accept=".pdf,.md,.markdown,.txt" onchange="onFileSelected()">
-        <button id="uploadBtn" onclick="uploadFile()" disabled style="margin-left: 10px;">上传并向量化</button>
+        <button id="uploadBtn" onclick="uploadFile()" disabled style="margin-left: 10px;">上传（后台入队）</button>
         <div id="uploadStatus" style="margin-top: 10px; font-size: 14px;"></div>
+        <div class="muted" style="font-size:12px; margin-top:6px;">
+            上传立即返回任务号，解析与向量化在后台队列进行——大 PDF 不再卡住页面，状态见下方提示。
+        </div>
     </div>
 
     <hr>
@@ -121,13 +124,19 @@
             try {
                 const response = await fetch('/upload', { method: 'POST', body: formData });
                 const data = await response.json();
-                if (data.success) {
-                    status.textContent = '✅ ' + data.message;
-                    status.style.color = 'green';
-                    loadStats();          // 上传会失效缓存，刷新一下统计
-                } else {
+                if (!data.success) {
                     status.textContent = '❌ ' + data.message;
                     status.style.color = 'red';
+                } else if (data.task_id) {
+                    // 异步模式：文件已交给后台队列，立刻恢复按钮；
+                    // 接下来只轮询任务状态（新一次上传会顶掉这里的显示，
+                    // 旧任务仍在后台正常处理，只是页面上不再跟踪）。
+                    pollTask(data.task_id);
+                } else {
+                    // ?sync=true 的同步模式才有这种响应（本页面不使用）
+                    status.textContent = '✅ ' + data.message;
+                    status.style.color = 'green';
+                    loadStats();
                 }
             } catch (err) {
                 status.textContent = '❌ 请求失败: ' + err.message;
@@ -137,6 +146,49 @@
                 selectedFile = null;
                 document.getElementById('fileInput').value = '';
             }
+        }
+
+        // 拿 task_id 轮询 GET /status/{task_id}，直到任务成功/失败。
+        // 一本大 PDF 的解析+向量化要几十秒，这里展示的是队列里的真实状态。
+        async function pollTask(taskId) {
+            const status = document.getElementById('uploadStatus');
+            const started = Date.now();
+            const deadline = 10 * 60 * 1000;   // 最多轮询 10 分钟
+            while (Date.now() - started < deadline) {
+                await new Promise(r => setTimeout(r, 1000));
+                let res;
+                try {
+                    res = await fetch('/status/' + taskId);
+                } catch (err) {
+                    status.textContent = '❌ 查询任务状态失败: ' + err.message;
+                    status.style.color = 'red';
+                    return;
+                }
+                if (res.status === 404) {
+                    status.textContent = '❌ 任务不存在或已过期（' + taskId + '）';
+                    status.style.color = 'red';
+                    return;
+                }
+                const t = await res.json();
+                if (t.status === 'queued') {
+                    status.textContent = '⏳ 已加入队列（任务 ' + taskId.slice(0, 8) + '…），等待 worker 处理...';
+                    status.style.color = '#555';
+                } else if (t.status === 'processing') {
+                    status.textContent = '⚙️ 正在解析、切块与向量化（' + t.filename + '），请稍候...';
+                    status.style.color = '#555';
+                } else if (t.status === 'succeeded') {
+                    status.textContent = '✅ ' + t.message + '（耗时 ' + t.elapsed_ms + 'ms）';
+                    status.style.color = 'green';
+                    loadStats();          // 入库完成会失效缓存并更新块数，刷新统计
+                    return;
+                } else if (t.status === 'failed') {
+                    status.textContent = '❌ 处理失败: ' + (t.error || '未知错误');
+                    status.style.color = 'red';
+                    return;
+                }
+            }
+            status.textContent = '⏱ 处理时间较长，任务仍在后台进行；稍后可重新上传查看库块数变化。';
+            status.style.color = '#555';
         }
 
         async function askQuestion() {

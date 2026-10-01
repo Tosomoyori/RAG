@@ -1,5 +1,5 @@
 """
-RAG Web 服务 —— 中英双库 + 缓存层
+RAG Web 服务 —— 中英双库 + 缓存层 + 上传任务队列
 
 **双库设计**：中英各一个 Chroma collection，各配一个 embedding 模型
 （见 rag_langchain.py 的 LANG_MODELS）。按文档/问题的语种自动路由：
@@ -9,17 +9,23 @@ RAG Web 服务 —— 中英双库 + 缓存层
 混进同一个 collection 会让相似度变成噪声，检索静默出错而不报错。
 
 接口对照：
-  POST /upload         按文档语种【只替换该语种的库】：清空该库 -> 重新入库(index 0 起)
-                       -> 失效旧缓存 -> 刷新 chunks_preview_{lang}.md
+  POST /upload         默认**异步入队**（tasks.py）：存文件 + 入队 + 立刻返回
+                       task_id；解析、切块、嵌入、入库由 worker 慢慢做。
+                       传 ?sync=true 走旧的同步路径（评测脚本/一次性调试用）。
+                       按文档语种【只替换该语种的库】：清空该库 -> 重新入库
+                       -> 失效旧缓存（失效点在 worker 入库成功后）-> 刷新
+                       chunks_preview_{lang}.md
+  GET  /status/{id}    上传任务的状态轮询（queued/processing/succeeded/failed）
   POST /ask            按问题语种路由；额外返回 cache_hit / cache_type / elapsed_ms / lang
   GET  /cache/stats    查看缓存后端、命中率、缓存版本、各语种库块数
   POST /cache/clear    手动清空缓存（可选按类型清）
-  GET  /health         轻量健康检查（含各语种库块数）
+  GET  /health         轻量健康检查（含各语种库块数、任务队列状态）
   GET  /               前端页面
 
 设计要点：
   1. 缓存是"加速层"不是"数据源"：清掉缓存系统只会变慢，答案不会变错；
-  2. 上传文档会替换该语种的库并 bump 缓存版本，避免"文档更新了、答案还是旧的"；
+  2. 上传文档会替换该语种的库并 bump 缓存版本（在 worker 入库成功后执行），
+     避免"文档更新了、答案还是旧的"；也避免任务还在排队时旧答案被提前作废；
   3. 任何缓存异常都 fail-open（读不到就当未命中，照常走真实链路）；
   4. 目标语种的库为空时直接给出可读提示，**不**走检索——
      否则模型会"凭印象作答"，得到看起来正常但没有依据的回答。
@@ -28,29 +34,38 @@ import os
 import tempfile
 import threading
 import warnings
+from contextlib import asynccontextmanager
 from typing import Any, Dict, List, Optional
 
 # 屏蔽 langchain-community sunset 的 DeprecationWarning（见 rag_langchain.py 顶部注释）
 warnings.filterwarnings("ignore", message=".*langchain-community is being sunset.*")
 
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, HTTPException, UploadFile, File
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 
 from langchain_core.output_parsers import StrOutputParser
-from langchain_community.document_loaders import PyMuPDFLoader
 
 import cache
+import tasks
 from rag_langchain import (
     prompt, llm, load_store, make_retriever, make_chain,
-    split_by_tokens, query as rag_query, invalidate_caches,
-    get_all_chunks_in_order, save_chunks_to_file,
-    detect_lang, LANG_COLLECTIONS, LANG_MODELS, DEFAULT_LANG,
+    query as rag_query,
+    detect_lang, LANG_COLLECTIONS, DEFAULT_LANG,
     _get_chroma_client,
     RETRIEVE_K, RERANK_TOP_N,
 )
 
-app = FastAPI(title="RAG Web Service (LangChain + Cache)")
+
+@asynccontextmanager
+async def lifespan(_: FastAPI):
+    """启动时拉起内置任务 worker（QUEUE_WORKER_IN_APP=0 可关，见 tasks.py）。"""
+    tasks.start_in_app_worker()
+    yield
+
+
+app = FastAPI(title="RAG Web Service (LangChain + Cache + Task Queue)",
+              lifespan=lifespan)
 
 # 全局对象，启动时懒加载（避免重复加载本地模型）
 # 注意：这是"模型/连接复用"，不是缓存——缓存见 cache.py 与 rag_langchain.query()
@@ -143,9 +158,11 @@ class AskResponse(BaseModel):
 class UploadResponse(BaseModel):
     success: bool
     message: str
-    chunk_count: int = 0
+    task_id: Optional[str] = None    # 异步模式：拿它轮询 GET /status/{task_id}
+    status: str = ""                 # 异步模式返回的初始状态（queued）
+    chunk_count: int = 0             # 只有 ?sync=true 的同步路径会填
     cache_invalidated: bool = False
-    lang: str = ""               # 文档被判定的语种，决定进哪个库
+    lang: str = ""                   # 文档被判定的语种，决定进哪个库
 
 
 class CacheClearRequest(BaseModel):
@@ -153,79 +170,79 @@ class CacheClearRequest(BaseModel):
 
 
 @app.post("/upload", response_model=UploadResponse)
-async def upload_file(file: UploadFile = File(...)):
-    """上传 PDF 或 Markdown 文件，解析后加入向量库，并失效受影响的缓存。"""
+async def upload_file(file: UploadFile = File(...), sync: bool = False):
+    """上传 PDF 或 Markdown 文件。
+
+    默认走任务队列（README 第八节）：存文件 + 入队 + **立刻**返回 task_id，
+    解析、切块、嵌入、入库交给 worker 慢慢做——一本大 PDF 不再让用户
+    在 HTTP 请求里干等几十秒，多人同时上传也只是排队而不是把 CPU 打满。
+
+    ?sync=true 保留旧的同步路径（评测脚本/一次性调试用），
+    处理逻辑与 worker 是同一个函数（tasks.process_upload_file），不会漂移。
+    """
     filename = file.filename or ""
     ext = os.path.splitext(filename)[1].lower()
+    if ext not in (".pdf", ".md", ".markdown", ".txt"):
+        return UploadResponse(
+            success=False,
+            message=f"不支持的文件类型: {ext or '(无扩展名)'}，请上传 PDF 或 Markdown 文件")
 
     file_bytes = await file.read()
+    if not file_bytes:
+        return UploadResponse(success=False, message="文件内容为空")
 
-    try:
-        if ext == ".pdf":
-            # 先写入临时文件再交给 PyMuPDFLoader
-            with tempfile.NamedTemporaryFile(suffix=".pdf", delete=False) as tmp:
-                tmp.write(file_bytes)
-                tmp_path = tmp.name
-            try:
-                text = "".join(p.page_content for p in PyMuPDFLoader(tmp_path).load())
-            finally:
-                os.unlink(tmp_path)
-        elif ext in (".md", ".markdown", ".txt"):
-            text = file_bytes.decode("utf-8")
-        else:
-            return UploadResponse(success=False, message=f"不支持的文件类型: {ext}，请上传 PDF 或 Markdown 文件")
-
-        if not text.strip():
-            return UploadResponse(success=False, message="文件内容为空")
-
-        # 按**文档语种**决定进哪个库、用哪个模型（中英各一个 collection）
-        lang = detect_lang(text)
-
-        # 切块要用该语种的 tokenizer，所以必须排在 lang 之后
-        chunks = split_by_tokens(text, lang)
-        if not chunks:
-            return UploadResponse(success=False, message="分块后无内容")
-
-        # 只替换**该语种**的 collection：先清空，再以 index 0 起重新编号入库。
-        # 中文库和英文库互相独立——上传英文文档不会动到中文库，反之亦然。
-        # 注意：这里只删块、不 drop collection（维度不变），保持 Chroma 实例和 retriever 有效。
-        store = get_store(lang)
-        old_ids = store.get()["ids"]
-        if old_ids:
-            store.delete(ids=old_ids)
-
-        # 向量化 + 入库；嵌入会走向量缓存（重复上传同一文件不会重复算向量）
-        store.add_texts(
-            chunks,
-            metadatas=[{"index": i, "source": filename}
-                       for i in range(len(chunks))],
-        )
-
-        # 知识库变了：旧答案必须作废，否则用户会拿到基于旧文档的回答
-        invalidated = invalidate_caches()
-
-        # 让该语种的 chunks_preview 跟上向量库：评测脚本以它为 chunk 正文基准，
-        # 不更新的话它们会拿旧正文去比对新向量库，结论会静默出错。
-        # 失败不影响上传本身（与缓存层一样 fail-open）。
-        preview_file = f"./chunks_preview_{lang}.md"
-        preview_note = ""
+    if sync:
+        # 同步路径：请求内做完解析+入库（行为与缓存版一致）。
+        # 文件类型/空文件已在上面快速失败；内容级问题（如 PDF 无文本）
+        # 在 process_upload_file 里抛出，这里转成可读的失败响应。
+        with tempfile.NamedTemporaryFile(suffix=ext, delete=False) as tmp:
+            tmp.write(file_bytes)
+            tmp_path = tmp.name
         try:
-            save_chunks_to_file(get_all_chunks_in_order(store), preview_file)
+            result = tasks.process_upload_file(
+                {"saved_path": tmp_path, "filename": filename})
+            return UploadResponse(
+                success=True, message=result["message"],
+                chunk_count=result["chunk_count"],
+                cache_invalidated=result["cache_invalidated"],
+                lang=result["lang"],
+            )
         except Exception as e:
-            preview_note = f"；{preview_file} 更新失败: {e}"
+            return UploadResponse(success=False, message=f"上传失败: {e}")
+        finally:
+            try:
+                os.unlink(tmp_path)
+            except OSError:
+                pass
 
-        return UploadResponse(
-            success=True,
-            message=(f"成功解析文件 {filename}，判定为{_lang_label(lang)}，"
-                     f"共 {len(chunks)} 个文本块进入 {LANG_COLLECTIONS[lang]} 库"
-                     f"（已替换该库原有 {len(old_ids)} 个块，index 0~{len(chunks) - 1}，"
-                     f"已失效 {invalidated} 条问答/精排缓存）{preview_note}"),
-            chunk_count=len(chunks),
-            cache_invalidated=True,
-            lang=lang,
-        )
+    # 异步路径：暂存文件 + 入队 + 立刻返回。入队失败会抛出（队列是功能层，
+    # 不能像缓存那样 fail-open 静默吞掉——文件收了却没人处理是最坏的体验）。
+    try:
+        task_id = tasks.submit_upload(filename, file_bytes, ext)
     except Exception as e:
-        return UploadResponse(success=False, message=f"上传失败: {str(e)}")
+        return UploadResponse(success=False, message=f"任务入队失败: {e}")
+    return UploadResponse(
+        success=True,
+        message=(f"已接收 {filename}（{len(file_bytes) / 1024:.1f} KB），任务已加入队列"
+                 f"（后端 {tasks.backend_name()}）。解析与向量化在后台进行，"
+                 f"可用 task_id 查询进度。"),
+        task_id=task_id,
+        status=tasks.QUEUED,
+    )
+
+
+@app.get("/status/{task_id}")
+def task_status(task_id: str):
+    """上传任务的状态轮询（前端在 /upload 返回 task_id 后反复调用它）。
+
+    状态机：queued -> processing -> succeeded | failed。
+    404 = 任务不存在或状态已过期（TASK_TTL，默认 24 小时）。
+    """
+    task = tasks.get_task(task_id)
+    if task is None:
+        raise HTTPException(status_code=404,
+                            detail=f"任务 {task_id} 不存在或已过期")
+    return task
 
 
 @app.post("/ask", response_model=AskResponse)
@@ -287,7 +304,10 @@ def cache_clear(request: CacheClearRequest):
 @app.get("/health")
 def health():
     return {"status": "ok", "cache_backend": cache.backend_name(),
-            "cache_healthy": cache.healthy(), "collections": collection_counts()}
+            "cache_healthy": cache.healthy(),
+            "queue": {"backend": tasks.backend_name(),
+                      "in_app_worker": tasks.IN_APP_WORKER},
+            "collections": collection_counts()}
 
 
 @app.get("/", response_class=HTMLResponse)

@@ -13,6 +13,7 @@ fastapi
 uvicorn
 python-dotenv
 
-# 缓存层：Redis 客户端。
-# 不装也能跑 —— 连不上 Redis 时自动降级为进程内内存缓存（CACHE_BACKEND=auto）。
+# Redis 客户端：缓存层与上传任务队列（Redis Stream）共用。
+# 不装也能跑 —— 连不上 Redis 时两者都自动降级为进程内实现
+# （CACHE_BACKEND=auto / QUEUE_BACKEND=auto）。
 redis>=5.0

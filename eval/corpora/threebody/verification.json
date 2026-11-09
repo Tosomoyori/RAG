@@ -1,0 +1,26 @@
+{
+  "indexes": {
+    "book1": {
+      "chunks": 865,
+      "sections": 36,
+      "characters": 187784,
+      "text_and_metadata_match": true,
+      "vector_dimensions": 768,
+      "all_vectors_finite_and_nonzero": true
+    },
+    "trilogy": {
+      "chunks": 4014,
+      "sections": 76,
+      "characters": 876412,
+      "text_and_metadata_match": true,
+      "vector_dimensions": 768,
+      "all_vectors_finite_and_nonzero": true
+    }
+  },
+  "first_volume_chunks_identical": true,
+  "original_index_unchanged": true,
+  "original_index_files_checked": 31,
+  "automated_tests_passed": 9,
+  "generation_or_grading_api_calls": 0,
+  "full_text_manual_review": "pending"
+}

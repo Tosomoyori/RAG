@@ -48,6 +48,7 @@ from langchain_core.output_parsers import StrOutputParser
 
 import cache
 import tasks
+from document_loader import SUPPORTED_EXTENSIONS
 from rag_langchain import (
     prompt, llm, load_store, make_retriever, make_chain,
     query as rag_query,
@@ -77,7 +78,7 @@ _retrievers: Dict[str, Any] = {}
 _chains: Dict[str, Any] = {}
 # FastAPI 会把同步的 /ask 丢进线程池，首次并发请求会各自构造一遍，
 # 所以这些懒加载单例都走双检锁（与 cache._get_backend 的写法一致）。
-_singleton_lock = threading.Lock()
+_singleton_lock = threading.RLock()
 
 FRONTEND = os.path.join(os.path.dirname(os.path.abspath(__file__)), "templates", "index.html")
 
@@ -94,7 +95,7 @@ def get_retriever(lang: str = DEFAULT_LANG):
     if lang not in _retrievers:
         with _singleton_lock:
             if lang not in _retrievers:
-                _retrievers[lang] = make_retriever(get_store(lang))   # 召回 RETRIEVE_K + 精排 RERANK_TOP_N
+                _retrievers[lang] = make_retriever(get_store(lang), lang=lang)
     return _retrievers[lang]
 
 
@@ -182,10 +183,10 @@ async def upload_file(file: UploadFile = File(...), sync: bool = False):
     """
     filename = file.filename or ""
     ext = os.path.splitext(filename)[1].lower()
-    if ext not in (".pdf", ".md", ".markdown", ".txt"):
+    if ext not in SUPPORTED_EXTENSIONS:
         return UploadResponse(
             success=False,
-            message=f"不支持的文件类型: {ext or '(无扩展名)'}，请上传 PDF 或 Markdown 文件")
+            message=f"不支持的文件类型: {ext or '(无扩展名)'}，请上传 PDF、EPUB、Markdown 或 TXT 文件")
 
     file_bytes = await file.read()
     if not file_bytes:

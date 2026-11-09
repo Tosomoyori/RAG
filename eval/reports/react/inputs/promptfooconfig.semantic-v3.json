@@ -1,0 +1,25 @@
+{
+  "description": "Bounded answers with explicit language conditioning",
+  "prompts": [
+    "{{case_id}}"
+  ],
+  "providers": [
+    {
+      "id": "file://semantic-provider.py",
+      "label": "grounded-v3",
+      "config": {
+        "variant": "grounded-v3",
+        "pythonExecutable": "D:/MyProgramFiles/Miniforge/envs/RAG/python.exe"
+      }
+    }
+  ],
+  "tests": "file://semantic-tests.json",
+  "defaultTest": {
+    "assert": [
+      {
+        "type": "javascript",
+        "value": "file://semantic-check.cjs"
+      }
+    ]
+  }
+}

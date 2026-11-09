@@ -1,0 +1,87 @@
+{
+  "version": "threebody-evaluation-profile-v1",
+  "status": "frozen_after_development_before_holdout",
+  "scope": "book1",
+  "deployment": "evaluation only; production defaults were not changed",
+  "retrieval": {
+    "mode": "hybrid",
+    "candidate_k": 20,
+    "rerank_top_n": 5,
+    "neighbors": 1,
+    "same_section_only": true,
+    "max_chunks": 10,
+    "max_body_tokens": 2560
+  },
+  "index": {
+    "directory": "eval/indexes/threebody/book1",
+    "collection": "rag_zh",
+    "chunk_tokens": 256,
+    "chunk_overlap_tokens": 40,
+    "embedding_model": "text2vec-base-chinese",
+    "reranker": "mmarco-mMiniLMv2-L12-H384-v1"
+  },
+  "generation": {
+    "model": "deepseek-chat",
+    "temperature": 0.7,
+    "prompt": "legacy",
+    "context_format": "source_context.render_sources",
+    "answer_cache": false
+  },
+  "auxiliary_grader": {
+    "model": "deepseek-chat",
+    "temperature": 0,
+    "base_rubric": "eval/promptfoo/semantic-rubric.txt",
+    "source_rules": "eval/threebody/source-grading-rules.txt",
+    "status": "auxiliary; known source-attribution and penalty inconsistencies"
+  },
+  "review_protocol": "eval/threebody/review_protocol_v1.json",
+  "decision_basis": "Evidence completeness and direct support prioritized; no demonstrated overall accuracy gain. Lower-input hybrid-n0 remains an archived candidate.",
+  "reporting": "Separate annotated retrieval coverage, auxiliary automatic grades, source-review labels and actual token usage; no independently human-verified accuracy claim.",
+  "next_stage": "One frozen holdout evaluation without tuning; then assess corpus scaling separately.",
+  "holdout_policy": "冻结配置后一次执行保留题。查看保留输出后若改配置或评分标准，该批题转为开发材料，后续需另设测试集。",
+  "limitations": [
+    "AI-authored annotations and review",
+    "single generation per condition",
+    "same model family generator and grader",
+    "temperature sampling not reproducibly seeded"
+  ],
+  "dataset_sha256": {
+    "eval/corpora/threebody/question-bank-v1/manifest.json": "98980ca48acdbdcd2405eeb22034664605101d7fd32c22ebc554c137b383bb50",
+    "eval/corpora/threebody/question-bank-v1/development.json": "8e5e711bc393dac7a56d30aaa193a844650ba69b3ec5a86cd2a173f8080027e9",
+    "eval/corpora/threebody/question-bank-v1/holdout.json": "acf2aa763628be48317c182eaff62961f28fb88a72bf0b73b34b73bd020c47cb"
+  },
+  "corpus_manifest_sha256": "42d4f0a9a43bfd0c1082eac889685162ba1c8e9cda58d6f55a160b0d87807038",
+  "reranker_files_sha256": {
+    "mmarco-mMiniLMv2-L12-H384-v1/config.json": "335a38172393b499dd3dac6c7155cfaec06ab78aa32244a307f3184fcacc350c",
+    "mmarco-mMiniLMv2-L12-H384-v1/model.safetensors": "5daeca2481a76b5976a2bdc32f0a78532b6716da4f8cd3ff59460ef8d2f359b4",
+    "mmarco-mMiniLMv2-L12-H384-v1/openvino/openvino_model.bin": "3b00b3db7a1a0d53c64b459e81900c1dfa7fd34c253556e4cc9b862fcd356c10",
+    "mmarco-mMiniLMv2-L12-H384-v1/openvino/openvino_model_qint8_quantized.bin": "2911002d538ad8ea038cf554cb391b6f96fa65ba0ea524214ccf884d6ae28120",
+    "mmarco-mMiniLMv2-L12-H384-v1/pytorch_model.bin": "1abc209e54d70bbcb08c1b5111a924fb99c0428f51cab1659310ccdcab69dc03",
+    "mmarco-mMiniLMv2-L12-H384-v1/special_tokens_map.json": "378eb3bf733eb16e65792d7e3fda5b8a4631387ca04d2015199c4d4f22ae554d",
+    "mmarco-mMiniLMv2-L12-H384-v1/tokenizer.json": "62c24cdc13d4c9952d63718d6c9fa4c287974249e16b7ade6d5a85e7bbb75626",
+    "mmarco-mMiniLMv2-L12-H384-v1/tokenizer_config.json": "e7fbfbfa6347b4e414c1cee50d142e2c2f9a895dad68b068ae83a8b564c3837e"
+  },
+  "retrieval_study_manifest_sha256": "3f9a6e00b21210b9182364ac89532145f0a081f0fb50b17b8b38eb9ce51100b1",
+  "files_sha256": {
+    "eval/threebody/source_review_v1.json": "3cfc6dacad65f336f87f5623a3797c698dba1752c401882373258127dd002634",
+    "eval/threebody/review_protocol_v1.json": "36dd88ddc84dd35b66f2fadfbf81723d775dd83b28aefbb4b977c4287a75989d",
+    "eval/threebody/review_and_freeze.py": "f214743c734fe351acde0142deedc58c4b34229cfddf244387c5740e46071a69",
+    "eval/threebody/source_context.py": "ea3852dc7071b09c4c2e20c2555a475c3b4a7e46c0d53526721d06a00d377d07",
+    "eval/threebody/semantic_grading.py": "21bd4989830bb1bf6c08ea14632f800d5caeabfa146308beddd2d1e565e0c379",
+    "eval/threebody/source-grading-rules.txt": "bdbad6a19e38f4ddc45829c12eaf8178e604bee8307e3cab0ca43fa52d06d093",
+    "rag_langchain.py": "1e3148a8528eb3208291e9cbff91386c6ed538f94f0b461bbfa9a998ca7f265c",
+    "retrieval.py": "7233c63dc9f4f3672d1199a901a5bf88fc31c099a694a2c460e58d3c508a6a6c",
+    "prompts.json": "f46129b01cde5199e88d43b3503b80c30b3c7d8ffb95b36b0382e4f78ccfdcfb",
+    "eval/promptfoo/semantic-rubric.txt": "6b8cae6a6ba616afb96d6a1d83da2397f8f7dae62b4557751e303a1d743464fa"
+  },
+  "reviewed_output_sha256": {
+    "eval/reports/threebody/raw/generation-comparison-20261105-01/tb-dev-06-hybrid-n0.json": "5e5876d7988504f397d00c5bc2a393ab1ed3f70e4d9856eb0fa535ff35fa1126",
+    "eval/reports/threebody/raw/generation-comparison-20261105-01/tb-dev-06-hybrid-n1.json": "f6a566cbc023a508e6484b45574b47ee581c49ea63ad754c1de4a0583e30755b",
+    "eval/reports/threebody/raw/generation-comparison-20261105-01/tb-dev-16-hybrid-n0.json": "a560e30b7496a4091f3af4e708ae128c25f9643db58c1d341904ffd5485a8ff7",
+    "eval/reports/threebody/raw/generation-comparison-20261105-01/tb-dev-16-hybrid-n1.json": "60781ae382b338d3c7f9c76163c1c9ec680ab6f39b5767c6f30d0e0d80632344",
+    "eval/reports/threebody/raw/generation-comparison-20261105-01/tb-dev-21-hybrid-n0.json": "1983890535d6c9247b0567139e59456e4f6103e6d622a123d227e2df19b27f55",
+    "eval/reports/threebody/raw/generation-comparison-20261105-01/tb-dev-21-hybrid-n1.json": "3a86500a1db80221a38161a87bcf2f5aff9321fa06b7abb1ffe54f75f14ea402",
+    "eval/reports/threebody/raw/generation-comparison-20261105-01/tb-dev-22-hybrid-n0.json": "34c4644895b9a7545dda8488b5fb1714bb6c5030780bd0767c7878120e45598c",
+    "eval/reports/threebody/raw/generation-comparison-20261105-01/tb-dev-22-hybrid-n1.json": "012436c09ecd74cc3996693e8052626460fd7cc7ee7ecc33a2592b6a7b41fa7e"
+  }
+}

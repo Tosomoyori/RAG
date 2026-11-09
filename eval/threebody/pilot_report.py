@@ -1,0 +1,80 @@
+"""Report the pilot and its annotation-only replay without invoking models."""
+import argparse
+import hashlib
+import json
+from pathlib import Path
+import statistics
+
+ROOT = Path(__file__).resolve().parents[2]
+
+
+def read(path):
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--run-dir", type=Path, required=True)
+    parser.add_argument("--output", type=Path, required=True)
+    args = parser.parse_args()
+    original = read(args.run_dir / "promptfoo.json")
+    reviewed = read(args.run_dir / "promptfoo-reviewed.json")
+    cases = read(args.run_dir / "reviewed-annotations/cases.frozen.json")
+    old_rows = {row["vars"]["case_id"]: row for row in original["results"]["results"]}
+    rows = {row["vars"]["case_id"]: row for row in reviewed["results"]["results"]}
+    outputs = []
+    for case in cases:
+        old = old_rows[case["id"]]["response"]["output"]
+        current = rows[case["id"]]["response"]["output"]
+        assert current["response"] == old["response"]
+        assert current["grade"] == old["grade"]
+        assert current["sources"] == old["sources"]
+        outputs.append(current)
+    old_index = read(ROOT / "eval/corpora/threebody/local/original-index-before.json")
+    current_index = {p.relative_to(ROOT).as_posix(): hashlib.file_digest(p.open("rb"), "sha256").hexdigest()
+                     for p in (ROOT / "chroma_db").rglob("*") if p.is_file()}
+    assert old_index == current_index, "Original paper index changed"
+    grading_tokens = sum(o["grading_usage"].get("total_tokens", 0) for o in outputs)
+    lines = ["# 三体第一册 Promptfoo 开发试运行", "",
+             "## 实验范围", "",
+             "本轮使用 8 道开发题，验证证据标注、实际检索、生成、自动评分及保存答案重评分流程。"
+             "题目不是独立测试集；01 和 07 共用来访者身份事实，不视为两个独立知识点。标注已由 AI 对照原文检查，独立人工复核待完成。", "",
+             "配置：第一册 865 块；text2vec-base-chinese；当前默认中文混合检索；召回 20、精排 5；"
+             "同节相邻块半径 1；上下文最多 10 块、2560 token；legacy 提示词；生成 deepseek-chat、temperature=0.7；"
+             "裁判 deepseek-chat、temperature=0。关闭答案及 Promptfoo 缓存。嵌入与精排缓存为进程内缓存，耗时不是统一冷启动基准。", "",
+             "## Promptfoo 结果", "",
+             f"首轮：{original['results']['stats']['successes']}/8 通过，"
+             f"{original['results']['stats']['failures']} 失败，{original['results']['stats']['errors']} 错误。",
+             f"补充证据标注后重评分：{reviewed['results']['stats']['successes']}/8 通过，"
+             f"{reviewed['results']['stats']['failures']} 失败，{reviewed['results']['stats']['errors']} 错误。", "",
+             "两次评分使用完全相同的答案、检索上下文和裁判分数。第二次仅修正证据位置集合，不重新调用模型，"
+             "因此通过率变化属于标注修订，不属于 RAG 能力提升。", "",
+             "| 题号 | 类型 | 首轮证据组覆盖 | 复核后覆盖 | 正确/依据/行为/语言 | 问答耗时 ms |", "|---|---|---:|---:|---|---:|"]
+    for case, out in zip(cases, outputs):
+        old = old_rows[case["id"]]["response"]["output"]
+        scores = "/".join(str(out["grade"][key]) for key in ("correctness", "grounding", "behavior", "language"))
+        lines.append(f"| {case['id']} | {case['type']} | {old['evidence_coverage']:.0%} | {out['evidence_coverage']:.0%} | {scores} | {out['response']['elapsed_ms']:.1f} |")
+    lines += ["", "每项语义分数范围为 0—2。证据覆盖指已标注必要事实的支持块覆盖，不能证明所有可能有效证据均已穷尽。", "",
+              "## 首轮失败复核", "",
+              "tb-dev-06 要求区分三派动机。首轮只命中三组标注中的一组，但答案和裁判均判为完整且有依据。"
+              "逐块检查发现：第 31 章块 696 同时解释了憎恨动机和降临派毁灭人类的目的；第 30 章块 689 包含宗教感情与拯救主目的。"
+              "原标注仅收录第 30 章另一处同义表述，遗漏这些有效支持位置。修订仅为相应事实组补充可接受块，未删除事实要求。", "",
+              "## 耗时与调用记录", "",
+              f"问答耗时中位数 {statistics.median(o['response']['elapsed_ms'] for o in outputs):.1f} ms；"
+              f"检索耗时中位数 {statistics.median(o['retrieval_ms'] for o in outputs):.1f} ms。问答耗时包含检索与生成，不包含裁判。",
+              f"8 道题均完成生成与裁判步骤。裁判记录的总 token 为 {grading_tokens}；"
+              "当前生产生成链只返回字符串，未记录生成 token。HTTP provider 在 Promptfoo 顶层报告 token 为 0，"
+              "不代表没有调用成本；本轮不据此计算总费用。重评分使用本地保存结果，不新增模型调用。", "",
+              "## 限制与后续", "",
+              "本轮没有不检索对照、检索消融、全集对照、裁判人工校准或重复运行；没有专门的无答案题。"
+              "同一模型系列生成并评分，可能存在共同偏差。8/8 仅说明修订标注后的开发样例通过当前规则，不能外推为整本书的准确率。", "",
+              "原论文索引 31 个文件哈希保持不变。原始回答、逐题检索内容、裁判输出、首轮与修订评分、输入清单均保存在本地忽略目录：",
+              f"`{args.run_dir.relative_to(ROOT).as_posix() if args.run_dir.is_absolute() else args.run_dir.as_posix()}`。", "",
+              "下一阶段扩充开发与保留测试题，增加真正无答案及更分散的证据题；使用人工复核样例校准裁判，再开展配置比较。", ""]
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    args.output.write_text("\n".join(lines), encoding="utf-8")
+    print(f"Saved {args.output}; original-index integrity and replay lineage verified")
+
+
+if __name__ == "__main__":
+    main()

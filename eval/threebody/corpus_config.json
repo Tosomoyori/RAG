@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "source": "The Three-Body Problem.epub",
+  "source_sha256": "0fb3cde2dc4f8c9f4e5a2ba612f3d3d3eb049d67928cce4fcc8b2c94ea20c6a8",
+  "language": "zh",
+  "chunk_tokens": 256,
+  "chunk_overlap_tokens": 40,
+  "books": [
+    {"id": "book1", "title": "三体", "resources": [4, 39]},
+    {"id": "book2", "title": "黑暗森林", "resources": [44, 47]},
+    {"id": "book3", "title": "死神永生", "resources": [51, 57]}
+  ],
+  "scopes": {"book1": ["book1"], "trilogy": ["book1", "book2", "book3"]},
+  "excluded_resources": {
+    "0": "全集目录", "1": "第一册版权页", "2": "获奖感言", "3": "第一册目录",
+    "40": "第一册作者后记", "41": "第一册独立脚注页", "42": "第二册版权页",
+    "43": "第二册目录", "48": "第二册独立脚注页", "49": "第三册版权页",
+    "50": "第三册目录", "58": "出版宣传", "59": "出版宣传", "60": "第三册独立脚注页"
+  },
+  "policies": {
+    "boundaries": "HTML 标题及独占一行的【…】时间场景标记；不推断未标示的场景边界。",
+    "fictional_preface": "保留《时间之外的往事》序言及节选，属于小说叙事。",
+    "chronology": "保留第三册纪年对照表。",
+    "notes": "独立脚注页不参与检索；正文中的脚注标记保留。相关题目不依赖被排除的脚注。",
+    "review": "资源范围与标记规则已由程序核对；全文逐段人工复核未完成。"
+  }
+}

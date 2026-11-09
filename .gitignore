@@ -14,6 +14,11 @@
 .claude/settings.local.json
 .idea/
 
+# ---------- Node.js evaluation dependencies ----------
+node_modules/
+eval/promptfoo/results/
+eval/reports/*/raw/
+
 # ---------- Python ----------
 __pycache__/
 *.py[cod]
@@ -49,6 +54,13 @@ verify_queue.log
 mini_redis_commands.log
 # 上传任务的暂存文件（worker 处理完即删；目录本身也纳入忽略）
 uploads/
+
+# Local evaluation corpus
+/The Three-Body Problem.epub
+/eval/corpora/threebody/local/
+/eval/indexes/
+/数模论文/
+/eval/corpora/modeling/local/
 
 # ---------- 操作系统 ----------
 .DS_Store

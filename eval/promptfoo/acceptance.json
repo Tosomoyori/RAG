@@ -1,0 +1,154 @@
+[
+  {
+    "description": "acceptance-zh-gain",
+    "vars": {
+      "query": "ReAct 在 ALFWorld 和 WebShop 上的成功率分别绝对提高了多少个百分点？",
+      "expected_lang": "zh",
+      "required_patterns": "[\"34\\\\s*(?:%|个?百分点)\", \"10\\\\s*(?:%|个?百分点)\"]"
+    },
+    "metadata": {
+      "reference_answer": "分别提高 34 和 10 个百分点。",
+      "type": "acceptance",
+      "evidence": [
+        {
+          "index": 14,
+          "text": "事实验证(发烧、Thorne et al.,2018),基于文本的游戏(ALFWorld，Shridhar\net al.,2020b),和网页导航( 网络商店，Yaoet al.,2022).对于HotPotQA 和Fever，由\n于可以访问模型可以与之交互的维基百科API，ReAct 的性能优于普通的动作生成模型，同\n时与思维链推理(CoT)具有竞争力(Wei et al.,2022).总体而言，最好的方法是将ReAct 和\nCoT 结合起来，既可以利用内部知识，也可以利用外部获得的信息\n在推理过程中。在ALFWorld 和WebShop 上，两次甚至一次的ReAct 提示能够优于用\n103∞105 个任务实例训练的模仿或强化学习方法，成功率分别有34%和10%的绝对提高。我"
+        }
+      ],
+      "review_status": "Frozen before retrieval experiment inspection; same-paper held-out questions"
+    }
+  },
+  {
+    "description": "acceptance-zh-prompts",
+    "vars": {
+      "query": "ALFWorld 实验为每一种任务类型构造了多少个提示？",
+      "expected_lang": "zh",
+      "required_patterns": "[\"6|六\"]"
+    },
+    "metadata": {
+      "reference_answer": "每种任务类型构造 6 个提示。",
+      "type": "acceptance",
+      "evidence": [
+        {
+          "index": 42,
+          "text": ") 通过常识推理在哪里找到一个对象以及如何处理\n它。我们在附录中显示了用于A L F W o r l d 的提示C.4.跟随Shridhar et al.\n(2020b),我们在一个特定任务的设置中评估了134 个看不见的评估游戏。为了稳健，我们\n从我们注释的3 个轨迹中，通过2 个注释轨迹的每个排列，为每个任务类型构建6 个提\n示。Act 提示是使用相同的轨迹构建的，但没有思想——因为任务实例是从训练集中随机选\n择的，所以它既不支持反应也不支持Act，并提供了公平和受控的比较来测试稀疏思想的重\n要性。对于基线，我们使用BUTLER(Shridhar et al.,2020b),一个模仿学习代理在105 条专\n家轨迹上"
+        }
+      ],
+      "review_status": "Frozen before retrieval experiment inspection; same-paper held-out questions"
+    }
+  },
+  {
+    "description": "acceptance-zh-products",
+    "vars": {
+      "query": "WebShop 环境有多少真实世界商品和人工指令？",
+      "expected_lang": "zh",
+      "required_patterns": "[\"118\\\\s*万|1\\\\.18\\\\s*[mM]|1[,.]?180[,.]?000\", \"12\\\\s*[kK]|12[,.]?000|1\\\\.2\\\\s*万\"]"
+    },
+    "metadata": {
+      "reference_answer": "118 万件商品和 12k（12000）条人工指令。",
+      "type": "acceptance",
+      "evidence": [
+        {
+          "index": 43,
+          "text": "。对于基线，我们使用BUTLER(Shridhar et al.,2020b),一个模仿学习代理在105 条专\n家轨迹上为每种任务类型进行了训练5。\nWebShop 能反应还能和嘈杂的真实世界语言环境交互进行实际应用？我们调查网上商店(Yao\net al.,2022),一个最近提出的在线购物网站环境，拥有118 万件真实世界的产品和12k 人\n工说明。与ALFWorld 不同，Webshop 包含各种各样的结构化和非结构化文本(例如，从\nAmazon 抓取的产品标题、描述和选项)，并要求代理根据用户指示购买产品(例如，“我正\n在寻找带抽屉的床头柜。它应该有镍涂层，价格低于140 美元)，例如搜索“床头柜抽\n屉”，选择“颜色:现代镍白"
+        }
+      ],
+      "review_status": "Frozen before retrieval experiment inspection; same-paper held-out questions"
+    }
+  },
+  {
+    "description": "acceptance-zh-examples",
+    "vars": {
+      "query": "用于 HotpotQA 和 Fever 的 ReAct 提示各选了多少个训练案例？",
+      "expected_lang": "zh",
+      "required_patterns": "[\"6|六\", \"3|三\"]"
+    },
+    "metadata": {
+      "reference_answer": "分别选取 6 和 3 个训练案例。",
+      "type": "acceptance",
+      "evidence": [
+        {
+          "index": 25,
+          "text": "]，它返回相应实体wiki 页面中的前5 个句子(如果存在)，或\n者建议来自Wikipedia 搜索引擎的前5 个相似实体，(2) lookup[string]，它将返回包含\nstring 的页面中的下一个句子，模拟浏览器上的Ctrl+F 功能。(3)完成【答案】，完成当\n前任务并给出答案。我们注意到，这个动作空间通常只能基于准确的段落名称来检索一小\n部分段落，这明显弱于最先进的词法或神经检索器。目的是模拟人类如何与维基百科互\n动，并迫使模型通过语言的显式推理进行检索。\n3.2\n方法\n对于HotpotQA 和发烧的反应提示，我们随机选择了6 和3 个案例2 并手动构建ReAct-\nformat 轨迹以用作提示中的少数镜头样"
+        }
+      ],
+      "review_status": "Frozen before retrieval experiment inspection; same-paper held-out questions"
+    }
+  },
+  {
+    "description": "acceptance-en-gain",
+    "vars": {
+      "query": "By how many percentage points did ReAct improve success rates on ALFWorld and WebShop, respectively?",
+      "expected_lang": "en",
+      "required_patterns": "[\"34\\\\s*(?:%|percentage points|个?百分点)\", \"10\\\\s*(?:%|percentage points|个?百分点)\"]"
+    },
+    "metadata": {
+      "reference_answer": "34 and 10 percentage points, respectively.",
+      "type": "acceptance",
+      "evidence": [
+        {
+          "index": 14,
+          "text": "2023\nWe conduct empirical evaluations of ReAct and state-of-the-art baselines on four diverse benchmarks:\nquestion answering (HotPotQA, Yang et al., 2018), fact veriﬁcation (Fever, Thorne et al., 2018),\ntext-based game (ALFWorld, Shridhar et al., 2020b), and webpage navigation (WebShop, Yao\net al., 2022). For HotPotQA and Fever, with access to a Wikipedia API that the model can interact\nwith, ReAct outperforms vanilla action generation models while being competitive with chain-of-\nthought reasoning (CoT) (Wei et al., 2022). The best approach overall is a combination of ReAct\nand CoT that allows for the use of both internal knowledge and externally obtained information\nduring reasoning. On ALFWorld and WebShop, two or even one-shot ReAct prompting is able\nto outperform imitation or reinforcement learning methods trained with 103 ∼105 task instances,\nwith an absolute improvement of 34% and 10% in success rates respectively. We also demonstrate\nthe importance of sparse, versatile reasoning in decision making by showing consistent advantages\nover controlled baselines with actions only. Besides general applicability and performance boost,\nthe combination of"
+        }
+      ],
+      "review_status": "Frozen before retrieval experiment inspection; same-paper held-out questions"
+    }
+  },
+  {
+    "description": "acceptance-en-prompts",
+    "vars": {
+      "query": "How many prompts were constructed per task type for the ALFWorld experiments?",
+      "expected_lang": "en",
+      "required_patterns": "[\"6|six|六\"]"
+    },
+    "metadata": {
+      "reference_answer": "6 prompts per task type.",
+      "type": "acceptance",
+      "evidence": [
+        {
+          "index": 35,
+          "text": "Following Shridhar et al. (2020b), we evaluate on 134 unseen evaluation games\nin a task-speciﬁc setup. For robustness, we construct 6 prompts for each task type through each\npermutation of 2 annotated trajectories from the 3 we annotate. Act prompts are constructed using\nthe same trajectories, but without thoughts — since task instances are randomly chosen from the\ntraining set, it favors neither ReAct nor Act and provides a fair and controlled comparison to test the\nimportance of sparse thoughts. For baselines, we use BUTLER (Shridhar et al., 2020b), an imitation\nlearning agent trained on 105 expert trajectories for each task type5.\nWebShop\nCan ReAct also interact with noisy real-world language environments for practical\napplications? We investigate WebShop (Yao et al., 2022), a recently proposed online shopping\nwebsite environment with 1.18M real-world products and 12k human instructions. Unlike ALFWorld,\nWebshop contains a high variety of structured and unstructured texts (e.g. product titles, descriptions,\nand options crawled from Amazon), and requires an agent to purchase a product based on a user\ninstruction (e.g."
+        }
+      ],
+      "review_status": "Frozen before retrieval experiment inspection; same-paper held-out questions"
+    }
+  },
+  {
+    "description": "acceptance-en-products",
+    "vars": {
+      "query": "How many real-world products and human instructions does the WebShop environment contain?",
+      "expected_lang": "en",
+      "required_patterns": "[\"1\\\\.18\\\\s*(?:million|[mM])|118\\\\s*万|1[,.]?180[,.]?000\", \"12\\\\s*(?:thousand|[kK])|12[,.]?000|1\\\\.2\\\\s*万\"]"
+    },
+    "metadata": {
+      "reference_answer": "1.18 million products and 12 thousand human instructions.",
+      "type": "acceptance",
+      "evidence": [
+        {
+          "index": 35,
+          "text": "Following Shridhar et al. (2020b), we evaluate on 134 unseen evaluation games\nin a task-speciﬁc setup. For robustness, we construct 6 prompts for each task type through each\npermutation of 2 annotated trajectories from the 3 we annotate. Act prompts are constructed using\nthe same trajectories, but without thoughts — since task instances are randomly chosen from the\ntraining set, it favors neither ReAct nor Act and provides a fair and controlled comparison to test the\nimportance of sparse thoughts. For baselines, we use BUTLER (Shridhar et al., 2020b), an imitation\nlearning agent trained on 105 expert trajectories for each task type5.\nWebShop\nCan ReAct also interact with noisy real-world language environments for practical\napplications? We investigate WebShop (Yao et al., 2022), a recently proposed online shopping\nwebsite environment with 1.18M real-world products and 12k human instructions. Unlike ALFWorld,\nWebshop contains a high variety of structured and unstructured texts (e.g. product titles, descriptions,\nand options crawled from Amazon), and requires an agent to purchase a product based on a user\ninstruction (e.g."
+        }
+      ],
+      "review_status": "Frozen before retrieval experiment inspection; same-paper held-out questions"
+    }
+  },
+  {
+    "description": "acceptance-en-examples",
+    "vars": {
+      "query": "How many training examples were selected for the HotpotQA and Fever ReAct prompts, respectively?",
+      "expected_lang": "en",
+      "required_patterns": "[\"6|six|六\", \"3|three|三\"]"
+    },
+    "metadata": {
+      "reference_answer": "6 and 3 examples, respectively.",
+      "type": "acceptance",
+      "evidence": [
+        {
+          "index": 22,
+          "text": "ﬁrst 5 sentences from\nthe corresponding entity wiki page if it exists, or else suggests top-5 similar entities from the\nWikipedia search engine, (2) lookup[string], which would return the next sentence in the page\ncontaining string, simulating Ctrl+F functionality on the browser. (3) finish[answer], which\nwould ﬁnish the current task with answer. We note that this action space mostly can only retrieve a\nsmall part of a passage based on exact passage name, which is signiﬁcantly weaker than state-of-the-\nart lexical or neural retrievers. The purpose is to simulate how humans would interact with Wikipedia,\nand force models to retrieve via explicit reasoning in language.\n3.2\nMETHODS\nReAct Prompting\nFor HotpotQA and Fever, we randomly select 6 and 3 cases2 from the training\nset and manually compose ReAct-format trajectories to use as few-shot exemplars in the prompts.\nSimilar to Figure 1(d), each trajectory consists of multiple thought-action-observation steps (i.e. dense\nthought), where free-form thoughts are used for various purposes. Speciﬁcally, we use a combination\nof thoughts that decompose questions (“I"
+        }
+      ],
+      "review_status": "Frozen before retrieval experiment inspection; same-paper held-out questions"
+    }
+  }
+]

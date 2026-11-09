@@ -1,0 +1,19 @@
+description: Single frozen-profile evaluation on sixteen holdout questions
+prompts:
+  - '{{case_id}}'
+providers:
+  - id: http
+    config:
+      url: http://127.0.0.1:8005/evaluate
+      method: POST
+      headers:
+        Content-Type: application/json
+      body:
+        case_id: '{{prompt}}'
+      transformResponse: json
+      timeout: 300000
+tests: file://holdout-tests.json
+defaultTest:
+  assert:
+    - type: javascript
+      value: file://pilot_checks.cjs

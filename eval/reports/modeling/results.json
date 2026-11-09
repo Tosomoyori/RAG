@@ -1,0 +1,243 @@
+{
+  "variants": {
+    "base": {
+      "config": {
+        "id": "base",
+        "size": 256,
+        "k": 20,
+        "n": 5,
+        "rerank": true
+      },
+      "observations": 24,
+      "valid_grades": 24,
+      "candidate_complete": 19,
+      "evidence_complete": 18,
+      "coverage": 0.9285714285714286,
+      "mrr": 0.8373015873015873,
+      "semantic": 23,
+      "strict": 21,
+      "correctness": 23,
+      "body_tokens": 1194.1666666666667,
+      "retrieval_ms": 1330.7242499868153,
+      "generation_ms": 1445.8340000128374,
+      "input_tokens": 25333,
+      "output_tokens": 2455,
+      "source_errors": 0
+    },
+    "k10": {
+      "config": {
+        "id": "k10",
+        "size": 256,
+        "k": 10,
+        "n": 5,
+        "rerank": true
+      },
+      "observations": 24,
+      "valid_grades": 24,
+      "candidate_complete": 15,
+      "evidence_complete": 14,
+      "coverage": 0.7857142857142857,
+      "mrr": 0.8015873015873016,
+      "semantic": 20,
+      "strict": 17,
+      "correctness": 20,
+      "body_tokens": 1179.625,
+      "retrieval_ms": 666.1905999935698,
+      "generation_ms": 1590.1237499929266,
+      "input_tokens": 24929,
+      "output_tokens": 2478,
+      "source_errors": 0
+    },
+    "k40": {
+      "config": {
+        "id": "k40",
+        "size": 256,
+        "k": 40,
+        "n": 5,
+        "rerank": true
+      },
+      "observations": 24,
+      "valid_grades": 24,
+      "candidate_complete": 20,
+      "evidence_complete": 19,
+      "coverage": 0.9523809523809523,
+      "mrr": 0.8373015873015873,
+      "semantic": 23,
+      "strict": 22,
+      "correctness": 23,
+      "body_tokens": 1192.875,
+      "retrieval_ms": 2294.85969999223,
+      "generation_ms": 1346.3865999947302,
+      "input_tokens": 25401,
+      "output_tokens": 2412,
+      "source_errors": 0
+    },
+    "n3": {
+      "config": {
+        "id": "n3",
+        "size": 256,
+        "k": 20,
+        "n": 3,
+        "rerank": true
+      },
+      "observations": 24,
+      "valid_grades": 24,
+      "candidate_complete": 19,
+      "evidence_complete": 14,
+      "coverage": 0.8174603174603174,
+      "mrr": 0.8253968253968254,
+      "semantic": 22,
+      "strict": 17,
+      "correctness": 22,
+      "body_tokens": 714.5416666666666,
+      "retrieval_ms": 1147.3505000176374,
+      "generation_ms": 1341.0917499859352,
+      "input_tokens": 15591,
+      "output_tokens": 2380,
+      "source_errors": 0
+    },
+    "n8": {
+      "config": {
+        "id": "n8",
+        "size": 256,
+        "k": 20,
+        "n": 8,
+        "rerank": true
+      },
+      "observations": 24,
+      "valid_grades": 24,
+      "candidate_complete": 19,
+      "evidence_complete": 18,
+      "coverage": 0.9285714285714286,
+      "mrr": 0.8373015873015873,
+      "semantic": 23,
+      "strict": 21,
+      "correctness": 23,
+      "body_tokens": 1870.2916666666667,
+      "retrieval_ms": 1066.013550007483,
+      "generation_ms": 1328.3230499946512,
+      "input_tokens": 38960,
+      "output_tokens": 2373,
+      "source_errors": 0
+    },
+    "no-rerank": {
+      "config": {
+        "id": "no-rerank",
+        "size": 256,
+        "k": 20,
+        "n": 5,
+        "rerank": false
+      },
+      "observations": 24,
+      "valid_grades": 24,
+      "candidate_complete": 19,
+      "evidence_complete": 9,
+      "coverage": 0.6111111111111112,
+      "mrr": 0.49206349206349204,
+      "semantic": 17,
+      "strict": 12,
+      "correctness": 17,
+      "body_tokens": 1169.4583333333333,
+      "retrieval_ms": 71.43229998473544,
+      "generation_ms": 1461.2323999899672,
+      "input_tokens": 24192,
+      "output_tokens": 2719,
+      "source_errors": 1
+    },
+    "chunk128": {
+      "config": {
+        "id": "chunk128",
+        "size": 128,
+        "k": 20,
+        "n": 5,
+        "rerank": true
+      },
+      "observations": 24,
+      "valid_grades": 24,
+      "candidate_complete": 16,
+      "evidence_complete": 11,
+      "coverage": 0.7103174603174603,
+      "mrr": 0.7261904761904762,
+      "semantic": 18,
+      "strict": 14,
+      "correctness": 18,
+      "body_tokens": 631.0833333333334,
+      "retrieval_ms": 676.4676500024507,
+      "generation_ms": 1439.9283500097226,
+      "input_tokens": 15743,
+      "output_tokens": 2220,
+      "source_errors": 0
+    },
+    "chunk384": {
+      "config": {
+        "id": "chunk384",
+        "size": 384,
+        "k": 20,
+        "n": 5,
+        "rerank": true
+      },
+      "observations": 24,
+      "valid_grades": 24,
+      "candidate_complete": 21,
+      "evidence_complete": 20,
+      "coverage": 0.9523809523809523,
+      "mrr": 0.7873015873015873,
+      "semantic": 24,
+      "strict": 23,
+      "correctness": 24,
+      "body_tokens": 1748.1666666666667,
+      "retrieval_ms": 1626.9249999895692,
+      "generation_ms": 1302.0525500032818,
+      "input_tokens": 34780,
+      "output_tokens": 2275,
+      "source_errors": 0
+    }
+  },
+  "totals": {
+    "saved_answers": 216,
+    "valid_grades": 216,
+    "generation_tokens": 226781,
+    "grading_tokens": 465022,
+    "grade_attempts": 220,
+    "invalid_grades": 4,
+    "truncated_generations": 0,
+    "closed_correct": 0,
+    "closed_questions": 21,
+    "original_index_unchanged": true,
+    "promptfoo_replay_stats": {
+      "successes": 150,
+      "failures": 66,
+      "errors": 0,
+      "tokenUsage": {
+        "prompt": 0,
+        "completion": 0,
+        "cached": 0,
+        "total": 0,
+        "numRequests": 216,
+        "completionDetails": {
+          "reasoning": 0,
+          "acceptedPrediction": 0,
+          "rejectedPrediction": 0,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0
+        },
+        "assertions": {
+          "total": 0,
+          "prompt": 0,
+          "completion": 0,
+          "cached": 0,
+          "numRequests": 0,
+          "completionDetails": {
+            "reasoning": 0,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0
+          }
+        }
+      },
+      "durationMs": 2891,
+      "evaluationDurationMs": 2891
+    }
+  }
+}

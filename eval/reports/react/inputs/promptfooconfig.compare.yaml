@@ -1,0 +1,22 @@
+description: Retrieval comparison on development and frozen acceptance questions
+prompts:
+  - '{{query}}'
+providers:
+  - id: http
+    config:
+      url: http://127.0.0.1:8000/ask
+      method: POST
+      headers:
+        Content-Type: application/json
+      body:
+        query: '{{prompt}}'
+        use_cache: false
+      transformResponse: json
+      timeout: 180000
+tests:
+  - file://cases.json
+  - file://acceptance.json
+defaultTest:
+  assert:
+    - type: javascript
+      value: file://response-checks.cjs

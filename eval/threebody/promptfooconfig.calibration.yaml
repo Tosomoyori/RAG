@@ -1,0 +1,27 @@
+description: Controlled grader checks using development facts and synthetic contexts
+prompts:
+  - '{{case_id}}'
+providers:
+  - id: http
+    config:
+      url: http://127.0.0.1:8002/calibrate
+      method: POST
+      headers:
+        Content-Type: application/json
+      body:
+        case_id: '{{prompt}}'
+      transformResponse: json
+      timeout: 180000
+tests:
+  - vars: {case_id: cal-01}
+  - vars: {case_id: cal-02}
+  - vars: {case_id: cal-03}
+  - vars: {case_id: cal-04}
+  - vars: {case_id: cal-05}
+  - vars: {case_id: cal-06}
+  - vars: {case_id: cal-07}
+  - vars: {case_id: cal-08}
+defaultTest:
+  assert:
+    - type: javascript
+      value: file://calibration_checks.cjs

@@ -1,0 +1,19 @@
+description: Prompt comparison using frozen contexts and semantic grading
+prompts:
+  - '{{case_id}}'
+providers:
+  - id: file://semantic-provider.py
+    label: legacy
+    config:
+      variant: legacy
+      pythonExecutable: D:/MyProgramFiles/Miniforge/envs/RAG/python.exe
+  - id: file://semantic-provider.py
+    label: grounded-v1
+    config:
+      variant: grounded-v1
+      pythonExecutable: D:/MyProgramFiles/Miniforge/envs/RAG/python.exe
+tests: file://semantic-tests.json
+defaultTest:
+  assert:
+    - type: javascript
+      value: file://semantic-check.cjs

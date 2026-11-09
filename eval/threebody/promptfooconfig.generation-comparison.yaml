@@ -1,0 +1,20 @@
+description: Paired generation from fixed hybrid contexts, expansion off versus on
+prompts:
+  - '{{case_id}} {{variant}}'
+providers:
+  - id: http
+    config:
+      url: http://127.0.0.1:8004/evaluate
+      method: POST
+      headers:
+        Content-Type: application/json
+      body:
+        case_id: '{{case_id}}'
+        variant: '{{variant}}'
+      transformResponse: json
+      timeout: 300000
+tests: file://generation-comparison-tests.json
+defaultTest:
+  assert:
+    - type: javascript
+      value: file://pilot_checks.cjs

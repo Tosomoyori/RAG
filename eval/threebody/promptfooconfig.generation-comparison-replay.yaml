@@ -1,0 +1,10 @@
+description: Check saved paired answers after grading recovery; no model calls
+prompts:
+  - '{{case_id}} {{variant}}'
+providers:
+  - id: file://generation_comparison_replay.cjs
+tests: file://generation-comparison-tests.json
+defaultTest:
+  assert:
+    - type: javascript
+      value: file://pilot_checks.cjs

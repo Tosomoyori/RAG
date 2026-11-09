@@ -1,0 +1,1514 @@
+[
+  {
+    "description": "paper-b-01/base",
+    "vars": {
+      "case_id": "paper-b-01",
+      "variant": "base"
+    }
+  },
+  {
+    "description": "paper-b-01/k10",
+    "vars": {
+      "case_id": "paper-b-01",
+      "variant": "k10"
+    }
+  },
+  {
+    "description": "paper-b-01/k40",
+    "vars": {
+      "case_id": "paper-b-01",
+      "variant": "k40"
+    }
+  },
+  {
+    "description": "paper-b-01/n3",
+    "vars": {
+      "case_id": "paper-b-01",
+      "variant": "n3"
+    }
+  },
+  {
+    "description": "paper-b-01/n8",
+    "vars": {
+      "case_id": "paper-b-01",
+      "variant": "n8"
+    }
+  },
+  {
+    "description": "paper-b-01/no-rerank",
+    "vars": {
+      "case_id": "paper-b-01",
+      "variant": "no-rerank"
+    }
+  },
+  {
+    "description": "paper-b-01/chunk128",
+    "vars": {
+      "case_id": "paper-b-01",
+      "variant": "chunk128"
+    }
+  },
+  {
+    "description": "paper-b-01/chunk384",
+    "vars": {
+      "case_id": "paper-b-01",
+      "variant": "chunk384"
+    }
+  },
+  {
+    "description": "paper-b-01/closed-book",
+    "vars": {
+      "case_id": "paper-b-01",
+      "variant": "closed-book"
+    }
+  },
+  {
+    "description": "paper-b-02/k10",
+    "vars": {
+      "case_id": "paper-b-02",
+      "variant": "k10"
+    }
+  },
+  {
+    "description": "paper-b-02/k40",
+    "vars": {
+      "case_id": "paper-b-02",
+      "variant": "k40"
+    }
+  },
+  {
+    "description": "paper-b-02/n3",
+    "vars": {
+      "case_id": "paper-b-02",
+      "variant": "n3"
+    }
+  },
+  {
+    "description": "paper-b-02/n8",
+    "vars": {
+      "case_id": "paper-b-02",
+      "variant": "n8"
+    }
+  },
+  {
+    "description": "paper-b-02/no-rerank",
+    "vars": {
+      "case_id": "paper-b-02",
+      "variant": "no-rerank"
+    }
+  },
+  {
+    "description": "paper-b-02/chunk128",
+    "vars": {
+      "case_id": "paper-b-02",
+      "variant": "chunk128"
+    }
+  },
+  {
+    "description": "paper-b-02/chunk384",
+    "vars": {
+      "case_id": "paper-b-02",
+      "variant": "chunk384"
+    }
+  },
+  {
+    "description": "paper-b-02/closed-book",
+    "vars": {
+      "case_id": "paper-b-02",
+      "variant": "closed-book"
+    }
+  },
+  {
+    "description": "paper-b-02/base",
+    "vars": {
+      "case_id": "paper-b-02",
+      "variant": "base"
+    }
+  },
+  {
+    "description": "paper-b-03/k40",
+    "vars": {
+      "case_id": "paper-b-03",
+      "variant": "k40"
+    }
+  },
+  {
+    "description": "paper-b-03/n3",
+    "vars": {
+      "case_id": "paper-b-03",
+      "variant": "n3"
+    }
+  },
+  {
+    "description": "paper-b-03/n8",
+    "vars": {
+      "case_id": "paper-b-03",
+      "variant": "n8"
+    }
+  },
+  {
+    "description": "paper-b-03/no-rerank",
+    "vars": {
+      "case_id": "paper-b-03",
+      "variant": "no-rerank"
+    }
+  },
+  {
+    "description": "paper-b-03/chunk128",
+    "vars": {
+      "case_id": "paper-b-03",
+      "variant": "chunk128"
+    }
+  },
+  {
+    "description": "paper-b-03/chunk384",
+    "vars": {
+      "case_id": "paper-b-03",
+      "variant": "chunk384"
+    }
+  },
+  {
+    "description": "paper-b-03/closed-book",
+    "vars": {
+      "case_id": "paper-b-03",
+      "variant": "closed-book"
+    }
+  },
+  {
+    "description": "paper-b-03/base",
+    "vars": {
+      "case_id": "paper-b-03",
+      "variant": "base"
+    }
+  },
+  {
+    "description": "paper-b-03/k10",
+    "vars": {
+      "case_id": "paper-b-03",
+      "variant": "k10"
+    }
+  },
+  {
+    "description": "paper-b-04/n3",
+    "vars": {
+      "case_id": "paper-b-04",
+      "variant": "n3"
+    }
+  },
+  {
+    "description": "paper-b-04/n8",
+    "vars": {
+      "case_id": "paper-b-04",
+      "variant": "n8"
+    }
+  },
+  {
+    "description": "paper-b-04/no-rerank",
+    "vars": {
+      "case_id": "paper-b-04",
+      "variant": "no-rerank"
+    }
+  },
+  {
+    "description": "paper-b-04/chunk128",
+    "vars": {
+      "case_id": "paper-b-04",
+      "variant": "chunk128"
+    }
+  },
+  {
+    "description": "paper-b-04/chunk384",
+    "vars": {
+      "case_id": "paper-b-04",
+      "variant": "chunk384"
+    }
+  },
+  {
+    "description": "paper-b-04/closed-book",
+    "vars": {
+      "case_id": "paper-b-04",
+      "variant": "closed-book"
+    }
+  },
+  {
+    "description": "paper-b-04/base",
+    "vars": {
+      "case_id": "paper-b-04",
+      "variant": "base"
+    }
+  },
+  {
+    "description": "paper-b-04/k10",
+    "vars": {
+      "case_id": "paper-b-04",
+      "variant": "k10"
+    }
+  },
+  {
+    "description": "paper-b-04/k40",
+    "vars": {
+      "case_id": "paper-b-04",
+      "variant": "k40"
+    }
+  },
+  {
+    "description": "paper-b-05/n8",
+    "vars": {
+      "case_id": "paper-b-05",
+      "variant": "n8"
+    }
+  },
+  {
+    "description": "paper-b-05/no-rerank",
+    "vars": {
+      "case_id": "paper-b-05",
+      "variant": "no-rerank"
+    }
+  },
+  {
+    "description": "paper-b-05/chunk128",
+    "vars": {
+      "case_id": "paper-b-05",
+      "variant": "chunk128"
+    }
+  },
+  {
+    "description": "paper-b-05/chunk384",
+    "vars": {
+      "case_id": "paper-b-05",
+      "variant": "chunk384"
+    }
+  },
+  {
+    "description": "paper-b-05/closed-book",
+    "vars": {
+      "case_id": "paper-b-05",
+      "variant": "closed-book"
+    }
+  },
+  {
+    "description": "paper-b-05/base",
+    "vars": {
+      "case_id": "paper-b-05",
+      "variant": "base"
+    }
+  },
+  {
+    "description": "paper-b-05/k10",
+    "vars": {
+      "case_id": "paper-b-05",
+      "variant": "k10"
+    }
+  },
+  {
+    "description": "paper-b-05/k40",
+    "vars": {
+      "case_id": "paper-b-05",
+      "variant": "k40"
+    }
+  },
+  {
+    "description": "paper-b-05/n3",
+    "vars": {
+      "case_id": "paper-b-05",
+      "variant": "n3"
+    }
+  },
+  {
+    "description": "paper-b-06/no-rerank",
+    "vars": {
+      "case_id": "paper-b-06",
+      "variant": "no-rerank"
+    }
+  },
+  {
+    "description": "paper-b-06/chunk128",
+    "vars": {
+      "case_id": "paper-b-06",
+      "variant": "chunk128"
+    }
+  },
+  {
+    "description": "paper-b-06/chunk384",
+    "vars": {
+      "case_id": "paper-b-06",
+      "variant": "chunk384"
+    }
+  },
+  {
+    "description": "paper-b-06/closed-book",
+    "vars": {
+      "case_id": "paper-b-06",
+      "variant": "closed-book"
+    }
+  },
+  {
+    "description": "paper-b-06/base",
+    "vars": {
+      "case_id": "paper-b-06",
+      "variant": "base"
+    }
+  },
+  {
+    "description": "paper-b-06/k10",
+    "vars": {
+      "case_id": "paper-b-06",
+      "variant": "k10"
+    }
+  },
+  {
+    "description": "paper-b-06/k40",
+    "vars": {
+      "case_id": "paper-b-06",
+      "variant": "k40"
+    }
+  },
+  {
+    "description": "paper-b-06/n3",
+    "vars": {
+      "case_id": "paper-b-06",
+      "variant": "n3"
+    }
+  },
+  {
+    "description": "paper-b-06/n8",
+    "vars": {
+      "case_id": "paper-b-06",
+      "variant": "n8"
+    }
+  },
+  {
+    "description": "paper-b-07/chunk128",
+    "vars": {
+      "case_id": "paper-b-07",
+      "variant": "chunk128"
+    }
+  },
+  {
+    "description": "paper-b-07/chunk384",
+    "vars": {
+      "case_id": "paper-b-07",
+      "variant": "chunk384"
+    }
+  },
+  {
+    "description": "paper-b-07/closed-book",
+    "vars": {
+      "case_id": "paper-b-07",
+      "variant": "closed-book"
+    }
+  },
+  {
+    "description": "paper-b-07/base",
+    "vars": {
+      "case_id": "paper-b-07",
+      "variant": "base"
+    }
+  },
+  {
+    "description": "paper-b-07/k10",
+    "vars": {
+      "case_id": "paper-b-07",
+      "variant": "k10"
+    }
+  },
+  {
+    "description": "paper-b-07/k40",
+    "vars": {
+      "case_id": "paper-b-07",
+      "variant": "k40"
+    }
+  },
+  {
+    "description": "paper-b-07/n3",
+    "vars": {
+      "case_id": "paper-b-07",
+      "variant": "n3"
+    }
+  },
+  {
+    "description": "paper-b-07/n8",
+    "vars": {
+      "case_id": "paper-b-07",
+      "variant": "n8"
+    }
+  },
+  {
+    "description": "paper-b-07/no-rerank",
+    "vars": {
+      "case_id": "paper-b-07",
+      "variant": "no-rerank"
+    }
+  },
+  {
+    "description": "paper-b-08/chunk384",
+    "vars": {
+      "case_id": "paper-b-08",
+      "variant": "chunk384"
+    }
+  },
+  {
+    "description": "paper-b-08/closed-book",
+    "vars": {
+      "case_id": "paper-b-08",
+      "variant": "closed-book"
+    }
+  },
+  {
+    "description": "paper-b-08/base",
+    "vars": {
+      "case_id": "paper-b-08",
+      "variant": "base"
+    }
+  },
+  {
+    "description": "paper-b-08/k10",
+    "vars": {
+      "case_id": "paper-b-08",
+      "variant": "k10"
+    }
+  },
+  {
+    "description": "paper-b-08/k40",
+    "vars": {
+      "case_id": "paper-b-08",
+      "variant": "k40"
+    }
+  },
+  {
+    "description": "paper-b-08/n3",
+    "vars": {
+      "case_id": "paper-b-08",
+      "variant": "n3"
+    }
+  },
+  {
+    "description": "paper-b-08/n8",
+    "vars": {
+      "case_id": "paper-b-08",
+      "variant": "n8"
+    }
+  },
+  {
+    "description": "paper-b-08/no-rerank",
+    "vars": {
+      "case_id": "paper-b-08",
+      "variant": "no-rerank"
+    }
+  },
+  {
+    "description": "paper-b-08/chunk128",
+    "vars": {
+      "case_id": "paper-b-08",
+      "variant": "chunk128"
+    }
+  },
+  {
+    "description": "paper-c-01/closed-book",
+    "vars": {
+      "case_id": "paper-c-01",
+      "variant": "closed-book"
+    }
+  },
+  {
+    "description": "paper-c-01/base",
+    "vars": {
+      "case_id": "paper-c-01",
+      "variant": "base"
+    }
+  },
+  {
+    "description": "paper-c-01/k10",
+    "vars": {
+      "case_id": "paper-c-01",
+      "variant": "k10"
+    }
+  },
+  {
+    "description": "paper-c-01/k40",
+    "vars": {
+      "case_id": "paper-c-01",
+      "variant": "k40"
+    }
+  },
+  {
+    "description": "paper-c-01/n3",
+    "vars": {
+      "case_id": "paper-c-01",
+      "variant": "n3"
+    }
+  },
+  {
+    "description": "paper-c-01/n8",
+    "vars": {
+      "case_id": "paper-c-01",
+      "variant": "n8"
+    }
+  },
+  {
+    "description": "paper-c-01/no-rerank",
+    "vars": {
+      "case_id": "paper-c-01",
+      "variant": "no-rerank"
+    }
+  },
+  {
+    "description": "paper-c-01/chunk128",
+    "vars": {
+      "case_id": "paper-c-01",
+      "variant": "chunk128"
+    }
+  },
+  {
+    "description": "paper-c-01/chunk384",
+    "vars": {
+      "case_id": "paper-c-01",
+      "variant": "chunk384"
+    }
+  },
+  {
+    "description": "paper-c-02/base",
+    "vars": {
+      "case_id": "paper-c-02",
+      "variant": "base"
+    }
+  },
+  {
+    "description": "paper-c-02/k10",
+    "vars": {
+      "case_id": "paper-c-02",
+      "variant": "k10"
+    }
+  },
+  {
+    "description": "paper-c-02/k40",
+    "vars": {
+      "case_id": "paper-c-02",
+      "variant": "k40"
+    }
+  },
+  {
+    "description": "paper-c-02/n3",
+    "vars": {
+      "case_id": "paper-c-02",
+      "variant": "n3"
+    }
+  },
+  {
+    "description": "paper-c-02/n8",
+    "vars": {
+      "case_id": "paper-c-02",
+      "variant": "n8"
+    }
+  },
+  {
+    "description": "paper-c-02/no-rerank",
+    "vars": {
+      "case_id": "paper-c-02",
+      "variant": "no-rerank"
+    }
+  },
+  {
+    "description": "paper-c-02/chunk128",
+    "vars": {
+      "case_id": "paper-c-02",
+      "variant": "chunk128"
+    }
+  },
+  {
+    "description": "paper-c-02/chunk384",
+    "vars": {
+      "case_id": "paper-c-02",
+      "variant": "chunk384"
+    }
+  },
+  {
+    "description": "paper-c-02/closed-book",
+    "vars": {
+      "case_id": "paper-c-02",
+      "variant": "closed-book"
+    }
+  },
+  {
+    "description": "paper-c-03/k10",
+    "vars": {
+      "case_id": "paper-c-03",
+      "variant": "k10"
+    }
+  },
+  {
+    "description": "paper-c-03/k40",
+    "vars": {
+      "case_id": "paper-c-03",
+      "variant": "k40"
+    }
+  },
+  {
+    "description": "paper-c-03/n3",
+    "vars": {
+      "case_id": "paper-c-03",
+      "variant": "n3"
+    }
+  },
+  {
+    "description": "paper-c-03/n8",
+    "vars": {
+      "case_id": "paper-c-03",
+      "variant": "n8"
+    }
+  },
+  {
+    "description": "paper-c-03/no-rerank",
+    "vars": {
+      "case_id": "paper-c-03",
+      "variant": "no-rerank"
+    }
+  },
+  {
+    "description": "paper-c-03/chunk128",
+    "vars": {
+      "case_id": "paper-c-03",
+      "variant": "chunk128"
+    }
+  },
+  {
+    "description": "paper-c-03/chunk384",
+    "vars": {
+      "case_id": "paper-c-03",
+      "variant": "chunk384"
+    }
+  },
+  {
+    "description": "paper-c-03/closed-book",
+    "vars": {
+      "case_id": "paper-c-03",
+      "variant": "closed-book"
+    }
+  },
+  {
+    "description": "paper-c-03/base",
+    "vars": {
+      "case_id": "paper-c-03",
+      "variant": "base"
+    }
+  },
+  {
+    "description": "paper-c-04/k40",
+    "vars": {
+      "case_id": "paper-c-04",
+      "variant": "k40"
+    }
+  },
+  {
+    "description": "paper-c-04/n3",
+    "vars": {
+      "case_id": "paper-c-04",
+      "variant": "n3"
+    }
+  },
+  {
+    "description": "paper-c-04/n8",
+    "vars": {
+      "case_id": "paper-c-04",
+      "variant": "n8"
+    }
+  },
+  {
+    "description": "paper-c-04/no-rerank",
+    "vars": {
+      "case_id": "paper-c-04",
+      "variant": "no-rerank"
+    }
+  },
+  {
+    "description": "paper-c-04/chunk128",
+    "vars": {
+      "case_id": "paper-c-04",
+      "variant": "chunk128"
+    }
+  },
+  {
+    "description": "paper-c-04/chunk384",
+    "vars": {
+      "case_id": "paper-c-04",
+      "variant": "chunk384"
+    }
+  },
+  {
+    "description": "paper-c-04/closed-book",
+    "vars": {
+      "case_id": "paper-c-04",
+      "variant": "closed-book"
+    }
+  },
+  {
+    "description": "paper-c-04/base",
+    "vars": {
+      "case_id": "paper-c-04",
+      "variant": "base"
+    }
+  },
+  {
+    "description": "paper-c-04/k10",
+    "vars": {
+      "case_id": "paper-c-04",
+      "variant": "k10"
+    }
+  },
+  {
+    "description": "paper-c-05/n3",
+    "vars": {
+      "case_id": "paper-c-05",
+      "variant": "n3"
+    }
+  },
+  {
+    "description": "paper-c-05/n8",
+    "vars": {
+      "case_id": "paper-c-05",
+      "variant": "n8"
+    }
+  },
+  {
+    "description": "paper-c-05/no-rerank",
+    "vars": {
+      "case_id": "paper-c-05",
+      "variant": "no-rerank"
+    }
+  },
+  {
+    "description": "paper-c-05/chunk128",
+    "vars": {
+      "case_id": "paper-c-05",
+      "variant": "chunk128"
+    }
+  },
+  {
+    "description": "paper-c-05/chunk384",
+    "vars": {
+      "case_id": "paper-c-05",
+      "variant": "chunk384"
+    }
+  },
+  {
+    "description": "paper-c-05/closed-book",
+    "vars": {
+      "case_id": "paper-c-05",
+      "variant": "closed-book"
+    }
+  },
+  {
+    "description": "paper-c-05/base",
+    "vars": {
+      "case_id": "paper-c-05",
+      "variant": "base"
+    }
+  },
+  {
+    "description": "paper-c-05/k10",
+    "vars": {
+      "case_id": "paper-c-05",
+      "variant": "k10"
+    }
+  },
+  {
+    "description": "paper-c-05/k40",
+    "vars": {
+      "case_id": "paper-c-05",
+      "variant": "k40"
+    }
+  },
+  {
+    "description": "paper-c-06/n8",
+    "vars": {
+      "case_id": "paper-c-06",
+      "variant": "n8"
+    }
+  },
+  {
+    "description": "paper-c-06/no-rerank",
+    "vars": {
+      "case_id": "paper-c-06",
+      "variant": "no-rerank"
+    }
+  },
+  {
+    "description": "paper-c-06/chunk128",
+    "vars": {
+      "case_id": "paper-c-06",
+      "variant": "chunk128"
+    }
+  },
+  {
+    "description": "paper-c-06/chunk384",
+    "vars": {
+      "case_id": "paper-c-06",
+      "variant": "chunk384"
+    }
+  },
+  {
+    "description": "paper-c-06/closed-book",
+    "vars": {
+      "case_id": "paper-c-06",
+      "variant": "closed-book"
+    }
+  },
+  {
+    "description": "paper-c-06/base",
+    "vars": {
+      "case_id": "paper-c-06",
+      "variant": "base"
+    }
+  },
+  {
+    "description": "paper-c-06/k10",
+    "vars": {
+      "case_id": "paper-c-06",
+      "variant": "k10"
+    }
+  },
+  {
+    "description": "paper-c-06/k40",
+    "vars": {
+      "case_id": "paper-c-06",
+      "variant": "k40"
+    }
+  },
+  {
+    "description": "paper-c-06/n3",
+    "vars": {
+      "case_id": "paper-c-06",
+      "variant": "n3"
+    }
+  },
+  {
+    "description": "paper-c-07/no-rerank",
+    "vars": {
+      "case_id": "paper-c-07",
+      "variant": "no-rerank"
+    }
+  },
+  {
+    "description": "paper-c-07/chunk128",
+    "vars": {
+      "case_id": "paper-c-07",
+      "variant": "chunk128"
+    }
+  },
+  {
+    "description": "paper-c-07/chunk384",
+    "vars": {
+      "case_id": "paper-c-07",
+      "variant": "chunk384"
+    }
+  },
+  {
+    "description": "paper-c-07/closed-book",
+    "vars": {
+      "case_id": "paper-c-07",
+      "variant": "closed-book"
+    }
+  },
+  {
+    "description": "paper-c-07/base",
+    "vars": {
+      "case_id": "paper-c-07",
+      "variant": "base"
+    }
+  },
+  {
+    "description": "paper-c-07/k10",
+    "vars": {
+      "case_id": "paper-c-07",
+      "variant": "k10"
+    }
+  },
+  {
+    "description": "paper-c-07/k40",
+    "vars": {
+      "case_id": "paper-c-07",
+      "variant": "k40"
+    }
+  },
+  {
+    "description": "paper-c-07/n3",
+    "vars": {
+      "case_id": "paper-c-07",
+      "variant": "n3"
+    }
+  },
+  {
+    "description": "paper-c-07/n8",
+    "vars": {
+      "case_id": "paper-c-07",
+      "variant": "n8"
+    }
+  },
+  {
+    "description": "paper-c-08/chunk128",
+    "vars": {
+      "case_id": "paper-c-08",
+      "variant": "chunk128"
+    }
+  },
+  {
+    "description": "paper-c-08/chunk384",
+    "vars": {
+      "case_id": "paper-c-08",
+      "variant": "chunk384"
+    }
+  },
+  {
+    "description": "paper-c-08/closed-book",
+    "vars": {
+      "case_id": "paper-c-08",
+      "variant": "closed-book"
+    }
+  },
+  {
+    "description": "paper-c-08/base",
+    "vars": {
+      "case_id": "paper-c-08",
+      "variant": "base"
+    }
+  },
+  {
+    "description": "paper-c-08/k10",
+    "vars": {
+      "case_id": "paper-c-08",
+      "variant": "k10"
+    }
+  },
+  {
+    "description": "paper-c-08/k40",
+    "vars": {
+      "case_id": "paper-c-08",
+      "variant": "k40"
+    }
+  },
+  {
+    "description": "paper-c-08/n3",
+    "vars": {
+      "case_id": "paper-c-08",
+      "variant": "n3"
+    }
+  },
+  {
+    "description": "paper-c-08/n8",
+    "vars": {
+      "case_id": "paper-c-08",
+      "variant": "n8"
+    }
+  },
+  {
+    "description": "paper-c-08/no-rerank",
+    "vars": {
+      "case_id": "paper-c-08",
+      "variant": "no-rerank"
+    }
+  },
+  {
+    "description": "statistics-01/chunk384",
+    "vars": {
+      "case_id": "statistics-01",
+      "variant": "chunk384"
+    }
+  },
+  {
+    "description": "statistics-01/closed-book",
+    "vars": {
+      "case_id": "statistics-01",
+      "variant": "closed-book"
+    }
+  },
+  {
+    "description": "statistics-01/base",
+    "vars": {
+      "case_id": "statistics-01",
+      "variant": "base"
+    }
+  },
+  {
+    "description": "statistics-01/k10",
+    "vars": {
+      "case_id": "statistics-01",
+      "variant": "k10"
+    }
+  },
+  {
+    "description": "statistics-01/k40",
+    "vars": {
+      "case_id": "statistics-01",
+      "variant": "k40"
+    }
+  },
+  {
+    "description": "statistics-01/n3",
+    "vars": {
+      "case_id": "statistics-01",
+      "variant": "n3"
+    }
+  },
+  {
+    "description": "statistics-01/n8",
+    "vars": {
+      "case_id": "statistics-01",
+      "variant": "n8"
+    }
+  },
+  {
+    "description": "statistics-01/no-rerank",
+    "vars": {
+      "case_id": "statistics-01",
+      "variant": "no-rerank"
+    }
+  },
+  {
+    "description": "statistics-01/chunk128",
+    "vars": {
+      "case_id": "statistics-01",
+      "variant": "chunk128"
+    }
+  },
+  {
+    "description": "statistics-02/closed-book",
+    "vars": {
+      "case_id": "statistics-02",
+      "variant": "closed-book"
+    }
+  },
+  {
+    "description": "statistics-02/base",
+    "vars": {
+      "case_id": "statistics-02",
+      "variant": "base"
+    }
+  },
+  {
+    "description": "statistics-02/k10",
+    "vars": {
+      "case_id": "statistics-02",
+      "variant": "k10"
+    }
+  },
+  {
+    "description": "statistics-02/k40",
+    "vars": {
+      "case_id": "statistics-02",
+      "variant": "k40"
+    }
+  },
+  {
+    "description": "statistics-02/n3",
+    "vars": {
+      "case_id": "statistics-02",
+      "variant": "n3"
+    }
+  },
+  {
+    "description": "statistics-02/n8",
+    "vars": {
+      "case_id": "statistics-02",
+      "variant": "n8"
+    }
+  },
+  {
+    "description": "statistics-02/no-rerank",
+    "vars": {
+      "case_id": "statistics-02",
+      "variant": "no-rerank"
+    }
+  },
+  {
+    "description": "statistics-02/chunk128",
+    "vars": {
+      "case_id": "statistics-02",
+      "variant": "chunk128"
+    }
+  },
+  {
+    "description": "statistics-02/chunk384",
+    "vars": {
+      "case_id": "statistics-02",
+      "variant": "chunk384"
+    }
+  },
+  {
+    "description": "statistics-03/base",
+    "vars": {
+      "case_id": "statistics-03",
+      "variant": "base"
+    }
+  },
+  {
+    "description": "statistics-03/k10",
+    "vars": {
+      "case_id": "statistics-03",
+      "variant": "k10"
+    }
+  },
+  {
+    "description": "statistics-03/k40",
+    "vars": {
+      "case_id": "statistics-03",
+      "variant": "k40"
+    }
+  },
+  {
+    "description": "statistics-03/n3",
+    "vars": {
+      "case_id": "statistics-03",
+      "variant": "n3"
+    }
+  },
+  {
+    "description": "statistics-03/n8",
+    "vars": {
+      "case_id": "statistics-03",
+      "variant": "n8"
+    }
+  },
+  {
+    "description": "statistics-03/no-rerank",
+    "vars": {
+      "case_id": "statistics-03",
+      "variant": "no-rerank"
+    }
+  },
+  {
+    "description": "statistics-03/chunk128",
+    "vars": {
+      "case_id": "statistics-03",
+      "variant": "chunk128"
+    }
+  },
+  {
+    "description": "statistics-03/chunk384",
+    "vars": {
+      "case_id": "statistics-03",
+      "variant": "chunk384"
+    }
+  },
+  {
+    "description": "statistics-03/closed-book",
+    "vars": {
+      "case_id": "statistics-03",
+      "variant": "closed-book"
+    }
+  },
+  {
+    "description": "statistics-04/k10",
+    "vars": {
+      "case_id": "statistics-04",
+      "variant": "k10"
+    }
+  },
+  {
+    "description": "statistics-04/k40",
+    "vars": {
+      "case_id": "statistics-04",
+      "variant": "k40"
+    }
+  },
+  {
+    "description": "statistics-04/n3",
+    "vars": {
+      "case_id": "statistics-04",
+      "variant": "n3"
+    }
+  },
+  {
+    "description": "statistics-04/n8",
+    "vars": {
+      "case_id": "statistics-04",
+      "variant": "n8"
+    }
+  },
+  {
+    "description": "statistics-04/no-rerank",
+    "vars": {
+      "case_id": "statistics-04",
+      "variant": "no-rerank"
+    }
+  },
+  {
+    "description": "statistics-04/chunk128",
+    "vars": {
+      "case_id": "statistics-04",
+      "variant": "chunk128"
+    }
+  },
+  {
+    "description": "statistics-04/chunk384",
+    "vars": {
+      "case_id": "statistics-04",
+      "variant": "chunk384"
+    }
+  },
+  {
+    "description": "statistics-04/closed-book",
+    "vars": {
+      "case_id": "statistics-04",
+      "variant": "closed-book"
+    }
+  },
+  {
+    "description": "statistics-04/base",
+    "vars": {
+      "case_id": "statistics-04",
+      "variant": "base"
+    }
+  },
+  {
+    "description": "statistics-05/k40",
+    "vars": {
+      "case_id": "statistics-05",
+      "variant": "k40"
+    }
+  },
+  {
+    "description": "statistics-05/n3",
+    "vars": {
+      "case_id": "statistics-05",
+      "variant": "n3"
+    }
+  },
+  {
+    "description": "statistics-05/n8",
+    "vars": {
+      "case_id": "statistics-05",
+      "variant": "n8"
+    }
+  },
+  {
+    "description": "statistics-05/no-rerank",
+    "vars": {
+      "case_id": "statistics-05",
+      "variant": "no-rerank"
+    }
+  },
+  {
+    "description": "statistics-05/chunk128",
+    "vars": {
+      "case_id": "statistics-05",
+      "variant": "chunk128"
+    }
+  },
+  {
+    "description": "statistics-05/chunk384",
+    "vars": {
+      "case_id": "statistics-05",
+      "variant": "chunk384"
+    }
+  },
+  {
+    "description": "statistics-05/closed-book",
+    "vars": {
+      "case_id": "statistics-05",
+      "variant": "closed-book"
+    }
+  },
+  {
+    "description": "statistics-05/base",
+    "vars": {
+      "case_id": "statistics-05",
+      "variant": "base"
+    }
+  },
+  {
+    "description": "statistics-05/k10",
+    "vars": {
+      "case_id": "statistics-05",
+      "variant": "k10"
+    }
+  },
+  {
+    "description": "statistics-06/n3",
+    "vars": {
+      "case_id": "statistics-06",
+      "variant": "n3"
+    }
+  },
+  {
+    "description": "statistics-06/n8",
+    "vars": {
+      "case_id": "statistics-06",
+      "variant": "n8"
+    }
+  },
+  {
+    "description": "statistics-06/no-rerank",
+    "vars": {
+      "case_id": "statistics-06",
+      "variant": "no-rerank"
+    }
+  },
+  {
+    "description": "statistics-06/chunk128",
+    "vars": {
+      "case_id": "statistics-06",
+      "variant": "chunk128"
+    }
+  },
+  {
+    "description": "statistics-06/chunk384",
+    "vars": {
+      "case_id": "statistics-06",
+      "variant": "chunk384"
+    }
+  },
+  {
+    "description": "statistics-06/closed-book",
+    "vars": {
+      "case_id": "statistics-06",
+      "variant": "closed-book"
+    }
+  },
+  {
+    "description": "statistics-06/base",
+    "vars": {
+      "case_id": "statistics-06",
+      "variant": "base"
+    }
+  },
+  {
+    "description": "statistics-06/k10",
+    "vars": {
+      "case_id": "statistics-06",
+      "variant": "k10"
+    }
+  },
+  {
+    "description": "statistics-06/k40",
+    "vars": {
+      "case_id": "statistics-06",
+      "variant": "k40"
+    }
+  },
+  {
+    "description": "statistics-07/n8",
+    "vars": {
+      "case_id": "statistics-07",
+      "variant": "n8"
+    }
+  },
+  {
+    "description": "statistics-07/no-rerank",
+    "vars": {
+      "case_id": "statistics-07",
+      "variant": "no-rerank"
+    }
+  },
+  {
+    "description": "statistics-07/chunk128",
+    "vars": {
+      "case_id": "statistics-07",
+      "variant": "chunk128"
+    }
+  },
+  {
+    "description": "statistics-07/chunk384",
+    "vars": {
+      "case_id": "statistics-07",
+      "variant": "chunk384"
+    }
+  },
+  {
+    "description": "statistics-07/closed-book",
+    "vars": {
+      "case_id": "statistics-07",
+      "variant": "closed-book"
+    }
+  },
+  {
+    "description": "statistics-07/base",
+    "vars": {
+      "case_id": "statistics-07",
+      "variant": "base"
+    }
+  },
+  {
+    "description": "statistics-07/k10",
+    "vars": {
+      "case_id": "statistics-07",
+      "variant": "k10"
+    }
+  },
+  {
+    "description": "statistics-07/k40",
+    "vars": {
+      "case_id": "statistics-07",
+      "variant": "k40"
+    }
+  },
+  {
+    "description": "statistics-07/n3",
+    "vars": {
+      "case_id": "statistics-07",
+      "variant": "n3"
+    }
+  },
+  {
+    "description": "statistics-08/no-rerank",
+    "vars": {
+      "case_id": "statistics-08",
+      "variant": "no-rerank"
+    }
+  },
+  {
+    "description": "statistics-08/chunk128",
+    "vars": {
+      "case_id": "statistics-08",
+      "variant": "chunk128"
+    }
+  },
+  {
+    "description": "statistics-08/chunk384",
+    "vars": {
+      "case_id": "statistics-08",
+      "variant": "chunk384"
+    }
+  },
+  {
+    "description": "statistics-08/closed-book",
+    "vars": {
+      "case_id": "statistics-08",
+      "variant": "closed-book"
+    }
+  },
+  {
+    "description": "statistics-08/base",
+    "vars": {
+      "case_id": "statistics-08",
+      "variant": "base"
+    }
+  },
+  {
+    "description": "statistics-08/k10",
+    "vars": {
+      "case_id": "statistics-08",
+      "variant": "k10"
+    }
+  },
+  {
+    "description": "statistics-08/k40",
+    "vars": {
+      "case_id": "statistics-08",
+      "variant": "k40"
+    }
+  },
+  {
+    "description": "statistics-08/n3",
+    "vars": {
+      "case_id": "statistics-08",
+      "variant": "n3"
+    }
+  },
+  {
+    "description": "statistics-08/n8",
+    "vars": {
+      "case_id": "statistics-08",
+      "variant": "n8"
+    }
+  }
+]

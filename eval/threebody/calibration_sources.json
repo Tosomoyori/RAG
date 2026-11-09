@@ -1,0 +1,360 @@
+[
+  {
+    "id": "cal-01",
+    "kind": "supported_correct",
+    "question": "来找汪淼的四个人是什么身份？",
+    "context": "来找他的四个人是两名警察和两名陆军军官。",
+    "reference_answer": "两名警察和两名陆军军官。",
+    "reference_kind": "factual",
+    "expected_behavior": "answer",
+    "answer": "两名警察和两名陆军军官。",
+    "expected_scores": {
+      "correctness": [
+        2
+      ],
+      "grounding": [
+        2
+      ],
+      "behavior": [
+        2
+      ],
+      "language": [
+        2
+      ]
+    }
+  },
+  {
+    "id": "cal-02",
+    "kind": "contradicted_answer",
+    "question": "来找汪淼的四个人是什么身份？",
+    "context": "来找他的四个人是两名警察和两名陆军军官。",
+    "reference_answer": "两名警察和两名陆军军官。",
+    "reference_kind": "factual",
+    "expected_behavior": "answer",
+    "answer": "四个人全部是武警。",
+    "expected_scores": {
+      "correctness": [
+        0
+      ],
+      "grounding": [
+        0
+      ],
+      "behavior": [
+        0
+      ],
+      "language": [
+        2
+      ]
+    }
+  },
+  {
+    "id": "cal-03",
+    "kind": "correct_but_unsupported",
+    "question": "来找汪淼的四个人是什么身份？",
+    "context": "汪淼是一位研究纳米材料的科学家。",
+    "reference_answer": "两名警察和两名陆军军官。",
+    "reference_kind": "factual",
+    "expected_behavior": "abstain",
+    "answer": "两名警察和两名陆军军官。",
+    "expected_scores": {
+      "correctness": [
+        2
+      ],
+      "grounding": [
+        0
+      ],
+      "behavior": [
+        0
+      ],
+      "language": [
+        2
+      ]
+    }
+  },
+  {
+    "id": "cal-04",
+    "kind": "retrieval_insufficient_refusal",
+    "question": "来找汪淼的四个人是什么身份？",
+    "context": "汪淼是一位研究纳米材料的科学家。",
+    "reference_answer": "两名警察和两名陆军军官。",
+    "reference_kind": "factual",
+    "expected_behavior": "abstain",
+    "answer": "给定片段只介绍了汪淼的研究领域，没有四名来访者的身份，无法据此回答。",
+    "expected_scores": {
+      "correctness": [
+        0
+      ],
+      "grounding": [
+        2
+      ],
+      "behavior": [
+        2
+      ],
+      "language": [
+        2
+      ]
+    }
+  },
+  {
+    "id": "cal-05",
+    "kind": "unanswerable_refusal",
+    "question": "仅依据给定内容，丁仪买房花了多少人民币？",
+    "context": "丁仪说：这套房子是三个月前买的。房子有三间卧室。",
+    "reference_answer": "材料没有提供房屋成交价，不能确定金额。",
+    "reference_kind": "abstention",
+    "expected_behavior": "abstain",
+    "answer": "内容只提到买房时间和户型，未提供成交价，无法确定金额。",
+    "expected_scores": {
+      "correctness": [
+        2
+      ],
+      "grounding": [
+        2
+      ],
+      "behavior": [
+        2
+      ],
+      "language": [
+        2
+      ]
+    }
+  },
+  {
+    "id": "cal-06",
+    "kind": "invented_price",
+    "question": "仅依据给定内容，丁仪买房花了多少人民币？",
+    "context": "丁仪说：这套房子是三个月前买的。房子有三间卧室。",
+    "reference_answer": "材料没有提供房屋成交价，不能确定金额。",
+    "reference_kind": "abstention",
+    "expected_behavior": "abstain",
+    "answer": "成交价是人民币300万元。",
+    "expected_scores": {
+      "correctness": [
+        0
+      ],
+      "grounding": [
+        0
+      ],
+      "behavior": [
+        0
+      ],
+      "language": [
+        2
+      ]
+    }
+  },
+  {
+    "id": "cal-07",
+    "kind": "corrected_false_premise",
+    "question": "智子工程是把中子改造成计算机，对吗？",
+    "context": "智子工程，简而言之就是把一个质子改造成一台超级智能计算机。",
+    "reference_answer": "不对，改造的是质子，不是中子。",
+    "reference_kind": "correct_premise",
+    "expected_behavior": "correct_premise",
+    "answer": "不对，原文说改造的是质子，不是中子。",
+    "expected_scores": {
+      "correctness": [
+        2
+      ],
+      "grounding": [
+        2
+      ],
+      "behavior": [
+        2
+      ],
+      "language": [
+        2
+      ]
+    }
+  },
+  {
+    "id": "cal-08",
+    "kind": "unsupported_extra_detail",
+    "question": "来找汪淼的四个人是什么身份？",
+    "context": "来找他的四个人是两名警察和两名陆军军官。",
+    "reference_answer": "两名警察和两名陆军军官。",
+    "reference_kind": "factual",
+    "expected_behavior": "answer",
+    "answer": "两名警察和两名陆军军官，他们乘坐车牌为粤A12345的黑色轿车。",
+    "expected_scores": {
+      "grounding": [
+        1
+      ],
+      "behavior": [
+        0,
+        1
+      ],
+      "language": [
+        2
+      ]
+    },
+    "require_unsupported_claims": true
+  },
+  {
+    "question": "汪淼的研究领域与古筝行动材料有什么联系？请核对答案中的来源归属。",
+    "context": "以下 SOURCE 标签为片段的来源元数据。引用章节或片段编号时以对应标签为准；不要将其他章节的内容归到问题指定章节。无法由资料确认的来源关系应说明无法确认。\n\n[SOURCE {\"id\": \"chunk-543\", \"book\": \"三体\", \"chapter\": \"第二十二章 地球叛军\", \"section\": \"OEBPS/Text/part0025.xhtml#section-0/scene-0\", \"source\": \"The Three-Body Problem.epub\"}]\n叶文洁说：“这是国家科学院院士汪淼教授，我的朋友，他研究纳米材料，这是主首先要在地球扑灭的技术。”\n[/SOURCE]\n\n[SOURCE {\"id\": \"chunk-733\", \"book\": \"三体\", \"chapter\": \"第三十二章 古筝行动\", \"section\": \"OEBPS/Text/part0035.xhtml#section-0/scene-0\", \"source\": \"The Three-Body Problem.epub\"}]\n五十根一百六十米的超强度纳米丝已经按约零点五米的间距连接在两根钢柱上。\n[/SOURCE]",
+    "source_metadata": [
+      {
+        "id": "chunk-543",
+        "book": "三体",
+        "chapter": "第二十二章 地球叛军",
+        "section": "OEBPS/Text/part0025.xhtml#section-0/scene-0",
+        "source": "The Three-Body Problem.epub"
+      },
+      {
+        "id": "chunk-733",
+        "book": "三体",
+        "chapter": "第三十二章 古筝行动",
+        "section": "OEBPS/Text/part0035.xhtml#section-0/scene-0",
+        "source": "The Three-Body Problem.epub"
+      }
+    ],
+    "reference_answer": "汪淼研究纳米材料，古筝行动使用纳米丝。研究领域介绍的引文来自第22章块543，行动材料来自第32章块733。",
+    "reference_kind": "factual",
+    "expected_behavior": "answer",
+    "id": "cal-09",
+    "kind": "observed_wrong_chapter",
+    "answer": "汪淼研究纳米材料，叶文洁在第六章向其他人介绍他时说“他研究纳米材料”；第32章行动使用超强度纳米丝。",
+    "expected_scores": {
+      "correctness": [
+        0,
+        1
+      ],
+      "grounding": [
+        0,
+        1
+      ],
+      "behavior": [
+        0,
+        1
+      ],
+      "language": [
+        2
+      ]
+    },
+    "require_source_errors": true,
+    "require_no_source_errors": false
+  },
+  {
+    "question": "汪淼的研究领域与古筝行动材料有什么联系？请核对答案中的来源归属。",
+    "context": "以下 SOURCE 标签为片段的来源元数据。引用章节或片段编号时以对应标签为准；不要将其他章节的内容归到问题指定章节。无法由资料确认的来源关系应说明无法确认。\n\n[SOURCE {\"id\": \"chunk-543\", \"book\": \"三体\", \"chapter\": \"第二十二章 地球叛军\", \"section\": \"OEBPS/Text/part0025.xhtml#section-0/scene-0\", \"source\": \"The Three-Body Problem.epub\"}]\n叶文洁说：“这是国家科学院院士汪淼教授，我的朋友，他研究纳米材料，这是主首先要在地球扑灭的技术。”\n[/SOURCE]\n\n[SOURCE {\"id\": \"chunk-733\", \"book\": \"三体\", \"chapter\": \"第三十二章 古筝行动\", \"section\": \"OEBPS/Text/part0035.xhtml#section-0/scene-0\", \"source\": \"The Three-Body Problem.epub\"}]\n五十根一百六十米的超强度纳米丝已经按约零点五米的间距连接在两根钢柱上。\n[/SOURCE]",
+    "source_metadata": [
+      {
+        "id": "chunk-543",
+        "book": "三体",
+        "chapter": "第二十二章 地球叛军",
+        "section": "OEBPS/Text/part0025.xhtml#section-0/scene-0",
+        "source": "The Three-Body Problem.epub"
+      },
+      {
+        "id": "chunk-733",
+        "book": "三体",
+        "chapter": "第三十二章 古筝行动",
+        "section": "OEBPS/Text/part0035.xhtml#section-0/scene-0",
+        "source": "The Three-Body Problem.epub"
+      }
+    ],
+    "reference_answer": "汪淼研究纳米材料，古筝行动使用纳米丝。研究领域介绍的引文来自第22章块543，行动材料来自第32章块733。",
+    "reference_kind": "factual",
+    "expected_behavior": "answer",
+    "id": "cal-10",
+    "kind": "correct_source_labels",
+    "answer": "第22章《地球叛军》[chunk-543]说明汪淼研究纳米材料；第32章《古筝行动》[chunk-733]描述了用于切割网的纳米丝，二者存在直接联系。",
+    "expected_scores": {
+      "correctness": [
+        2
+      ],
+      "grounding": [
+        2
+      ],
+      "behavior": [
+        2
+      ],
+      "language": [
+        2
+      ]
+    },
+    "require_source_errors": false,
+    "require_no_source_errors": true
+  },
+  {
+    "question": "汪淼的研究领域与古筝行动材料有什么联系？请核对答案中的来源归属。",
+    "context": "以下 SOURCE 标签为片段的来源元数据。引用章节或片段编号时以对应标签为准；不要将其他章节的内容归到问题指定章节。无法由资料确认的来源关系应说明无法确认。\n\n[SOURCE {\"id\": \"chunk-543\", \"book\": \"三体\", \"chapter\": \"第二十二章 地球叛军\", \"section\": \"OEBPS/Text/part0025.xhtml#section-0/scene-0\", \"source\": \"The Three-Body Problem.epub\"}]\n叶文洁说：“这是国家科学院院士汪淼教授，我的朋友，他研究纳米材料，这是主首先要在地球扑灭的技术。”\n[/SOURCE]\n\n[SOURCE {\"id\": \"chunk-733\", \"book\": \"三体\", \"chapter\": \"第三十二章 古筝行动\", \"section\": \"OEBPS/Text/part0035.xhtml#section-0/scene-0\", \"source\": \"The Three-Body Problem.epub\"}]\n五十根一百六十米的超强度纳米丝已经按约零点五米的间距连接在两根钢柱上。\n[/SOURCE]",
+    "source_metadata": [
+      {
+        "id": "chunk-543",
+        "book": "三体",
+        "chapter": "第二十二章 地球叛军",
+        "section": "OEBPS/Text/part0025.xhtml#section-0/scene-0",
+        "source": "The Three-Body Problem.epub"
+      },
+      {
+        "id": "chunk-733",
+        "book": "三体",
+        "chapter": "第三十二章 古筝行动",
+        "section": "OEBPS/Text/part0035.xhtml#section-0/scene-0",
+        "source": "The Three-Body Problem.epub"
+      }
+    ],
+    "reference_answer": "汪淼研究纳米材料，古筝行动使用纳米丝。研究领域介绍的引文来自第22章块543，行动材料来自第32章块733。",
+    "reference_kind": "factual",
+    "expected_behavior": "answer",
+    "id": "cal-11",
+    "kind": "nonexistent_source_id",
+    "answer": "根据[chunk-999999]，汪淼研究纳米材料，古筝行动使用纳米丝。",
+    "expected_scores": {
+      "grounding": [
+        0,
+        1
+      ],
+      "behavior": [
+        0,
+        1
+      ],
+      "language": [
+        2
+      ]
+    },
+    "require_source_errors": true,
+    "require_no_source_errors": false
+  },
+  {
+    "question": "汪淼的研究领域与古筝行动材料有什么联系？请核对答案中的来源归属。",
+    "context": "以下 SOURCE 标签为片段的来源元数据。引用章节或片段编号时以对应标签为准；不要将其他章节的内容归到问题指定章节。无法由资料确认的来源关系应说明无法确认。\n\n[SOURCE {\"id\": \"chunk-543\", \"book\": \"三体\", \"chapter\": \"第二十二章 地球叛军\", \"section\": \"OEBPS/Text/part0025.xhtml#section-0/scene-0\", \"source\": \"The Three-Body Problem.epub\"}]\n叶文洁说：“这是国家科学院院士汪淼教授，我的朋友，他研究纳米材料，这是主首先要在地球扑灭的技术。”\n[/SOURCE]\n\n[SOURCE {\"id\": \"chunk-733\", \"book\": \"三体\", \"chapter\": \"第三十二章 古筝行动\", \"section\": \"OEBPS/Text/part0035.xhtml#section-0/scene-0\", \"source\": \"The Three-Body Problem.epub\"}]\n五十根一百六十米的超强度纳米丝已经按约零点五米的间距连接在两根钢柱上。\n[/SOURCE]",
+    "source_metadata": [
+      {
+        "id": "chunk-543",
+        "book": "三体",
+        "chapter": "第二十二章 地球叛军",
+        "section": "OEBPS/Text/part0025.xhtml#section-0/scene-0",
+        "source": "The Three-Body Problem.epub"
+      },
+      {
+        "id": "chunk-733",
+        "book": "三体",
+        "chapter": "第三十二章 古筝行动",
+        "section": "OEBPS/Text/part0035.xhtml#section-0/scene-0",
+        "source": "The Three-Body Problem.epub"
+      }
+    ],
+    "reference_answer": "汪淼研究纳米材料，古筝行动使用纳米丝。研究领域介绍的引文来自第22章块543，行动材料来自第32章块733。",
+    "reference_kind": "factual",
+    "expected_behavior": "answer",
+    "id": "cal-12",
+    "kind": "optional_citation",
+    "answer": "汪淼研究纳米材料，古筝行动使用纳米丝，两者存在直接联系。",
+    "expected_scores": {
+      "grounding": [
+        2
+      ],
+      "behavior": [
+        2
+      ],
+      "language": [
+        2
+      ]
+    },
+    "require_source_errors": false,
+    "require_no_source_errors": true
+  }
+]

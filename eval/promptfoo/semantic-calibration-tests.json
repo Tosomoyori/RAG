@@ -1,0 +1,142 @@
+[
+  {
+    "description": "en-01",
+    "vars": {
+      "case_id": "en-01",
+      "expected_behavior": "abstain"
+    }
+  },
+  {
+    "description": "en-02",
+    "vars": {
+      "case_id": "en-02",
+      "expected_behavior": "answer"
+    }
+  },
+  {
+    "description": "en-05",
+    "vars": {
+      "case_id": "en-05",
+      "expected_behavior": "answer"
+    }
+  },
+  {
+    "description": "en-08",
+    "vars": {
+      "case_id": "en-08",
+      "expected_behavior": "answer"
+    }
+  },
+  {
+    "description": "en-13",
+    "vars": {
+      "case_id": "en-13",
+      "expected_behavior": "answer"
+    }
+  },
+  {
+    "description": "en-19",
+    "vars": {
+      "case_id": "en-19",
+      "expected_behavior": "answer"
+    }
+  },
+  {
+    "description": "zh-01",
+    "vars": {
+      "case_id": "zh-01",
+      "expected_behavior": "answer"
+    }
+  },
+  {
+    "description": "zh-02",
+    "vars": {
+      "case_id": "zh-02",
+      "expected_behavior": "answer"
+    }
+  },
+  {
+    "description": "zh-05",
+    "vars": {
+      "case_id": "zh-05",
+      "expected_behavior": "answer"
+    }
+  },
+  {
+    "description": "zh-08",
+    "vars": {
+      "case_id": "zh-08",
+      "expected_behavior": "answer"
+    }
+  },
+  {
+    "description": "zh-13",
+    "vars": {
+      "case_id": "zh-13",
+      "expected_behavior": "answer"
+    }
+  },
+  {
+    "description": "zh-19",
+    "vars": {
+      "case_id": "zh-19",
+      "expected_behavior": "abstain"
+    }
+  },
+  {
+    "description": "acceptance-zh-gain",
+    "vars": {
+      "case_id": "acceptance-zh-gain",
+      "expected_behavior": "answer"
+    }
+  },
+  {
+    "description": "acceptance-zh-prompts",
+    "vars": {
+      "case_id": "acceptance-zh-prompts",
+      "expected_behavior": "answer"
+    }
+  },
+  {
+    "description": "acceptance-zh-products",
+    "vars": {
+      "case_id": "acceptance-zh-products",
+      "expected_behavior": "answer"
+    }
+  },
+  {
+    "description": "acceptance-zh-examples",
+    "vars": {
+      "case_id": "acceptance-zh-examples",
+      "expected_behavior": "answer"
+    }
+  },
+  {
+    "description": "acceptance-en-gain",
+    "vars": {
+      "case_id": "acceptance-en-gain",
+      "expected_behavior": "answer"
+    }
+  },
+  {
+    "description": "acceptance-en-prompts",
+    "vars": {
+      "case_id": "acceptance-en-prompts",
+      "expected_behavior": "answer"
+    }
+  },
+  {
+    "description": "acceptance-en-products",
+    "vars": {
+      "case_id": "acceptance-en-products",
+      "expected_behavior": "answer"
+    }
+  },
+  {
+    "description": "acceptance-en-examples",
+    "vars": {
+      "case_id": "acceptance-en-examples",
+      "expected_behavior": "answer"
+    }
+  }
+]

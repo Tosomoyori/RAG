@@ -1,0 +1,13 @@
+description: Saved-output grading calibration against AI-reviewed annotations
+prompts:
+  - '{{case_id}}'
+providers:
+  - id: file://semantic-provider.py
+    config:
+      variant: saved
+      pythonExecutable: D:/MyProgramFiles/Miniforge/envs/RAG/python.exe
+tests: file://semantic-calibration-tests.json
+defaultTest:
+  assert:
+    - type: javascript
+      value: file://semantic-check.cjs

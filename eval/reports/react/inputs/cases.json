@@ -1,0 +1,258 @@
+[
+  {
+    "description": "en-01",
+    "vars": {
+      "query": "Which institutions are the authors affiliated with?",
+      "expected_lang": "en",
+      "required_patterns": "[\"Princeton|普林斯顿\",\"Google|谷歌\",\"Brain|大脑\"]"
+    },
+    "metadata": {
+      "id": "en-01",
+      "type": "factual",
+      "reference_answer": "Department of Computer Science, Princeton University, and Google Research, Brain team.",
+      "corpus": "ReAct.pdf",
+      "evidence": [
+        {
+          "index": 0,
+          "text": "Published as a conference paper at ICLR 2023\nREACT: SYNERGIZING REASONING AND ACTING IN\nLANGUAGE MODELS\nShunyu Yao∗*,1, Jeffrey Zhao2, Dian Yu2, Nan Du2, Izhak Shafran2, Karthik Narasimhan1, Yuan Cao2\n1Department of Computer Science, Princeton University\n2Google Research, Brain team\n1{shunyuy,karthikn}@princeton.edu\n2{jeffreyzhao,dianyu,dunan,izhak,yuancao}@google.com\nABSTRACT\nWhile large language models (LLMs) have demonstrated impressive performance\nacross tasks in language understanding and interactive decision making, their\nabilities for reasoning (e.g. chain-of-thought prompting) and acting (e.g. action\nplan generation) have primarily been studied as separate topics. In this paper, we\nexplore the use of LLMs to generate both reasoning traces and task-speciﬁc actions\nin an interleaved manner, allowing for greater synergy between the two: reasoning\ntraces help the model induce, track, and update action plans as well as handle\nexceptions, while actions allow it to interface with and gather additional information\nfrom external sources such as knowledge bases"
+        }
+      ],
+      "review_status": "Evidence checked against committed chunk preview; semantic answer review pending"
+    }
+  },
+  {
+    "description": "en-02",
+    "vars": {
+      "query": "What are the four benchmarks used to evaluate ReAct?",
+      "expected_lang": "en",
+      "required_patterns": "[\"HotPotQA\",\"FEVER|发烧\",\"ALFWorld\",\"WebShop|网络商店\"]"
+    },
+    "metadata": {
+      "id": "en-02",
+      "type": "factual",
+      "reference_answer": "HotPotQA, FEVER, ALFWorld, and WebShop.",
+      "corpus": "ReAct.pdf",
+      "evidence": [
+        {
+          "index": 14,
+          "text": "2023\nWe conduct empirical evaluations of ReAct and state-of-the-art baselines on four diverse benchmarks:\nquestion answering (HotPotQA, Yang et al., 2018), fact veriﬁcation (Fever, Thorne et al., 2018),\ntext-based game (ALFWorld, Shridhar et al., 2020b), and webpage navigation (WebShop, Yao\net al., 2022). For HotPotQA and Fever, with access to a Wikipedia API that the model can interact\nwith, ReAct outperforms vanilla action generation models while being competitive with chain-of-\nthought reasoning (CoT) (Wei et al., 2022). The best approach overall is a combination of ReAct\nand CoT that allows for the use of both internal knowledge and externally obtained information\nduring reasoning. On ALFWorld and WebShop, two or even one-shot ReAct prompting is able\nto outperform imitation or reinforcement learning methods trained with 103 ∼105 task instances,\nwith an absolute improvement of 34% and 10% in success rates respectively. We also demonstrate\nthe importance of sparse, versatile reasoning in decision making by showing consistent advantages\nover controlled baselines with actions only. Besides general applicability and performance boost,\nthe combination of"
+        }
+      ],
+      "review_status": "Evidence checked against committed chunk preview; semantic answer review pending"
+    }
+  },
+  {
+    "description": "en-05",
+    "vars": {
+      "query": "How does a thought differ from an action in terms of effect on the environment?",
+      "expected_lang": "en",
+      "required_patterns": "[\"不.{0,12}(影响|改变).{0,12}(环境|外部)|does not (affect|change)|no (effect|impact)\",\"(没有|无|不.{0,3}(产生|提供)).{0,12}(观察|反馈)|no observation|no.{0,15}feedback\"]"
+    },
+    "metadata": {
+      "id": "en-05",
+      "type": "conceptual",
+      "reference_answer": "A thought does not affect the external environment and produces no observation feedback. Actions interact with the external environment.",
+      "corpus": "ReAct.pdf",
+      "evidence": [
+        {
+          "index": 17,
+          "text": ", Obs 1-3). Similarly, the agent shown in Figure 1(2a) fails to comprehend from the\ncontext that sinkbasin 1 does not contain peppershaker 1, thus keep producing hallucinating actions.\nThe idea of ReAct is simple: we augment the agent’s action space to ˆ\nA = A ∪L, where L is the\nspace of language. An action ˆat ∈L in the language space, which we will refer to as a thought or a\nreasoning trace, does not affect the external environment, thus leading to no observation feedback.\nInstead, a thought ˆat aims to compose useful information by reasoning over the current context ct,\nand update the context ct+1 = (ct, ˆat) to support future reasoning or acting. As shown in Figure 1,\nthere could be various types of useful thoughts, e.g. decomposing task goals and create action plans\n(2b, Act 1; 1d, Thought 1), injecting commonsense knowledge relevant to task solving (2b, Act 1),\nextracting important parts from observations (1d, Thought2, 4), track progress and transit action plans\n(2b, Act 8), handle exceptions and adjust action plans (1d, Thought 3)"
+        }
+      ],
+      "review_status": "Evidence checked against committed chunk preview; semantic answer review pending"
+    }
+  },
+  {
+    "description": "en-08",
+    "vars": {
+      "query": "What browser functionality does the lookup action simulate?",
+      "expected_lang": "en",
+      "required_patterns": "[\"Ctrl\\\\s*\\\\+\\\\s*F|Control\\\\s*\\\\+\\\\s*F\"]"
+    },
+    "metadata": {
+      "id": "en-08",
+      "type": "factual",
+      "reference_answer": "The browser Ctrl+F find functionality.",
+      "corpus": "ReAct.pdf",
+      "evidence": [
+        {
+          "index": 22,
+          "text": "ﬁrst 5 sentences from\nthe corresponding entity wiki page if it exists, or else suggests top-5 similar entities from the\nWikipedia search engine, (2) lookup[string], which would return the next sentence in the page\ncontaining string, simulating Ctrl+F functionality on the browser. (3) finish[answer], which\nwould ﬁnish the current task with answer. We note that this action space mostly can only retrieve a\nsmall part of a passage based on exact passage name, which is signiﬁcantly weaker than state-of-the-\nart lexical or neural retrievers. The purpose is to simulate how humans would interact with Wikipedia,\nand force models to retrieve via explicit reasoning in language.\n3.2\nMETHODS\nReAct Prompting\nFor HotpotQA and Fever, we randomly select 6 and 3 cases2 from the training\nset and manually compose ReAct-format trajectories to use as few-shot exemplars in the prompts.\nSimilar to Figure 1(d), each trajectory consists of multiple thought-action-observation steps (i.e. dense\nthought), where free-form thoughts are used for various purposes. Speciﬁcally, we use a combination\nof thoughts that decompose questions (“I"
+        }
+      ],
+      "review_status": "Evidence checked against committed chunk preview; semantic answer review pending"
+    }
+  },
+  {
+    "description": "en-13",
+    "vars": {
+      "query": "How many unseen evaluation games were used in ALFWorld?",
+      "expected_lang": "en",
+      "required_patterns": "[\"\\\\b134\\\\b\"]"
+    },
+    "metadata": {
+      "id": "en-13",
+      "type": "numeric",
+      "reference_answer": "134 unseen evaluation games.",
+      "corpus": "ReAct.pdf",
+      "evidence": [
+        {
+          "index": 35,
+          "text": "Following Shridhar et al. (2020b), we evaluate on 134 unseen evaluation games\nin a task-speciﬁc setup. For robustness, we construct 6 prompts for each task type through each\npermutation of 2 annotated trajectories from the 3 we annotate. Act prompts are constructed using\nthe same trajectories, but without thoughts — since task instances are randomly chosen from the\ntraining set, it favors neither ReAct nor Act and provides a fair and controlled comparison to test the\nimportance of sparse thoughts. For baselines, we use BUTLER (Shridhar et al., 2020b), an imitation\nlearning agent trained on 105 expert trajectories for each task type5.\nWebShop\nCan ReAct also interact with noisy real-world language environments for practical\napplications? We investigate WebShop (Yao et al., 2022), a recently proposed online shopping\nwebsite environment with 1.18M real-world products and 12k human instructions. Unlike ALFWorld,\nWebshop contains a high variety of structured and unstructured texts (e.g. product titles, descriptions,\nand options crawled from Amazon), and requires an agent to purchase a product based on a user\ninstruction (e.g."
+        }
+      ],
+      "review_status": "Evidence checked against committed chunk preview; semantic answer review pending"
+    }
+  },
+  {
+    "description": "en-19",
+    "vars": {
+      "query": "What did the authors do to make the ReAct-versus-Act comparison a fair and controlled one?",
+      "expected_lang": "en",
+      "required_patterns": "[\"相同.{0,12}轨迹|同一.{0,12}轨迹|same(?: annotated)? trajectories\",\"(没有|移除|去掉|不含|删除).{0,30}(思想|思考|推理)|without thoughts|thoughts.{0,12}removed|remov(?:e|ing).{0,12}thoughts\",\"随机|random\",\"训练集|training set\"]"
+    },
+    "metadata": {
+      "id": "en-19",
+      "type": "hard",
+      "reference_answer": "Act uses the same trajectories with thoughts removed. Task instances are randomly selected from the training set, favoring neither method.",
+      "corpus": "ReAct.pdf",
+      "evidence": [
+        {
+          "index": 35,
+          "text": "Following Shridhar et al. (2020b), we evaluate on 134 unseen evaluation games\nin a task-speciﬁc setup. For robustness, we construct 6 prompts for each task type through each\npermutation of 2 annotated trajectories from the 3 we annotate. Act prompts are constructed using\nthe same trajectories, but without thoughts — since task instances are randomly chosen from the\ntraining set, it favors neither ReAct nor Act and provides a fair and controlled comparison to test the\nimportance of sparse thoughts. For baselines, we use BUTLER (Shridhar et al., 2020b), an imitation\nlearning agent trained on 105 expert trajectories for each task type5.\nWebShop\nCan ReAct also interact with noisy real-world language environments for practical\napplications? We investigate WebShop (Yao et al., 2022), a recently proposed online shopping\nwebsite environment with 1.18M real-world products and 12k human instructions. Unlike ALFWorld,\nWebshop contains a high variety of structured and unstructured texts (e.g. product titles, descriptions,\nand options crawled from Amazon), and requires an agent to purchase a product based on a user\ninstruction (e.g."
+        }
+      ],
+      "review_status": "Evidence checked against committed chunk preview; semantic answer review pending"
+    }
+  },
+  {
+    "description": "zh-01",
+    "vars": {
+      "query": "论文作者分别来自哪些机构？",
+      "expected_lang": "zh",
+      "required_patterns": "[\"Princeton|普林斯顿\",\"Google|谷歌\",\"Brain|大脑\"]"
+    },
+    "metadata": {
+      "id": "zh-01",
+      "type": "factual",
+      "reference_answer": "普林斯顿大学计算机科学系和 Google Research 的 Brain team。",
+      "corpus": "doc.pdf",
+      "evidence": [
+        {
+          "index": 0,
+          "text": "Published as a conference paper at ICLR 2023\n1\nREAC T:协同推理和行动\n语言模型\n* 1、Jeffrey Zhao2、Dian Yu2、Nan Du2、Izhak Shafran2、Karthik Narasimhan1、袁草2\n1 普林斯顿大学计算机科学系\n2 谷歌研究，大脑团队\n1{shunyuy,karthikn}@princeton.edu\n2{jeffreyzhao,dianyu,dunan,izhak,yuancao}@google.com\n摘要\n虽然大型语言模型(LLM)在语言理解和交互式决策方面的任务表现令人印象\n深刻，但它们的推理能力(如思维链提示)和行动能力(如行动计划生成)主\n要是作为单独的主题进行研究的。在本文中，我们探索了使用LLM 以交错\n的方式生成推理跟踪和特定于任务的"
+        }
+      ],
+      "review_status": "Evidence checked against committed chunk preview; semantic answer review pending"
+    }
+  },
+  {
+    "description": "zh-02",
+    "vars": {
+      "query": "论文用了哪四个基准来评测 ReAct？",
+      "expected_lang": "zh",
+      "required_patterns": "[\"HotPotQA\",\"FEVER|发烧\",\"ALFWorld\",\"WebShop|网络商店\"]"
+    },
+    "metadata": {
+      "id": "zh-02",
+      "type": "factual",
+      "reference_answer": "HotPotQA、FEVER、ALFWorld 和 WebShop。",
+      "corpus": "doc.pdf",
+      "evidence": [
+        {
+          "index": 13,
+          "text": "，iPad ，iPod Touch\n(1c) 仅限Act\n第一幕: 搜索【苹果遥控器】Obs 1: 苹果遥控\n器是一个遥控器…\n第二幕: 搜索[ 前排]\nObs 2: 找不到[Front Row] 。类似的:…\n第三幕: 搜索[ 前排( 软件)]\nObs 3: Front Row 是一款停产的媒体中心软\n件…\n第四幕: 完成[ 是]\n想法三:Fron\n世界其他地区(软\n件)\n第三幕:搜索[\n未找到t 行。我需要搜索\n。\n前排(软件)\n]Published as a conference paper at ICLR 2023\n3\n我们在四个不同的基准上对ReAct 和最先进的基线进行了实证评估:问答(HotPotQA，Yang et\nal.,2018)、事实验证(发烧、Thorne et al.,2018),基于文本的游戏(ALFWorld，Shridhar\net al.,"
+        },
+        {
+          "index": 14,
+          "text": "事实验证(发烧、Thorne et al.,2018),基于文本的游戏(ALFWorld，Shridhar\net al.,2020b),和网页导航( 网络商店，Yaoet al.,2022).对于HotPotQA 和Fever，由\n于可以访问模型可以与之交互的维基百科API，ReAct 的性能优于普通的动作生成模型，同\n时与思维链推理(CoT)具有竞争力(Wei et al.,2022).总体而言，最好的方法是将ReAct 和\nCoT 结合起来，既可以利用内部知识，也可以利用外部获得的信息\n在推理过程中。在ALFWorld 和WebShop 上，两次甚至一次的ReAct 提示能够优于用\n103∞105 个任务实例训练的模仿或强化学习方法，成功率分别有34%和10%的绝对提高。我"
+        }
+      ],
+      "review_status": "Evidence checked against committed chunk preview; semantic answer review pending"
+    }
+  },
+  {
+    "description": "zh-05",
+    "vars": {
+      "query": "思想（thought）与行动（action）在对环境的影响上有什么区别？",
+      "expected_lang": "zh",
+      "required_patterns": "[\"不.{0,12}(影响|改变).{0,12}(环境|外部)|does not (affect|change)|no (effect|impact)\",\"(没有|无|不.{0,3}(产生|提供)).{0,12}(观察|反馈)|no observation|no.{0,15}feedback\"]"
+    },
+    "metadata": {
+      "id": "zh-05",
+      "type": "conceptual",
+      "reference_answer": "思想不改变外部环境，因此没有环境观察反馈。行动用于与外部环境交互。",
+      "corpus": "doc.pdf",
+      "evidence": [
+        {
+          "index": 18,
+          "text": "行动4 ),因为它需要对轨迹环境进行复杂的推理(问题，行动1-\n3，观察结果1-3)。类似地，图中所示的代理1(2a)未能从上下文中理解洗手盆1 不包含胡椒\n瓶1，从而不断产生幻觉行为。\nReAct 的想法很简单:我们将代理的动作空间扩大到Aˇ= A∪L，其中L 是语言的空间。语言\n空间中的动作aˇt∈L，我们将称之为思想或推理轨迹，不影响外部环境，从而导致没有观\n察反馈。\n相反，思想at 旨在通过对当前上下文ct 进行推理来组成有用的信息，并更新上下文ct+1\n= (ct，at)以支持未来的推理或行动。如图所示1,可能有各种类型的有用想法，例如分解\n任务目标和创建行"
+        }
+      ],
+      "review_status": "Evidence checked against committed chunk preview; semantic answer review pending"
+    }
+  },
+  {
+    "description": "zh-08",
+    "vars": {
+      "query": "lookup 动作模拟的是浏览器的什么功能？",
+      "expected_lang": "zh",
+      "required_patterns": "[\"Ctrl\\\\s*\\\\+\\\\s*F|Control\\\\s*\\\\+\\\\s*F\"]"
+    },
+    "metadata": {
+      "id": "zh-08",
+      "type": "factual",
+      "reference_answer": "浏览器的 Ctrl+F 文本查找功能。",
+      "corpus": "doc.pdf",
+      "evidence": [
+        {
+          "index": 25,
+          "text": "]，它返回相应实体wiki 页面中的前5 个句子(如果存在)，或\n者建议来自Wikipedia 搜索引擎的前5 个相似实体，(2) lookup[string]，它将返回包含\nstring 的页面中的下一个句子，模拟浏览器上的Ctrl+F 功能。(3)完成【答案】，完成当\n前任务并给出答案。我们注意到，这个动作空间通常只能基于准确的段落名称来检索一小\n部分段落，这明显弱于最先进的词法或神经检索器。目的是模拟人类如何与维基百科互\n动，并迫使模型通过语言的显式推理进行检索。\n3.2\n方法\n对于HotpotQA 和发烧的反应提示，我们随机选择了6 和3 个案例2 并手动构建ReAct-\nformat 轨迹以用作提示中的少数镜头样"
+        }
+      ],
+      "review_status": "Evidence checked against committed chunk preview; semantic answer review pending"
+    }
+  },
+  {
+    "description": "zh-13",
+    "vars": {
+      "query": "ALFWorld 用了多少个未见过的评测游戏？",
+      "expected_lang": "zh",
+      "required_patterns": "[\"\\\\b134\\\\b\"]"
+    },
+    "metadata": {
+      "id": "zh-13",
+      "type": "numeric",
+      "reference_answer": "134 个未见过的评测游戏。",
+      "corpus": "doc.pdf",
+      "evidence": [
+        {
+          "index": 42,
+          "text": ") 通过常识推理在哪里找到一个对象以及如何处理\n它。我们在附录中显示了用于A L F W o r l d 的提示C.4.跟随Shridhar et al.\n(2020b),我们在一个特定任务的设置中评估了134 个看不见的评估游戏。为了稳健，我们\n从我们注释的3 个轨迹中，通过2 个注释轨迹的每个排列，为每个任务类型构建6 个提\n示。Act 提示是使用相同的轨迹构建的，但没有思想——因为任务实例是从训练集中随机选\n择的，所以它既不支持反应也不支持Act，并提供了公平和受控的比较来测试稀疏思想的重\n要性。对于基线，我们使用BUTLER(Shridhar et al.,2020b),一个模仿学习代理在105 条专\n家轨迹上"
+        }
+      ],
+      "review_status": "Evidence checked against committed chunk preview; semantic answer review pending"
+    }
+  },
+  {
+    "description": "zh-19",
+    "vars": {
+      "query": "作者做了哪些安排，才让 ReAct 与仅行动版本的对比算得上是公平的受控实验？",
+      "expected_lang": "zh",
+      "required_patterns": "[\"相同.{0,12}轨迹|同一.{0,12}轨迹|same(?: annotated)? trajectories\",\"(没有|移除|去掉|不含|删除).{0,30}(思想|思考|推理)|without thoughts|thoughts.{0,12}removed|remov(?:e|ing).{0,12}thoughts\",\"随机|random\",\"训练集|training set\"]"
+    },
+    "metadata": {
+      "id": "zh-19",
+      "type": "hard",
+      "reference_answer": "Act 使用相同轨迹但移除思想，任务实例从训练集随机选择，使比较不偏向任一方法。",
+      "corpus": "doc.pdf",
+      "evidence": [
+        {
+          "index": 42,
+          "text": ") 通过常识推理在哪里找到一个对象以及如何处理\n它。我们在附录中显示了用于A L F W o r l d 的提示C.4.跟随Shridhar et al.\n(2020b),我们在一个特定任务的设置中评估了134 个看不见的评估游戏。为了稳健，我们\n从我们注释的3 个轨迹中，通过2 个注释轨迹的每个排列，为每个任务类型构建6 个提\n示。Act 提示是使用相同的轨迹构建的，但没有思想——因为任务实例是从训练集中随机选\n择的，所以它既不支持反应也不支持Act，并提供了公平和受控的比较来测试稀疏思想的重\n要性。对于基线，我们使用BUTLER(Shridhar et al.,2020b),一个模仿学习代理在105 条专\n家轨迹上"
+        }
+      ],
+      "review_status": "Evidence checked against committed chunk preview; semantic answer review pending"
+    }
+  }
+]

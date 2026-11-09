@@ -28,6 +28,11 @@ import math
 import threading
 import time
 import warnings
+import hashlib
+import json
+from pathlib import Path
+from retrieval import expand_context, retrieve_candidates
+from document_loader import load_sections, chunk_sections
 from collections import OrderedDict
 from typing import Any, Dict, List, Optional, Tuple
 from dotenv import load_dotenv
@@ -93,7 +98,8 @@ RERANK_MODEL = "./mmarco-mMiniLMv2-L12-H384-v1"
 # persist_directory 的**字符串**做进程内实例注册的，同一个目录用不同写法
 # （相对 vs 绝对、不同 CWD）会被当成两个库，各自开一份 SQLite 连接和 HNSW 索引，
 # 叠在同一个目录上——轻则设置冲突报错，重则数据不一致。
-CHROMA_DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "chroma_db")
+CHROMA_DB_PATH = str(Path(os.getenv("RAG_INDEX_DIR", str(
+    Path(__file__).resolve().parent / "chroma_db"))).expanduser().resolve())
 
 
 # 默认文档：本目录下的 doc.pdf（注意不是 ".doc.pdf"，那个前导点是笔误，
@@ -103,6 +109,15 @@ DEFAULT_SOURCE = "doc.pdf"
 # 检索参数提到模块级：它们要参与缓存 key 计算（改参数不应命中旧口径的答案）
 RETRIEVE_K = 20     # 向量召回条数
 RERANK_TOP_N = 5    # 精排后保留条数
+
+RETRIEVAL_MODE = os.getenv("RETRIEVAL_MODE", "language")
+CONTEXT_NEIGHBORS = int(os.getenv("CONTEXT_NEIGHBORS", "1"))
+CONTEXT_MAX_CHUNKS = int(os.getenv("CONTEXT_MAX_CHUNKS", "10"))
+CONTEXT_MAX_TOKENS = int(os.getenv("CONTEXT_MAX_TOKENS", "2560"))
+if RETRIEVAL_MODE not in ("vector", "hybrid", "language"):
+    raise ValueError("RETRIEVAL_MODE must be vector, hybrid or language")
+if CONTEXT_NEIGHBORS < 0 or CONTEXT_MAX_CHUNKS < 1 or CONTEXT_MAX_TOKENS < 1:
+    raise ValueError("Invalid context expansion budgets")
 
 # 切块按 token 计（见 split_by_tokens）。
 # 256 是"模型上限 512 的一半"——留足余量，避免将来换模型或改配置时又踩到静默截断。
@@ -291,7 +306,7 @@ def _chroma_persist_kwargs() -> dict:
 
 # ---------- 2. 文档加载与切块 ----------
 def load_raw_text(path: str) -> str:
-    """读 PDF / Markdown，返回整篇纯文本（行为与原 load_pdf / 直接 read 一致）。"""
+    """读取支持的文档格式，返回按阅读顺序拼接的纯文本。"""
     # 先把"文件不存在"挑出来给人话提示：PyMuPDFLoader 对不存在的路径只会抛
     # ValueError: File path xxx is not a valid file or url，看不出是路径写错了还是格式不支持。
     if not path.lower().startswith(("http://", "https://")) and not os.path.isfile(path):
@@ -301,10 +316,7 @@ def load_raw_text(path: str) -> str:
             f"  - 若用默认值，请确认 {os.path.join(here, DEFAULT_SOURCE)} 存在；\n"
             f"  - 也可以直接输入绝对路径，例如 {os.path.join(here, 'doc.pdf')}"
         )
-    if path.lower().endswith(".pdf"):
-        return "".join(p.page_content for p in PyMuPDFLoader(path).load())
-    with open(path, "r", encoding="utf-8") as f:
-        return f.read()
+    return "\n\n".join(section.text for section in load_sections(path))
 
 
 _tokenizers: Dict[str, Any] = {}
@@ -375,7 +387,8 @@ def load_store(lang: str = DEFAULT_LANG) -> Chroma:
 def build_index(source_file: str, lang: Optional[str] = None,
                 force: bool = False) -> Chroma:
     """重建或追加索引：切块 -> 嵌入 -> 入库。lang 不给则按文档语种自动判断。"""
-    text = load_raw_text(source_file)
+    sections = load_sections(source_file)
+    text = "\n\n".join(section.text for section in sections)
     if lang is None:
         lang = detect_lang(text)
         print(f"检测到文档语种：{lang}（模型 {LANG_MODELS[lang]}）")
@@ -394,12 +407,12 @@ def build_index(source_file: str, lang: Optional[str] = None,
                 store.delete(ids=old_ids)
         except Exception:
             pass  # 集合不存在时忽略
-    chunks = split_by_tokens(text, lang)
+    chunks, metadata = chunk_sections(sections, lang, split_by_tokens,
+                                      os.path.basename(source_file))
     if chunks:
         store.add_texts(  # 一次批量嵌入 + 入库；嵌入过程自动走向量缓存
             chunks,
-            metadatas=[{"index": i, "source": os.path.basename(source_file)}
-                       for i in range(len(chunks))],
+            metadatas=metadata,
         )
     print(f"已索引 {len(chunks)} 个文本块 -> {CHROMA_DB_PATH}[{LANG_COLLECTIONS[lang]}]")
     return store
@@ -449,29 +462,37 @@ def rerank_cached(query: str, docs: List[str]) -> List[float]:
     return [merged[i] for i in range(len(docs))]
 
 
-def make_retriever(store: Chroma, k: int = RETRIEVE_K, top_n: int = RERANK_TOP_N):
-    """召回 top-k，再用 cross-encoder 精排到 top_n（等价原 retrieve(20) + rerank(5)）。
+def retrieval_mode(lang: str) -> str:
+    if RETRIEVAL_MODE == "language":
+        return "hybrid" if lang == "zh" else "vector"
+    return RETRIEVAL_MODE
 
-    说明：LangChain 1.x 起，ContextualCompressionRetriever / CrossEncoderReranker
-    被移出 langchain 主包，所以这里直接用 HuggingFaceCrossEncoder.score() 精排，
-    和原版 rerank() 逐行等价。本项目的关键差异是打分改为走 rerank_cached()。
-    """
-    base = store.as_retriever(search_kwargs={"k": k})
 
+def make_retriever(store: Chroma, k: int = RETRIEVE_K, top_n: int = RERANK_TOP_N,
+                   lang: Optional[str] = None):
+    """Retrieve and rerank candidates, with configurable bounded context expansion."""
     def _retrieve_and_rerank(query: str):
-        docs = base.invoke(query)
+        language = lang or detect_lang(query)
+        docs = retrieve_candidates(store, query, k, retrieval_mode(language))
         scores = rerank_cached(query, [d.page_content for d in docs])
         ranked = sorted(zip(docs, scores), key=lambda x: x[1], reverse=True)
-        return [d for d, _ in ranked[:top_n]]
+        seeds = [d for d, _ in ranked[:top_n]]
+        if CONTEXT_NEIGHBORS:
+            return expand_context(store, seeds, _get_tokenizer(language),
+                                  radius=CONTEXT_NEIGHBORS, max_chunks=CONTEXT_MAX_CHUNKS,
+                                  max_tokens=CONTEXT_MAX_TOKENS)
+        return seeds
 
     return RunnableLambda(_retrieve_and_rerank)
 
 
 # ---------- 6. 生成（原 generate()） ----------
-prompt = PromptTemplate.from_template(
-    "你是一位知识助手，请根据用户的问题和下列片段生成准确的回答。\n"
-    "用户问题: {question}\n相关片段:\n{context}\n请基于上述内容作答，不要编造信息。"
-)
+PROMPT_VERSION = os.getenv("RAG_PROMPT_VERSION", "legacy")
+PROMPT_TEMPLATES = json.loads(Path(__file__).with_name("prompts.json").read_text(encoding="utf-8"))
+if PROMPT_VERSION not in PROMPT_TEMPLATES:
+    raise ValueError(f"Unsupported RAG_PROMPT_VERSION: {PROMPT_VERSION}")
+prompt = PromptTemplate.from_template(PROMPT_TEMPLATES[PROMPT_VERSION])
+PROMPT_FINGERPRINT = hashlib.sha256(prompt.template.encode("utf-8")).hexdigest()[:16]
 llm = ChatDeepSeek(model="deepseek-chat", temperature=0.7)   # 原 OpenAI(base_url=...)
 
 
@@ -496,9 +517,12 @@ def make_chain(retriever):
     """
     def _context_and_question(payload):
         if isinstance(payload, dict):
-            return {"question": payload["question"], "context": payload["context"]}
-        docs = retriever.invoke(payload)          # 只有传字符串时才召回
-        return {"question": payload, "context": format_docs(docs)}
+            question, context = payload["question"], payload["context"]
+        else:
+            question = payload
+            context = format_docs(retriever.invoke(question))
+        return {"question": question, "context": context,
+                "answer_language": "English" if detect_lang(question) == "en" else "简体中文"}
 
     return (
         RunnableLambda(_context_and_question)
@@ -590,10 +614,15 @@ def query(question: str, retriever, chain,
       answer / sources / cache_hit / cache_type / elapsed_ms
     """
     started = time.perf_counter()
+    index_namespace = hashlib.sha256(CHROMA_DB_PATH.encode("utf-8")).hexdigest()[:16]
+    cache_lang = f"{lang}|index:{index_namespace}|prompt:{PROMPT_FINGERPRINT}"
+    if RETRIEVAL_MODE != "vector" or CONTEXT_NEIGHBORS:
+        cache_lang = (f"{cache_lang}|retrieval-v1|{RETRIEVAL_MODE}|{CONTEXT_NEIGHBORS}"
+                      f"|{CONTEXT_MAX_CHUNKS}|{CONTEXT_MAX_TOKENS}")
 
     if use_cache:
         # ① 精确缓存：问题原文一致
-        exact = cache.get_answer(question, top_n, k, lang)
+        exact = cache.get_answer(question, top_n, k, cache_lang)
         if exact is not None:
             return {"answer": exact["answer"], "sources": exact["sources"],
                     "cache_hit": True, "cache_type": "exact",
@@ -619,7 +648,7 @@ def query(question: str, retriever, chain,
     source_texts = [d.page_content for d in sources]
 
     if use_cache:
-        cache.set_answer(question, top_n, k, answer, source_texts, lang)
+        cache.set_answer(question, top_n, k, answer, source_texts, cache_lang)
         if SEMANTIC_CACHE_ENABLED:
             get_semantic_cache(lang).store(
                 question,

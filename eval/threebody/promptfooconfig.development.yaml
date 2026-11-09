@@ -1,0 +1,19 @@
+description: Three-Body volume-one development questions; holdout excluded
+prompts:
+  - '{{case_id}}'
+providers:
+  - id: http
+    config:
+      url: http://127.0.0.1:8002/evaluate
+      method: POST
+      headers:
+        Content-Type: application/json
+      body:
+        case_id: '{{prompt}}'
+      transformResponse: json
+      timeout: 300000
+tests: file://development-tests.json
+defaultTest:
+  assert:
+    - type: javascript
+      value: file://pilot_checks.cjs

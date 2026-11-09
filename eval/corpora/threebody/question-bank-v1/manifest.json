@@ -1,0 +1,76 @@
+{
+  "version": "question-bank-v1",
+  "scope": "book1",
+  "total": 40,
+  "split_counts": {
+    "development": 24,
+    "holdout": 16
+  },
+  "type_counts": {
+    "detail": 13,
+    "paraphrase": 9,
+    "multi_fact": 1,
+    "multi_evidence": 6,
+    "false_premise": 2,
+    "distinction": 5,
+    "unanswerable": 4
+  },
+  "behavior_counts": {
+    "answer": 34,
+    "correct_premise": 2,
+    "abstain": 4
+  },
+  "knowledge_groups": {
+    "development": [
+      "cosmic_flicker",
+      "countdown",
+      "ding_house_price",
+      "eto_motives",
+      "farmer_hypothesis",
+      "guzheng_execution",
+      "human_computer",
+      "physics_uniformity",
+      "shooter_hypothesis",
+      "silent_spring",
+      "solar_amplification",
+      "sophon_particle",
+      "visitors",
+      "wang_photography",
+      "ye_criminal_record",
+      "ye_father"
+    ],
+    "holdout": [
+      "alien_appearance",
+      "fleet_departure",
+      "game_survival",
+      "locust_resilience",
+      "mozi_model",
+      "pan_han_confession",
+      "planet_ripping",
+      "players_gathering",
+      "red_coast_ruins",
+      "three_suns_orbits",
+      "warning_listener"
+    ]
+  },
+  "previously_evaluated_ids": [
+    "tb-dev-01",
+    "tb-dev-02",
+    "tb-dev-03",
+    "tb-dev-04",
+    "tb-dev-05",
+    "tb-dev-06",
+    "tb-dev-07",
+    "tb-dev-08"
+  ],
+  "holdout_execution": "not run; static source annotation and validation only",
+  "review": "AI annotations; independent human review pending",
+  "corpus_manifest_sha256": "42d4f0a9a43bfd0c1082eac889685162ba1c8e9cda58d6f55a160b0d87807038",
+  "files_sha256": {
+    "eval/threebody/build_question_bank.py": "ef4cfcb6080fa1622b534460e08942088e4e9f1e0ef5b9c130252969d7a9f60c",
+    "eval/threebody/pilot_cases.json": "1407cc50cea00e62ab0be4ecdb2a6ba08651f6ba42be7f7fabcb2a5c69fd963c",
+    "eval/threebody/question_bank_extra.json": "82d8a42d5c9ccbc0deb0143d84636a2a74ada9caa42fa7b9f676a9d0d1af0a86",
+    "eval/corpora/threebody/question-bank-v1/development.json": "8e5e711bc393dac7a56d30aaa193a844650ba69b3ec5a86cd2a173f8080027e9",
+    "eval/corpora/threebody/question-bank-v1/holdout.json": "acf2aa763628be48317c182eaff62961f28fb88a72bf0b73b34b73bd020c47cb"
+  }
+}

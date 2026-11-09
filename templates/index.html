@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的 PDF 阅读助手（缓存 + 任务队列版）</title>
+    <title>RAG 文档问答</title>
     <style>
         body {
             font-family: sans-serif;
@@ -69,12 +69,12 @@
     <h1>📚 我的 RAG 助手 <span class="muted" style="font-size:14px;">缓存 + 任务队列版</span></h1>
 
     <div style="margin-bottom: 25px; padding: 15px; border: 2px dashed #aaa; border-radius: 8px;">
-        <h3 style="margin-top: 0;">📤 上传文档（PDF / Markdown）</h3>
-        <input type="file" id="fileInput" accept=".pdf,.md,.markdown,.txt" onchange="onFileSelected()">
+        <h3 style="margin-top: 0;">📤 上传文档（PDF / EPUB / Markdown / TXT）</h3>
+        <input type="file" id="fileInput" accept=".pdf,.epub,.md,.markdown,.txt" onchange="onFileSelected()">
         <button id="uploadBtn" onclick="uploadFile()" disabled style="margin-left: 10px;">上传（后台入队）</button>
         <div id="uploadStatus" style="margin-top: 10px; font-size: 14px;"></div>
         <div class="muted" style="font-size:12px; margin-top:6px;">
-            上传立即返回任务号，解析与向量化在后台队列进行——大 PDF 不再卡住页面，状态见下方提示。
+            上传后在后台解析并建立索引，可查看任务状态。成功后将替换同语种的现有文档。
         </div>
     </div>
 

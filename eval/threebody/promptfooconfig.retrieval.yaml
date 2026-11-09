@@ -1,0 +1,21 @@
+description: Four retrieval configurations on development questions; no generation or grading
+prompts:
+  - '{{case_id}} {{variant}}'
+providers:
+  - id: http
+    config:
+      url: http://127.0.0.1:8003/retrieve
+      method: POST
+      headers:
+        Content-Type: application/json
+      body:
+        case_id: '{{case_id}}'
+        mode: '{{mode}}'
+        neighbors: '{{neighbors}}'
+      transformResponse: json
+      timeout: 180000
+tests: file://retrieval-tests.json
+defaultTest:
+  assert:
+    - type: javascript
+      value: file://retrieval_checks.cjs

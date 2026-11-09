@@ -1,0 +1,338 @@
+[
+  {
+    "description": "tb-dev-01 hybrid-n0",
+    "vars": {
+      "case_id": "tb-dev-01",
+      "variant": "hybrid-n0"
+    }
+  },
+  {
+    "description": "tb-dev-01 hybrid-n1",
+    "vars": {
+      "case_id": "tb-dev-01",
+      "variant": "hybrid-n1"
+    }
+  },
+  {
+    "description": "tb-dev-02 hybrid-n1",
+    "vars": {
+      "case_id": "tb-dev-02",
+      "variant": "hybrid-n1"
+    }
+  },
+  {
+    "description": "tb-dev-02 hybrid-n0",
+    "vars": {
+      "case_id": "tb-dev-02",
+      "variant": "hybrid-n0"
+    }
+  },
+  {
+    "description": "tb-dev-03 hybrid-n0",
+    "vars": {
+      "case_id": "tb-dev-03",
+      "variant": "hybrid-n0"
+    }
+  },
+  {
+    "description": "tb-dev-03 hybrid-n1",
+    "vars": {
+      "case_id": "tb-dev-03",
+      "variant": "hybrid-n1"
+    }
+  },
+  {
+    "description": "tb-dev-04 hybrid-n1",
+    "vars": {
+      "case_id": "tb-dev-04",
+      "variant": "hybrid-n1"
+    }
+  },
+  {
+    "description": "tb-dev-04 hybrid-n0",
+    "vars": {
+      "case_id": "tb-dev-04",
+      "variant": "hybrid-n0"
+    }
+  },
+  {
+    "description": "tb-dev-05 hybrid-n0",
+    "vars": {
+      "case_id": "tb-dev-05",
+      "variant": "hybrid-n0"
+    }
+  },
+  {
+    "description": "tb-dev-05 hybrid-n1",
+    "vars": {
+      "case_id": "tb-dev-05",
+      "variant": "hybrid-n1"
+    }
+  },
+  {
+    "description": "tb-dev-06 hybrid-n1",
+    "vars": {
+      "case_id": "tb-dev-06",
+      "variant": "hybrid-n1"
+    }
+  },
+  {
+    "description": "tb-dev-06 hybrid-n0",
+    "vars": {
+      "case_id": "tb-dev-06",
+      "variant": "hybrid-n0"
+    }
+  },
+  {
+    "description": "tb-dev-07 hybrid-n0",
+    "vars": {
+      "case_id": "tb-dev-07",
+      "variant": "hybrid-n0"
+    }
+  },
+  {
+    "description": "tb-dev-07 hybrid-n1",
+    "vars": {
+      "case_id": "tb-dev-07",
+      "variant": "hybrid-n1"
+    }
+  },
+  {
+    "description": "tb-dev-08 hybrid-n1",
+    "vars": {
+      "case_id": "tb-dev-08",
+      "variant": "hybrid-n1"
+    }
+  },
+  {
+    "description": "tb-dev-08 hybrid-n0",
+    "vars": {
+      "case_id": "tb-dev-08",
+      "variant": "hybrid-n0"
+    }
+  },
+  {
+    "description": "tb-dev-09 hybrid-n0",
+    "vars": {
+      "case_id": "tb-dev-09",
+      "variant": "hybrid-n0"
+    }
+  },
+  {
+    "description": "tb-dev-09 hybrid-n1",
+    "vars": {
+      "case_id": "tb-dev-09",
+      "variant": "hybrid-n1"
+    }
+  },
+  {
+    "description": "tb-dev-10 hybrid-n1",
+    "vars": {
+      "case_id": "tb-dev-10",
+      "variant": "hybrid-n1"
+    }
+  },
+  {
+    "description": "tb-dev-10 hybrid-n0",
+    "vars": {
+      "case_id": "tb-dev-10",
+      "variant": "hybrid-n0"
+    }
+  },
+  {
+    "description": "tb-dev-11 hybrid-n0",
+    "vars": {
+      "case_id": "tb-dev-11",
+      "variant": "hybrid-n0"
+    }
+  },
+  {
+    "description": "tb-dev-11 hybrid-n1",
+    "vars": {
+      "case_id": "tb-dev-11",
+      "variant": "hybrid-n1"
+    }
+  },
+  {
+    "description": "tb-dev-12 hybrid-n1",
+    "vars": {
+      "case_id": "tb-dev-12",
+      "variant": "hybrid-n1"
+    }
+  },
+  {
+    "description": "tb-dev-12 hybrid-n0",
+    "vars": {
+      "case_id": "tb-dev-12",
+      "variant": "hybrid-n0"
+    }
+  },
+  {
+    "description": "tb-dev-13 hybrid-n0",
+    "vars": {
+      "case_id": "tb-dev-13",
+      "variant": "hybrid-n0"
+    }
+  },
+  {
+    "description": "tb-dev-13 hybrid-n1",
+    "vars": {
+      "case_id": "tb-dev-13",
+      "variant": "hybrid-n1"
+    }
+  },
+  {
+    "description": "tb-dev-14 hybrid-n1",
+    "vars": {
+      "case_id": "tb-dev-14",
+      "variant": "hybrid-n1"
+    }
+  },
+  {
+    "description": "tb-dev-14 hybrid-n0",
+    "vars": {
+      "case_id": "tb-dev-14",
+      "variant": "hybrid-n0"
+    }
+  },
+  {
+    "description": "tb-dev-15 hybrid-n0",
+    "vars": {
+      "case_id": "tb-dev-15",
+      "variant": "hybrid-n0"
+    }
+  },
+  {
+    "description": "tb-dev-15 hybrid-n1",
+    "vars": {
+      "case_id": "tb-dev-15",
+      "variant": "hybrid-n1"
+    }
+  },
+  {
+    "description": "tb-dev-16 hybrid-n1",
+    "vars": {
+      "case_id": "tb-dev-16",
+      "variant": "hybrid-n1"
+    }
+  },
+  {
+    "description": "tb-dev-16 hybrid-n0",
+    "vars": {
+      "case_id": "tb-dev-16",
+      "variant": "hybrid-n0"
+    }
+  },
+  {
+    "description": "tb-dev-17 hybrid-n0",
+    "vars": {
+      "case_id": "tb-dev-17",
+      "variant": "hybrid-n0"
+    }
+  },
+  {
+    "description": "tb-dev-17 hybrid-n1",
+    "vars": {
+      "case_id": "tb-dev-17",
+      "variant": "hybrid-n1"
+    }
+  },
+  {
+    "description": "tb-dev-18 hybrid-n1",
+    "vars": {
+      "case_id": "tb-dev-18",
+      "variant": "hybrid-n1"
+    }
+  },
+  {
+    "description": "tb-dev-18 hybrid-n0",
+    "vars": {
+      "case_id": "tb-dev-18",
+      "variant": "hybrid-n0"
+    }
+  },
+  {
+    "description": "tb-dev-19 hybrid-n0",
+    "vars": {
+      "case_id": "tb-dev-19",
+      "variant": "hybrid-n0"
+    }
+  },
+  {
+    "description": "tb-dev-19 hybrid-n1",
+    "vars": {
+      "case_id": "tb-dev-19",
+      "variant": "hybrid-n1"
+    }
+  },
+  {
+    "description": "tb-dev-20 hybrid-n1",
+    "vars": {
+      "case_id": "tb-dev-20",
+      "variant": "hybrid-n1"
+    }
+  },
+  {
+    "description": "tb-dev-20 hybrid-n0",
+    "vars": {
+      "case_id": "tb-dev-20",
+      "variant": "hybrid-n0"
+    }
+  },
+  {
+    "description": "tb-dev-21 hybrid-n0",
+    "vars": {
+      "case_id": "tb-dev-21",
+      "variant": "hybrid-n0"
+    }
+  },
+  {
+    "description": "tb-dev-21 hybrid-n1",
+    "vars": {
+      "case_id": "tb-dev-21",
+      "variant": "hybrid-n1"
+    }
+  },
+  {
+    "description": "tb-dev-22 hybrid-n1",
+    "vars": {
+      "case_id": "tb-dev-22",
+      "variant": "hybrid-n1"
+    }
+  },
+  {
+    "description": "tb-dev-22 hybrid-n0",
+    "vars": {
+      "case_id": "tb-dev-22",
+      "variant": "hybrid-n0"
+    }
+  },
+  {
+    "description": "tb-dev-23 hybrid-n0",
+    "vars": {
+      "case_id": "tb-dev-23",
+      "variant": "hybrid-n0"
+    }
+  },
+  {
+    "description": "tb-dev-23 hybrid-n1",
+    "vars": {
+      "case_id": "tb-dev-23",
+      "variant": "hybrid-n1"
+    }
+  },
+  {
+    "description": "tb-dev-24 hybrid-n1",
+    "vars": {
+      "case_id": "tb-dev-24",
+      "variant": "hybrid-n1"
+    }
+  },
+  {
+    "description": "tb-dev-24 hybrid-n0",
+    "vars": {
+      "case_id": "tb-dev-24",
+      "variant": "hybrid-n0"
+    }
+  }
+]

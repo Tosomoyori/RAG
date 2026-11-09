@@ -1,0 +1,730 @@
+[
+  {
+    "id": "tb-test-01",
+    "split": "holdout",
+    "group": "game_survival",
+    "type": "paraphrase",
+    "question": "第四章三体游戏中的人们为什么把自己变成人干存放？什么时候再恢复生产建设？",
+    "reference": "乱纪元难以生存，大部分时间集体脱水存储，较长且温暖的恒纪元到来时集体浸泡复活并生产建设。",
+    "behavior": "answer",
+    "facts": [
+      "大部分时间里，人类集体脱水存贮起来",
+      "当较长的恒纪元到来时，再集体浸泡复活，生产和建设"
+    ],
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "大部分时间里，人类集体脱水存贮起来",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          119,
+          120
+        ],
+        "locations": [
+          "OEBPS/Text/part0007.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第四章 三体、周文王、长夜"
+        ]
+      },
+      {
+        "quote": "当较长的恒纪元到来时，再集体浸泡复活，生产和建设",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          120
+        ],
+        "locations": [
+          "OEBPS/Text/part0007.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第四章 三体、周文王、长夜"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-test-02",
+    "split": "holdout",
+    "group": "mozi_model",
+    "type": "distinction",
+    "question": "第十二章墨子修正后的宇宙之球有几层球壳？代表太阳的大洞和代表星星的小洞分别在哪一层？",
+    "reference": "两层球壳；大洞在外层，小洞在内层。",
+    "behavior": "answer",
+    "facts": [
+      "宇宙之球是由两层球壳构成的",
+      "外层球壳上有一个大洞，内层球壳上有大量小洞"
+    ],
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "宇宙之球是由两层球壳构成的",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          297,
+          298
+        ],
+        "locations": [
+          "OEBPS/Text/part0015.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第十二章 三体、墨子、烈焰"
+        ]
+      },
+      {
+        "quote": "外层球壳上有一个大洞，内层球壳上有大量小洞",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          298
+        ],
+        "locations": [
+          "OEBPS/Text/part0015.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第十二章 三体、墨子、烈焰"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-test-03",
+    "split": "holdout",
+    "group": "three_suns_orbits",
+    "type": "distinction",
+    "question": "第十六章哥白尼如何解释恒纪元与乱纪元的区别？请用行星与三颗太阳的运动关系说明。",
+    "reference": "行星围绕其中一颗太阳稳定运行时为恒纪元；受到另外太阳引力夺取、在三颗太阳引力范围内游移不定时为乱纪元。",
+    "behavior": "answer",
+    "facts": [
+      "当我们的行星围绕着其中的一颗太阳做稳定运行时，就是恒纪元",
+      "使其在三颗太阳的引力范围内游移不定时，就是乱纪元"
+    ],
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "当我们的行星围绕着其中的一颗太阳做稳定运行时，就是恒纪元",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          379
+        ],
+        "locations": [
+          "OEBPS/Text/part0019.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第十六章 三体、哥白尼、宇宙橄榄球、三日凌空"
+        ]
+      },
+      {
+        "quote": "使其在三颗太阳的引力范围内游移不定时，就是乱纪元",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          379
+        ],
+        "locations": [
+          "OEBPS/Text/part0019.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第十六章 三体、哥白尼、宇宙橄榄球、三日凌空"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-test-04",
+    "split": "holdout",
+    "group": "planet_ripping",
+    "type": "detail",
+    "question": "第二十章所述大撕裂中，三颗太阳的潮汐力超过了什么极限？最终行星发生了什么？",
+    "reference": "超过洛希极限，行星被撕成两半，较小的一半成为巨月。",
+    "behavior": "answer",
+    "facts": [
+      "潮汐力均超过洛希极限",
+      "第三个太阳将行星撕成了两半",
+      "这就是较小的一半，上面有191号文明留下的废墟"
+    ],
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "潮汐力均超过洛希极限",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          510
+        ],
+        "locations": [
+          "OEBPS/Text/part0023.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第二十章 三体、爱因斯坦、单摆、大撕裂"
+        ]
+      },
+      {
+        "quote": "第三个太阳将行星撕成了两半",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          510
+        ],
+        "locations": [
+          "OEBPS/Text/part0023.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第二十章 三体、爱因斯坦、单摆、大撕裂"
+        ]
+      },
+      {
+        "quote": "这就是较小的一半，上面有191号文明留下的废墟",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          510
+        ],
+        "locations": [
+          "OEBPS/Text/part0023.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第二十章 三体、爱因斯坦、单摆、大撕裂"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-test-05",
+    "split": "holdout",
+    "group": "fleet_departure",
+    "type": "detail",
+    "question": "第二十一章汪淼看到的星体阵列总数大约多少？旁人解释这是什么？",
+    "reference": "大约一千个，是即将起航远征的三体星际舰队。",
+    "behavior": "answer",
+    "facts": [
+      "阵列中的星体总数是一千左右",
+      "那是伟大的三体星际舰队，马上就要起航远征了"
+    ],
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "阵列中的星体总数是一千左右",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          521,
+          522
+        ],
+        "locations": [
+          "OEBPS/Text/part0024.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第二十一章 三体、远征"
+        ]
+      },
+      {
+        "quote": "那是伟大的三体星际舰队，马上就要起航远征了",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          522
+        ],
+        "locations": [
+          "OEBPS/Text/part0024.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第二十一章 三体、远征"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-test-06",
+    "split": "holdout",
+    "group": "pan_han_confession",
+    "type": "detail",
+    "question": "第二十二章聚会中，谁当众承认杀死申玉菲？他声称出于什么责任？",
+    "reference": "潘寒承认，声称出于对组织的责任心。",
+    "behavior": "answer",
+    "facts": [
+      "“是不是你杀了申玉菲同志？”有人质问道。\n“是我。”潘寒镇静地说",
+      "我这是出于对组织的责任心"
+    ],
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "“是不是你杀了申玉菲同志？”有人质问道。\n“是我。”潘寒镇静地说",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          527
+        ],
+        "locations": [
+          "OEBPS/Text/part0025.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第二十二章 地球叛军"
+        ]
+      },
+      {
+        "quote": "我这是出于对组织的责任心",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          527
+        ],
+        "locations": [
+          "OEBPS/Text/part0025.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第二十二章 地球叛军"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-test-07",
+    "split": "holdout",
+    "group": "warning_listener",
+    "type": "paraphrase",
+    "question": "第二十四章来自外星的警告为什么反复要求不要回答？回信与发射源定位有何关系？",
+    "reference": "不回答就无法定位发射源；一旦回答就会被定位，行星系可能遭入侵、世界被占领。",
+    "behavior": "answer",
+    "facts": [
+      "只要不回答，这个世界就无法定位发射源",
+      "如果回答，发射源将被定位，你们的行星系将遭到入侵"
+    ],
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "只要不回答，这个世界就无法定位发射源",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          583,
+          584,
+          766
+        ],
+        "locations": [
+          "OEBPS/Text/part0027.xhtml#section-0/scene-0",
+          "OEBPS/Text/part0036.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第三十三章 监听员",
+          "第二十四章 红岸之六"
+        ]
+      },
+      {
+        "quote": "如果回答，发射源将被定位，你们的行星系将遭到入侵",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          584
+        ],
+        "locations": [
+          "OEBPS/Text/part0027.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第二十四章 红岸之六"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-test-08",
+    "split": "holdout",
+    "group": "warning_listener",
+    "type": "detail",
+    "question": "第三十三章监听站的编号是多少？技术进步后，该站由多少人值守？",
+    "reference": "1379号监听站，目前只有一个人值守。",
+    "behavior": "answer",
+    "facts": [
+      "1379号监听站已经存在了上千年",
+      "现在只有一个人值守了"
+    ],
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "1379号监听站已经存在了上千年",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          751
+        ],
+        "locations": [
+          "OEBPS/Text/part0036.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第三十三章 监听员"
+        ]
+      },
+      {
+        "quote": "现在只有一个人值守了",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          751
+        ],
+        "locations": [
+          "OEBPS/Text/part0036.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第三十三章 监听员"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-test-09",
+    "split": "holdout",
+    "group": "locust_resilience",
+    "type": "paraphrase",
+    "question": "第三十五章大史带汪淼和丁仪看虫子，为什么这件事能成为反驳绝望的例子？请依据他关于技术差距和灭虫结果的说法回答。",
+    "reference": "虫子与人类的技术差距比人类与三体文明的差距还大，但人类长期用各种手段仍未灭绝虫子；技术弱势不等于必然灭绝。",
+    "behavior": "answer",
+    "facts": [
+      "它们的技术与我们的差距，远大于我们与三体文明的差距",
+      "虫子并没有被灭绝"
+    ],
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "它们的技术与我们的差距，远大于我们与三体文明的差距",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          858
+        ],
+        "locations": [
+          "OEBPS/Text/part0038.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第三十五章 虫　子"
+        ]
+      },
+      {
+        "quote": "虫子并没有被灭绝",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          859
+        ],
+        "locations": [
+          "OEBPS/Text/part0038.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第三十五章 虫　子"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-test-10",
+    "split": "holdout",
+    "group": "red_coast_ruins",
+    "type": "detail",
+    "question": "尾声中红岸基地原址石碑上标出的基地起止年份和碑文落款日期分别是什么？请区分这两组日期。",
+    "reference": "基地起止年份1968—1987；落款日期1989.03.21，署名中国科学院。",
+    "behavior": "answer",
+    "facts": [
+      "（1968～1987）",
+      "中国科学院\n1989.03.21"
+    ],
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "（1968～1987）",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          863
+        ],
+        "locations": [
+          "OEBPS/Text/part0039.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第三十六章 尾声·遗址"
+        ]
+      },
+      {
+        "quote": "中国科学院\n1989.03.21",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          863
+        ],
+        "locations": [
+          "OEBPS/Text/part0039.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第三十六章 尾声·遗址"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-test-11",
+    "split": "holdout",
+    "group": "players_gathering",
+    "type": "detail",
+    "question": "第十九章第一次三体网友聚会，地点是什么类型的场所？连汪淼在内共有几个人？",
+    "reference": "一处僻静的小咖啡厅，共七个人。",
+    "behavior": "answer",
+    "facts": [
+      "聚会地点是一处僻静的小咖啡厅",
+      "连自己在内也只有七个人"
+    ],
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "聚会地点是一处僻静的小咖啡厅",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          478
+        ],
+        "locations": [
+          "OEBPS/Text/part0022.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第十九章 聚　会"
+        ]
+      },
+      {
+        "quote": "连自己在内也只有七个人",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          478
+        ],
+        "locations": [
+          "OEBPS/Text/part0022.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第十九章 聚　会"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-test-12",
+    "split": "holdout",
+    "group": "red_coast_ruins",
+    "type": "distinction",
+    "question": "尾声里叶文洁拨开藤蔓，众人发现那块看似高大岩石的遗迹实际是什么？她最后怎样形容眼前的落日？",
+    "reference": "遗迹是巨大的金属天线基座；她说“这是人类的落日”。",
+    "behavior": "answer",
+    "facts": [
+      "“岩石”原来是一个巨大的金属基座",
+      "这是天线的基座",
+      "这是人类的落日"
+    ],
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "“岩石”原来是一个巨大的金属基座",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          862
+        ],
+        "locations": [
+          "OEBPS/Text/part0039.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第三十六章 尾声·遗址"
+        ]
+      },
+      {
+        "quote": "这是天线的基座",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          862
+        ],
+        "locations": [
+          "OEBPS/Text/part0039.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第三十六章 尾声·遗址"
+        ]
+      },
+      {
+        "quote": "这是人类的落日",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          864
+        ],
+        "locations": [
+          "OEBPS/Text/part0039.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第三十六章 尾声·遗址"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-test-13",
+    "split": "holdout",
+    "group": "warning_listener",
+    "type": "multi_evidence",
+    "question": "结合第二十四章和第三十三章：叶文洁推断信息来自距地球约多远的恒星系？向地球发出不要回答警告的监听站编号是多少？",
+    "reference": "约四光年外的半人马座三星；1379号监听站。",
+    "behavior": "answer",
+    "facts": [
+      "这些信息的发射源距地球只有四光年左右",
+      "它只能来自距我们最近的恒星系：半人马座三星",
+      "1379号监听站"
+    ],
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "这些信息的发射源距地球只有四光年左右",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          584
+        ],
+        "locations": [
+          "OEBPS/Text/part0027.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第二十四章 红岸之六"
+        ]
+      },
+      {
+        "quote": "它只能来自距我们最近的恒星系：半人马座三星",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          584
+        ],
+        "locations": [
+          "OEBPS/Text/part0027.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第二十四章 红岸之六"
+        ]
+      },
+      {
+        "quote": "1379号监听站",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          751,
+          767
+        ],
+        "locations": [
+          "OEBPS/Text/part0036.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第三十三章 监听员"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-test-14",
+    "split": "holdout",
+    "group": "game_survival",
+    "type": "multi_evidence",
+    "question": "比较第四章和第十二章的游戏结束提示：137号与141号文明分别毁于什么环境灾难，各自发展到什么历史层次？",
+    "reference": "137号文明在严寒中毁灭，进化至战国层次；141号文明在烈焰中毁灭，进化至东汉层次。",
+    "behavior": "answer",
+    "facts": [
+      "第137号文明在严寒中毁灭了，该文明进化至战国层次",
+      "第141号文明在烈焰中毁灭了，该文明进化至东汉层次"
+    ],
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "第137号文明在严寒中毁灭了，该文明进化至战国层次",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          139
+        ],
+        "locations": [
+          "OEBPS/Text/part0007.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第四章 三体、周文王、长夜"
+        ]
+      },
+      {
+        "quote": "第141号文明在烈焰中毁灭了，该文明进化至东汉层次",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          312
+        ],
+        "locations": [
+          "OEBPS/Text/part0015.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第十二章 三体、墨子、烈焰"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-test-15",
+    "split": "holdout",
+    "group": "players_gathering",
+    "type": "unanswerable",
+    "question": "仅依据第十九章，第一次三体网友聚会的小咖啡厅具体位于哪条街、门牌号是多少？",
+    "reference": "本章只说是一处僻静的小咖啡厅，没有给出街道和门牌号，无法确定具体地址。",
+    "behavior": "abstain",
+    "facts": [],
+    "support_anchors": [
+      "聚会地点是一处僻静的小咖啡厅"
+    ],
+    "absence_check": {
+      "chapters": [
+        19
+      ],
+      "field": "街道与门牌号",
+      "search_terms": [
+        "地址",
+        "街",
+        "路",
+        "门牌"
+      ],
+      "review_method": "逐段核对第十九章聚会场所描述；不把场所类型推断为具体地址。",
+      "scope_locations": [
+        "OEBPS/Text/part0022.xhtml#section-0/scene-0"
+      ],
+      "keyword_occurrences": {
+        "地址": 0,
+        "街": 0,
+        "路": 0,
+        "门牌": 0
+      },
+      "review_status": "AI scoped-text review; human confirmation pending"
+    },
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [],
+    "evidence_applicable": false
+  },
+  {
+    "id": "tb-test-16",
+    "split": "holdout",
+    "group": "alien_appearance",
+    "type": "unanswerable",
+    "question": "仅依据第三十三章已收到的三体信息，三体人的身体究竟有几只眼睛？请给出原文支持的数目。",
+    "reference": "无法给出。该章明确说信息中没有任何三体人生物形态描述，不能推断眼睛数量。",
+    "behavior": "abstain",
+    "facts": [],
+    "support_anchors": [
+      "三体信息中没有包含对三体人生物形态的任何描述"
+    ],
+    "absence_check": {
+      "chapters": [
+        33
+      ],
+      "field": "三体人眼睛数量",
+      "search_terms": [
+        "眼睛",
+        "生物形态",
+        "外形"
+      ],
+      "review_method": "以本章明确的信息缺失陈述为依据；不使用影视形象或其他作品设定。",
+      "scope_locations": [
+        "OEBPS/Text/part0036.xhtml#section-0/scene-0"
+      ],
+      "keyword_occurrences": {
+        "眼睛": 0,
+        "生物形态": 1,
+        "外形": 0
+      },
+      "review_status": "AI scoped-text review; human confirmation pending"
+    },
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [],
+    "evidence_applicable": false
+  }
+]

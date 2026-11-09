@@ -1,0 +1,7 @@
+{
+  "description": "Validate all saved modeling-paper answers and grades; no network or model calls",
+  "prompts": ["{{case_id}} {{variant}}"],
+  "providers": [{"id": "file://replay.cjs"}],
+  "tests": "file://tests.json",
+  "defaultTest": {"assert": [{"type": "javascript", "value": "file://checks.cjs"}]}
+}

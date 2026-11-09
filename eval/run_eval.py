@@ -55,15 +55,15 @@ def eval_lang(lang: str, verbose: bool = False) -> dict:
                 f"标注与语料不是同一份（切块参数改过？换过文档？），请重新标注。")
 
     # 召回阶段和精排阶段分别取一次，才能区分"召回没捞到"和"精排排掉了"
-    base = store.as_retriever(search_kwargs={"k": r.RETRIEVE_K})
-    retriever = r.make_retriever(store)
+    retriever = r.make_retriever(store, lang=lang)
 
     rows = []
     for item in questions:
         q = item["q"]
         want = set(item["answers"])
 
-        recalled = {d.metadata.get("index") for d in base.invoke(q)}
+        recalled = {d.metadata.get("index") for d in r.retrieve_candidates(
+            store, q, r.RETRIEVE_K, r.retrieval_mode(lang))}
         final = [d.metadata.get("index") for d in retriever.invoke(q)]
 
         recall_hit = bool(want & recalled)
@@ -88,6 +88,8 @@ def eval_lang(lang: str, verbose: bool = False) -> dict:
         "chunks": n_chunks,
         "retrieve_k": r.RETRIEVE_K,
         "top_n": r.RERANK_TOP_N,
+        "retrieval_mode": r.retrieval_mode(lang),
+        "context_neighbors": r.CONTEXT_NEIGHBORS,
         "recall_rate": sum(x["recall_hit"] for x in rows) / n if n else 0.0,
         "hit_rate": sum(x["hit"] for x in rows) / n if n else 0.0,
         "mrr": sum(x["mrr"] for x in rows) / n if n else 0.0,
@@ -129,9 +131,11 @@ def main():
 
     print()
     print("=" * 74)
-    print(f"{'库':<6}{'块数':>6}{'题数':>6}{'Recall@K':>11}{'Hit@N':>9}{'MRR':>8}")
+    hit_label = "Hit@Ctx" if r.CONTEXT_NEIGHBORS else "Hit@N"
+    print(f"{'库':<6}{'块数':>6}{'题数':>6}{'Recall@K':>11}{hit_label:>9}{'MRR':>8}")
     print("-" * 74)
     for s in results:
+        print(f"{s['lang']} retrieval={s['retrieval_mode']}, context_neighbors={s['context_neighbors']}")
         print(f"{s['lang']:<6}{s['chunks']:>6}{s['n']:>6}"
               f"{s['recall_rate']:>10.1%}{s['hit_rate']:>9.1%}{s['mrr']:>8.3f}")
     print("=" * 74)

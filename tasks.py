@@ -43,6 +43,7 @@ import uuid
 from typing import Any, Callable, Dict, List, Optional
 
 import cache        # 复用 REDIS_URL 与 auto 模式下的"Redis 可用性"探测结果
+from document_loader import load_sections, chunk_sections
 
 # ---------- 配置（.env 可覆盖） ----------
 QUEUE_BACKEND = os.getenv("QUEUE_BACKEND", "auto").lower()   # auto / redis / memory
@@ -335,24 +336,18 @@ def process_upload_file(msg: Dict[str, Any]) -> Dict[str, Any]:
         detect_lang, split_by_tokens, load_store, get_all_chunks_in_order,
         save_chunks_to_file, invalidate_caches, LANG_COLLECTIONS,
     )
-    from langchain_community.document_loaders import PyMuPDFLoader
 
     saved_path = msg["saved_path"]
     filename = msg.get("filename") or os.path.basename(saved_path)
-    ext = os.path.splitext(saved_path)[1].lower()
-
-    if ext == ".pdf":
-        text = "".join(p.page_content for p in PyMuPDFLoader(saved_path).load())
-    else:
-        with open(saved_path, "r", encoding="utf-8") as f:
-            text = f.read()
+    sections = load_sections(saved_path)
+    text = "\n\n".join(section.text for section in sections)
 
     if not text.strip():
         raise ValueError("文件内容为空")
 
     # 按**文档语种**决定进哪个库、用哪个模型（中英各一个 collection）
     lang = detect_lang(text)
-    chunks = split_by_tokens(text, lang)      # 切块用该语种的 tokenizer，必须排在 lang 之后
+    chunks, metadata = chunk_sections(sections, lang, split_by_tokens, filename)
     if not chunks:
         raise ValueError("分块后无内容")
 
@@ -364,7 +359,7 @@ def process_upload_file(msg: Dict[str, Any]) -> Dict[str, Any]:
         store.delete(ids=old_ids)
     store.add_texts(
         chunks,
-        metadatas=[{"index": i, "source": filename} for i in range(len(chunks))],
+        metadatas=metadata,
     )
 
     # 知识库变了，旧答案必须作废——注意这一步在入库成功之后（模块 docstring 说明了为什么）
@@ -372,9 +367,11 @@ def process_upload_file(msg: Dict[str, Any]) -> Dict[str, Any]:
 
     # 让该语种的 chunks_preview 跟上向量库（评测脚本以它为 chunk 正文基准）。
     # 失败不影响任务本身（与缓存层一样 fail-open）。
-    preview_file = os.path.join(PROJECT_ROOT, f"chunks_preview_{lang}.md")
+    preview_directory = os.path.abspath(os.getenv("RAG_ARTIFACT_DIR", PROJECT_ROOT))
+    preview_file = os.path.join(preview_directory, f"chunks_preview_{lang}.md")
     preview_note = ""
     try:
+        os.makedirs(preview_directory, exist_ok=True)
         save_chunks_to_file(get_all_chunks_in_order(store), preview_file)
     except Exception as e:
         preview_note = f"；chunks_preview_{lang}.md 更新失败: {e}"

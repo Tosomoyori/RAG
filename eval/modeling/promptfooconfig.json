@@ -1,0 +1,33 @@
+{
+  "description": "Private modeling papers: four controlled retrieval ablations",
+  "prompts": [
+    "{{case_id}} {{variant}}"
+  ],
+  "providers": [
+    {
+      "id": "http",
+      "config": {
+        "url": "http://127.0.0.1:8005/evaluate",
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "case_id": "{{case_id}}",
+          "variant": "{{variant}}"
+        },
+        "transformResponse": "json",
+        "timeout": 240000
+      }
+    }
+  ],
+  "tests": "file://tests.json",
+  "defaultTest": {
+    "assert": [
+      {
+        "type": "javascript",
+        "value": "file://checks.cjs"
+      }
+    ]
+  }
+}

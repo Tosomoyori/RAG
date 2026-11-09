@@ -1,0 +1,25 @@
+{
+  "description": "Explicit language conditioning with frozen evidence",
+  "prompts": [
+    "{{case_id}}"
+  ],
+  "providers": [
+    {
+      "id": "file://semantic-provider.py",
+      "label": "grounded-v2",
+      "config": {
+        "variant": "grounded-v2",
+        "pythonExecutable": "D:/MyProgramFiles/Miniforge/envs/RAG/python.exe"
+      }
+    }
+  ],
+  "tests": "file://semantic-tests.json",
+  "defaultTest": {
+    "assert": [
+      {
+        "type": "javascript",
+        "value": "file://semantic-check.cjs"
+      }
+    ]
+  }
+}

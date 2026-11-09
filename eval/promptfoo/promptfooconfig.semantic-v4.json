@@ -1,0 +1,25 @@
+{
+  "description": "Answer supported parts without inventing extra detail or over-abstaining",
+  "prompts": [
+    "{{case_id}}"
+  ],
+  "providers": [
+    {
+      "id": "file://semantic-provider.py",
+      "label": "grounded-v4",
+      "config": {
+        "variant": "grounded-v4",
+        "pythonExecutable": "D:/MyProgramFiles/Miniforge/envs/RAG/python.exe"
+      }
+    }
+  ],
+  "tests": "file://semantic-tests.json",
+  "defaultTest": {
+    "assert": [
+      {
+        "type": "javascript",
+        "value": "file://semantic-check.cjs"
+      }
+    ]
+  }
+}

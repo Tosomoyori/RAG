@@ -1,0 +1,112 @@
+{
+  "version": "source-review-v1",
+  "run": "generation-comparison-20261105-01",
+  "reviewer": "AI comparison against frozen source; not independent human review",
+  "historical_scores": "unchanged",
+  "cases": [
+    {
+      "id": "tb-dev-06",
+      "question_scope": "区分三派动机，并保持第三十章与第三十一章的来源边界",
+      "variants": {
+        "hybrid-n0": {
+          "verdict": "needs_source_revision",
+          "core_facts": "三派基本目的有支持，拯救派的拯救动机表述不如扩充组直接完整",
+          "provenance": "ambiguous_chapter_scope",
+          "claims": [
+            {"answer_anchor": "根据第三十章的内容", "status": "ambiguous_scope", "evidence": [{"index":696,"quote":"降临派要借助外星力量毁灭人类","scope":"retrieved"}], "note":"回答随后以审问者的概括支撑动机；该引文实际来自第三十一章。整体章节引导和引文来源应分开说明。"},
+            {"answer_anchor":"让子孙在终极战争后幸存下来", "status":"faithful_paraphrase_marked_as_quote", "evidence":[{"index":692,"quote":"让子孙在终极战争后幸存的强烈欲望","scope":"retrieved"}], "note":"意义有支持，但答案带引号的完整字符串不是原文逐字引文。不能把忠实转述误报为凭空编造，也不能称其为精确引用。"},
+            {"answer_anchor":"把外星文明当神来崇拜", "status":"supported", "evidence":[{"index":696,"quote":"拯救派把外星文明当神来崇拜","scope":"retrieved"}], "note":"崇拜动机有支持，但直接解释拯救主的块689不在当前输入中。"}
+          ]
+        },
+        "hybrid-n1": {
+          "verdict":"needs_source_revision",
+          "core_facts":"三派基本动机有支持，不能据自动满分认定来源表达无问题",
+          "provenance":"ambiguous_chapter_scope_and_misleading_quotation",
+          "claims":[
+            {"answer_anchor":"根据第三十章的内容", "status":"ambiguous_scope", "evidence":[{"index":696,"quote":"降临派要借助外星力量毁灭人类","scope":"retrieved"}], "note":"同样使用第三十一章概括，未明确区分其与第三十章的关系。两组应采用同一来源标准。"},
+            {"answer_anchor":"对人类文明的态度……极端", "status":"misleading_ellipsis", "evidence":[{"index":689,"quote":"对于人类文明的态度远没有降临派那样极端","scope":"retrieved"}], "note":"原句描述拯救派相对降临派不那么极端；答案将删去比较成分的短语置于降临派条目并作为直接引文。降临派较极端可由比较推知，但不能把推论包装成原句。"},
+            {"answer_anchor":"最终理想就是拯救主", "status":"supported", "evidence":[{"index":689,"quote":"他们的最终理想就是拯救主","scope":"retrieved"}], "note":"扩充组确有直接拯救动机证据。"}
+          ]
+        }
+      },
+      "conclusion":"两组均需要改进来源表述。自动语义通过由未通过到通过不能作为本题质量提升证据；不改写原始分数。"
+    },
+    {
+      "id":"tb-dev-16",
+      "question_scope":"五十厘米材料限制与白天过船原因",
+      "variants":{
+        "hybrid-n0":{
+          "verdict":"supported_core_with_inference",
+          "core_facts":"五十厘米间距及夜间躺卧由当前片段直接支持；对白天姿态的描述包含推断",
+          "provenance":"valid_but_truncated_evidence",
+          "claims":[
+            {"answer_anchor":"拉丝的间距最小就是五十厘米，再小材料不够了", "status":"supported", "evidence":[{"index":729,"quote":"拉丝的间距最小就是五十厘米，再小材料不够了","scope":"retrieved"}], "note":"材料约束直接可核对。"},
+            {"answer_anchor":"站立、走动", "status":"inference_not_direct_text", "evidence":[{"index":729,"quote":"夜里船上的人睡觉啊，都是躺着的，五十厘米的空当","scope":"retrieved"},{"index":730,"quote":"白天他们就是坐着或蹲着，也够了","scope":"corpus_only"}], "note":"答案以结合语境引入推断并说明片段不完整。该推断不等于原文明示的坐着或蹲着；块730只供复核，不算模型已看到的证据。"}
+          ]
+        },
+        "hybrid-n1":{
+          "verdict":"supported",
+          "core_facts":"材料限制、夜间躺卧和白天坐蹲均有直接证据",
+          "provenance":"valid",
+          "claims":[
+            {"answer_anchor":"坐着或蹲着", "status":"supported", "evidence":[{"index":730,"quote":"五十厘米的空当太大了，白天他们就是坐着或蹲着，也够了","scope":"retrieved"}], "note":"扩充补齐被截断的关键解释，减少对自行推断的依赖。"},
+            {"answer_anchor":"拉丝间距最小只能做到五十厘米", "status":"supported", "evidence":[{"index":729,"quote":"拉丝的间距最小就是五十厘米，再小材料不够了","scope":"retrieved"}], "note":"与关闭扩充组共享的材料约束。"}
+          ]
+        }
+      },
+      "conclusion":"本题支持扩充具有证据完整性收益，不支持由一个样例推断总体准确率提升。"
+    },
+    {
+      "id":"tb-dev-21",
+      "question_scope":"专业与材料联系，以及问题指定第六章的来源范围",
+      "variants":{
+        "hybrid-n0":{
+          "verdict":"supported_with_scope_limit",
+          "core_facts":"纳米材料专业与纳米丝技术联系有支持；指定第六章原话未检索到，回答如实说明",
+          "provenance":"valid_alternative_chapter_with_disclosure",
+          "claims":[
+            {"answer_anchor":"片段中未包含第六章内容", "status":"correct_scope_disclosure", "evidence":[{"index":543,"quote":"他研究纳米材料","scope":"retrieved"},{"index":158,"quote":"我搞纳米材料","scope":"corpus_only"}], "note":"模型使用第22章替代证据，并未把全书中存在的第六章事实说成全书没有。"},
+            {"answer_anchor":"行动使用的切割网由“纳米丝”构成", "status":"supported", "evidence":[{"index":734,"quote":"纳米丝构成的切割网则被称为“琴”","scope":"retrieved"},{"index":729,"quote":"‘飞刃’材料肯定不够的","scope":"retrieved"}], "note":"与专业的联系为有支持的概括，不等于已经检索到原标注的制造者陈述。"}
+          ]
+        },
+        "hybrid-n1":{
+          "verdict":"supported_with_scope_limit",
+          "core_facts":"替代证据支持专业与材料联系，同时明确指出缺少指定章节片段",
+          "provenance":"valid_alternative_chapter_with_disclosure",
+          "claims":[
+            {"answer_anchor":"无法引用第六章原文", "status":"correct_scope_disclosure", "evidence":[{"index":543,"quote":"他研究纳米材料","scope":"retrieved"},{"index":158,"quote":"我搞纳米材料","scope":"corpus_only"}], "note":"已明确说明专业信息来自第二十二章而非第六章。"},
+            {"answer_anchor":"五十根一百六十米的超强度纳米丝", "status":"supported", "evidence":[{"index":733,"quote":"五十根一百六十米的超强度纳米丝","scope":"retrieved"}], "note":"扩充增加行动材料细节，但仍不含第六章原标注块。"}
+          ]
+        }
+      },
+      "annotation_issue":"参考答案加入由汪淼及团队制造，问题主问专业与材料的联系，并未明确要求回答制造者。块724能证明制造者，但两组都未检索到。当前标注也固定要求第六章表述；覆盖率0%只能说明指定位置未命中，不能证明回答无依据。冻结题库不变，问题与参考范围不一致记录为设计限制。",
+      "conclusion":"两组都正确处理缺失的指定来源。主问题有支持、指定章节覆盖不足，两个结论并存。"
+    },
+    {
+      "id":"tb-dev-22",
+      "question_scope":"第一张底片数字、第一串译码数字及两种呈现方式",
+      "variants":{
+        "hybrid-n0":{
+          "verdict":"supported",
+          "core_facts":"两个数字和呈现方式均可由当前片段支持；波峰对照电码表的具体方法未检索到",
+          "provenance":"valid",
+          "claims":[
+            {"answer_anchor":"1200:00:00", "status":"supported", "evidence":[{"index":54,"quote":"细看是一排数字：1200:00:00","scope":"retrieved"}], "note":"第一张底片数字一致。"},
+            {"answer_anchor":"1108:21:37", "status":"supported", "evidence":[{"index":258,"quote":"这是1108:21:37","scope":"retrieved"}], "note":"原文中代码序列和译码数值同现。"},
+            {"answer_anchor":"随背景自动调整黑白", "status":"supported", "evidence":[{"index":55,"quote":"它们自动适应背景","scope":"retrieved"},{"index":257,"quote":"将波峰间的距离与他刚拿出来的那张莫尔斯电码表对照起来","scope":"corpus_only"}], "note":"具体操作方法块257仅供复核，不能算入关闭扩充的已检索证据；主问题不要求逐字复述该操作句。"}
+          ]
+        },
+        "hybrid-n1":{
+          "verdict":"supported",
+          "core_facts":"核心数字与呈现方式有支持，也检索到了具体译码方法",
+          "provenance":"valid",
+          "claims":[
+            {"answer_anchor":"1200:00:00", "status":"supported", "evidence":[{"index":54,"quote":"细看是一排数字：1200:00:00","scope":"retrieved"}], "note":"数字一致。"},
+            {"answer_anchor":"1108:21:37", "status":"supported", "evidence":[{"index":258,"quote":"这是1108:21:37","scope":"retrieved"},{"index":257,"quote":"将波峰间的距离与他刚拿出来的那张莫尔斯电码表对照起来","scope":"retrieved"}], "note":"答案中的长短代码是原序列的一段而非完整报文；以这样的序列描述其形式，未声称逐字符列出了整个编码，不判为凭空编造。"}
+          ]
+        }
+      },
+      "conclusion":"扩充改善指定操作句的覆盖，未观察到本轮主问题的必要事实答案差异。"
+    }
+  ]
+}

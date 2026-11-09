@@ -1,0 +1,25 @@
+{
+  "description": "Preserve affiliation semantics with bounded supported answers",
+  "prompts": [
+    "{{case_id}}"
+  ],
+  "providers": [
+    {
+      "id": "file://semantic-provider.py",
+      "label": "grounded-v5",
+      "config": {
+        "variant": "grounded-v5",
+        "pythonExecutable": "D:/MyProgramFiles/Miniforge/envs/RAG/python.exe"
+      }
+    }
+  ],
+  "tests": "file://semantic-tests.json",
+  "defaultTest": {
+    "assert": [
+      {
+        "type": "javascript",
+        "value": "file://semantic-check.cjs"
+      }
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "reviewed_cases": 4,
+  "reviewed_answers": 8,
+  "verified_evidence_references": 25,
+  "verdict_counts": {
+    "needs_source_revision": 2,
+    "supported_core_with_inference": 1,
+    "supported": 3,
+    "supported_with_scope_limit": 2
+  },
+  "profile_sha256": "7c0792c6f7fbd37d0d5e9b8f24b25f1c85c0e9ccddf8a8205583f59ac984e1a9",
+  "review_identity": "AI comparison against frozen source; not independent human review",
+  "model_api_calls": 0,
+  "holdout_not_run": true,
+  "original_index_unchanged": true,
+  "historical_scores_unchanged": true,
+  "checked": [
+    {
+      "id": "tb-dev-06",
+      "variant": "hybrid-n0",
+      "verdict": "needs_source_revision"
+    },
+    {
+      "id": "tb-dev-06",
+      "variant": "hybrid-n1",
+      "verdict": "needs_source_revision"
+    },
+    {
+      "id": "tb-dev-16",
+      "variant": "hybrid-n0",
+      "verdict": "supported_core_with_inference"
+    },
+    {
+      "id": "tb-dev-16",
+      "variant": "hybrid-n1",
+      "verdict": "supported"
+    },
+    {
+      "id": "tb-dev-21",
+      "variant": "hybrid-n0",
+      "verdict": "supported_with_scope_limit"
+    },
+    {
+      "id": "tb-dev-21",
+      "variant": "hybrid-n1",
+      "verdict": "supported_with_scope_limit"
+    },
+    {
+      "id": "tb-dev-22",
+      "variant": "hybrid-n0",
+      "verdict": "supported"
+    },
+    {
+      "id": "tb-dev-22",
+      "variant": "hybrid-n1",
+      "verdict": "supported"
+    }
+  ]
+}

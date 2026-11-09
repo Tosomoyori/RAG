@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 655" role="img" aria-labelledby="flow-title"><title id="flow-title">四项RAG实验流程，点击节点查看题目和结果</title><defs><marker id="flow-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#60788d"/></marker></defs><rect width="1060" height="655" rx="18" fill="#f0f5fa"/>
+<path d="M260 100 V140" fill="none" stroke="#60788d" stroke-width="2" marker-end="url(#flow-arrow)"/>
+<path d="M800 100 V140" fill="none" stroke="#60788d" stroke-width="2" marker-end="url(#flow-arrow)"/>
+<path d="M260 235 V256 H132 V280" fill="none" stroke="#60788d" stroke-width="2" marker-end="url(#flow-arrow)"/>
+<path d="M260 256 H397 V280" fill="none" stroke="#60788d" stroke-width="2" marker-end="url(#flow-arrow)"/>
+<path d="M800 235 V256 H662 V280" fill="none" stroke="#60788d" stroke-width="2" marker-end="url(#flow-arrow)"/>
+<path d="M800 256 H927 V280" fill="none" stroke="#60788d" stroke-width="2" marker-end="url(#flow-arrow)"/>
+<path d="M132 380 V402 H530 V425" fill="none" stroke="#60788d" stroke-width="2" marker-end="url(#flow-arrow)"/>
+<path d="M397 380 V402" fill="none" stroke="#60788d" stroke-width="2" marker-end="url(#flow-arrow)"/>
+<path d="M662 380 V402 H530" fill="none" stroke="#60788d" stroke-width="2" marker-end="url(#flow-arrow)"/>
+<path d="M927 380 V402 H662" fill="none" stroke="#60788d" stroke-width="2" marker-end="url(#flow-arrow)"/>
+<path d="M530 505 V550" fill="none" stroke="#60788d" stroke-width="2" marker-end="url(#flow-arrow)"/>
+<a href="../FINAL_EVALUATION.html#scope" aria-label="三篇私有数模论文 → 71页正式正文，点击查看详情"><rect x="20" y="20" width="1020" height="80" rx="12" fill="white" stroke="#245578" stroke-width="2"/><text x="35" y="64" font-family="Microsoft YaHei,sans-serif" font-size="20" fill="#245578">三篇私有数模论文 → 71页正式正文 ↗</text></a>
+<a href="../FINAL_EVALUATION.html#questions" aria-label="24道题：每篇8题，点击查看全文，点击查看详情"><rect x="20" y="140" width="480" height="95" rx="12" fill="white" stroke="#245578" stroke-width="2"/><text x="35" y="184" font-family="Microsoft YaHei,sans-serif" font-size="20" fill="#245578">24道题：每篇8题，点击查看全文 ↗</text></a>
+<a href="../FINAL_EVALUATION.html#metrics" aria-label="原文位置标注：跨切块共用标准，点击查看详情"><rect x="560" y="140" width="480" height="95" rx="12" fill="white" stroke="#245578" stroke-width="2"/><text x="575" y="184" font-family="Microsoft YaHei,sans-serif" font-size="20" fill="#245578">原文位置标注：跨切块共用标准 ↗</text></a>
+<a href="../FINAL_EVALUATION.html#candidate" aria-label="候选10 / 20 / 40，点击查看详情"><rect x="20" y="280" width="225" height="100" rx="12" fill="white" stroke="#245578" stroke-width="2"/><text x="35" y="324" font-family="Microsoft YaHei,sans-serif" font-size="15" fill="#245578">候选10 / 20 / 40 ↗</text></a>
+<a href="../FINAL_EVALUATION.html#retain" aria-label="精排保留3 / 5 / 8，点击查看详情"><rect x="285" y="280" width="225" height="100" rx="12" fill="white" stroke="#245578" stroke-width="2"/><text x="300" y="324" font-family="Microsoft YaHei,sans-serif" font-size="15" fill="#245578">精排保留3 / 5 / 8 ↗</text></a>
+<a href="../FINAL_EVALUATION.html#rerank" aria-label="精排开 / 关，点击查看详情"><rect x="550" y="280" width="225" height="100" rx="12" fill="white" stroke="#245578" stroke-width="2"/><text x="565" y="324" font-family="Microsoft YaHei,sans-serif" font-size="15" fill="#245578">精排开 / 关 ↗</text></a>
+<a href="../FINAL_EVALUATION.html#chunk" aria-label="切块128 / 256 / 384，点击查看详情"><rect x="815" y="280" width="225" height="100" rx="12" fill="white" stroke="#245578" stroke-width="2"/><text x="830" y="324" font-family="Microsoft YaHei,sans-serif" font-size="15" fill="#245578">切块128 / 256 / 384 ↗</text></a>
+<a href="../FINAL_EVALUATION.html#closed-book" aria-label="共8组配置：192次检索与回答；另24次无文档对照，点击查看详情"><rect x="20" y="425" width="1020" height="80" rx="12" fill="white" stroke="#245578" stroke-width="2"/><text x="35" y="469" font-family="Microsoft YaHei,sans-serif" font-size="20" fill="#245578">共8组配置：192次检索与回答；另24次无文档对照 ↗</text></a>
+<a href="../FINAL_EVALUATION.html#conclusion" aria-label="Promptfoo自动评分 → 四项对照结果、输入代价与配置建议，点击查看详情"><rect x="20" y="550" width="1020" height="80" rx="12" fill="white" stroke="#245578" stroke-width="2"/><text x="35" y="594" font-family="Microsoft YaHei,sans-serif" font-size="20" fill="#245578">Promptfoo自动评分 → 四项对照结果、输入代价与配置建议 ↗</text></a></svg>

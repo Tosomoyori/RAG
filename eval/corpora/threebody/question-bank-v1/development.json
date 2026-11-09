@@ -1,0 +1,1004 @@
+[
+  {
+    "id": "tb-dev-01",
+    "type": "detail",
+    "question": "《三体》第一章开头，到汪淼家里找他的四个人分别是什么身份？请说明人数，并区分军人与武警。",
+    "reference": "两名警察和两名陆军军官；不是两名武警。",
+    "behavior": "answer",
+    "facts": [
+      "两名警察和两名军人",
+      "但这是两名陆军军官"
+    ],
+    "split": "development",
+    "group": "visitors",
+    "previously_evaluated": true,
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "两名警察和两名军人",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          0
+        ],
+        "locations": [
+          "OEBPS/Text/part0004.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第一章 科学边界"
+        ]
+      },
+      {
+        "quote": "但这是两名陆军军官",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          0
+        ],
+        "locations": [
+          "OEBPS/Text/part0004.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第一章 科学边界"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-dev-02",
+    "type": "paraphrase",
+    "question": "在第二章的台球演示里，丁仪反复移动球桌、改变实验地点与时间，是为了说明正常情况下物理规律具有什么性质？",
+    "reference": "物理规律在时间和空间上是均匀的，改变地点和时间不会使相同实验任意改变结果。",
+    "behavior": "answer",
+    "facts": [
+      "物理规律在时间和空间上是均匀的"
+    ],
+    "split": "development",
+    "group": "physics_uniformity",
+    "previously_evaluated": true,
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "物理规律在时间和空间上是均匀的",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          43
+        ],
+        "locations": [
+          "OEBPS/Text/part0005.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第二章 台　球"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-dev-03",
+    "type": "detail",
+    "question": "第三章的“农场主假说”中，火鸡总结出的每天喂食时间是什么？这个所谓定律在感恩节当天怎样失效？",
+    "reference": "每天上午十一点有食物降临；感恩节当天十一点没有食物，农场主把火鸡捉去杀了。",
+    "behavior": "answer",
+    "facts": [
+      "每天上午十一点，就有食物降临",
+      "这天上午十一点食物没有降临，农场主进来把它们都捉去杀了"
+    ],
+    "split": "development",
+    "group": "farmer_hypothesis",
+    "previously_evaluated": true,
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "每天上午十一点，就有食物降临",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          53
+        ],
+        "locations": [
+          "OEBPS/Text/part0006.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第三章 射手和农场主"
+        ]
+      },
+      {
+        "quote": "这天上午十一点食物没有降临，农场主进来把它们都捉去杀了",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          53
+        ],
+        "locations": [
+          "OEBPS/Text/part0006.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第三章 射手和农场主"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-dev-04",
+    "type": "paraphrase",
+    "question": "在“红岸之五”中，叶文洁对于太阳的能量镜面作用提出了什么关键判断？它只是原样反射电磁辐射吗？",
+    "reference": "不只是反射低频侧电磁辐射，而是将其放大，太阳可发挥信号放大作用。",
+    "behavior": "answer",
+    "facts": [
+      "能量镜面并非简单地反射低频侧的电磁辐射，而是将它放大了"
+    ],
+    "split": "development",
+    "group": "solar_amplification",
+    "previously_evaluated": true,
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "能量镜面并非简单地反射低频侧的电磁辐射，而是将它放大了",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          558
+        ],
+        "locations": [
+          "OEBPS/Text/part0026.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第二十三章 红岸之五"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-dev-05",
+    "type": "multi_fact",
+    "question": "根据第二十六章的审问记录，叶文洁承认杀死雷志成和杨卫宁的具体日期与时段是什么？这两人在红岸基地分别担任什么职务，谁是她的丈夫？",
+    "reference": "1979年10月21日下午；雷志成是基地政委，杨卫宁是基地工程师，也是叶文洁的丈夫。",
+    "behavior": "answer",
+    "facts": [
+      "1979年10月21日下午",
+      "基地政委雷志成和基地工程师、我的丈夫杨卫宁"
+    ],
+    "split": "development",
+    "group": "ye_criminal_record",
+    "previously_evaluated": true,
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "1979年10月21日下午",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          605,
+          606
+        ],
+        "locations": [
+          "OEBPS/Text/part0029.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第二十六章 雷志成、杨卫宁之死"
+        ]
+      },
+      {
+        "quote": "基地政委雷志成和基地工程师、我的丈夫杨卫宁",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          606
+        ],
+        "locations": [
+          "OEBPS/Text/part0029.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第二十六章 雷志成、杨卫宁之死"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-dev-06",
+    "type": "multi_evidence",
+    "question": "第一册第三十章介绍的地球三体运动中，降临派、拯救派和幸存派各自由什么主要动机驱动？请分别说明，避免把三派的目的混为一谈。",
+    "reference": "降临派出于对人类的绝望和仇恨而背叛；拯救派对三体文明有宗教式崇拜，希望拯救处于危难中的主；幸存派希望自己的后代能在人类战败后的终极战争中幸存，因此提前为入侵者服务。",
+    "behavior": "answer",
+    "facts": [
+      "他们的背叛只源于对人类的绝望和仇恨",
+      "处于危难中的是主，而负有拯救责任的是信徒",
+      "很多人希望如果人类战败，自己在四个半世纪后的子孙能幸存下来"
+    ],
+    "alternative_quotes": {
+      "0": [
+        "降临派要借助外星力量毁灭人类"
+      ],
+      "1": [
+        "他们的最终理想就是拯救主"
+      ]
+    },
+    "annotation_revision": "开发首轮发现同义证据漏标：第31章块696同时包含憎恨动机和降临派目的；第30章块689包含宗教感情与拯救主目的。补充有效位置，不改变问题、参考答案、生成结果或裁判评分。",
+    "split": "development",
+    "group": "eto_motives",
+    "previously_evaluated": true,
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "他们的背叛只源于对人类的绝望和仇恨",
+        "alternative_quotes": [
+          "降临派要借助外星力量毁灭人类"
+        ],
+        "acceptable_indexes": [
+          685,
+          696
+        ],
+        "locations": [
+          "OEBPS/Text/part0033.xhtml#section-0/scene-0",
+          "OEBPS/Text/part0034.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第三十一章 两个质子",
+          "第三十章 地球三体运动"
+        ]
+      },
+      {
+        "quote": "处于危难中的是主，而负有拯救责任的是信徒",
+        "alternative_quotes": [
+          "他们的最终理想就是拯救主"
+        ],
+        "acceptable_indexes": [
+          686,
+          687,
+          688,
+          689
+        ],
+        "locations": [
+          "OEBPS/Text/part0033.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第三十章 地球三体运动"
+        ]
+      },
+      {
+        "quote": "很多人希望如果人类战败，自己在四个半世纪后的子孙能幸存下来",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          691
+        ],
+        "locations": [
+          "OEBPS/Text/part0033.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第三十章 地球三体运动"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-dev-07",
+    "type": "false_premise",
+    "question": "第一章来找汪淼的是四名武警，对吗？请按开头的原文纠正或确认这个说法。",
+    "reference": "说法不对。来访者是两名警察和两名陆军军官，不是四名武警。",
+    "behavior": "correct_premise",
+    "facts": [
+      "两名警察和两名军人",
+      "但这是两名陆军军官"
+    ],
+    "split": "development",
+    "group": "visitors",
+    "previously_evaluated": true,
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "两名警察和两名军人",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          0
+        ],
+        "locations": [
+          "OEBPS/Text/part0004.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第一章 科学边界"
+        ]
+      },
+      {
+        "quote": "但这是两名陆军军官",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          0
+        ],
+        "locations": [
+          "OEBPS/Text/part0004.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第一章 科学边界"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-dev-08",
+    "type": "false_premise",
+    "question": "第三十四章介绍的智子工程，是把一个中子改造成超级智能计算机吗？原文说改造的是哪一种粒子？",
+    "reference": "不是中子，而是把一个质子改造成超级智能计算机。",
+    "behavior": "correct_premise",
+    "facts": [
+      "把一个质子改造成一台超级智能计算机"
+    ],
+    "split": "development",
+    "group": "sophon_particle",
+    "previously_evaluated": true,
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "把一个质子改造成一台超级智能计算机",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          791
+        ],
+        "locations": [
+          "OEBPS/Text/part0037.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第三十四章 智　子"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-dev-09",
+    "split": "development",
+    "group": "shooter_hypothesis",
+    "type": "detail",
+    "question": "第三章的射手假说里，神枪手以多大间距打洞？二维科学家误把什么当成了宇宙定律？",
+    "reference": "每隔十厘米打一个洞；二维科学家把射手一时兴起的随意行为当成宇宙铁律。",
+    "behavior": "answer",
+    "facts": [
+      "每隔十厘米打一个洞",
+      "它们把这个神枪手一时兴起的随意行为，看成了自己宇宙中的铁律"
+    ],
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "每隔十厘米打一个洞",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          52
+        ],
+        "locations": [
+          "OEBPS/Text/part0006.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第三章 射手和农场主"
+        ]
+      },
+      {
+        "quote": "它们把这个神枪手一时兴起的随意行为，看成了自己宇宙中的铁律",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          52
+        ],
+        "locations": [
+          "OEBPS/Text/part0006.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第三章 射手和农场主"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-dev-10",
+    "split": "development",
+    "group": "wang_photography",
+    "type": "paraphrase",
+    "question": "第三章为什么说汪淼拍城市角落时只用黑白胶片？他想从画面中去掉什么？",
+    "reference": "为了消除背景上城市的俗艳色彩。",
+    "behavior": "answer",
+    "facts": [
+      "为了消除背景上城市的俗艳色彩，他只使用黑白胶片"
+    ],
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "为了消除背景上城市的俗艳色彩，他只使用黑白胶片",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          49
+        ],
+        "locations": [
+          "OEBPS/Text/part0006.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第三章 射手和农场主"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-dev-11",
+    "split": "development",
+    "group": "countdown",
+    "type": "detail",
+    "question": "第三章汪淼冲洗当天的胶卷后，第一张底片上出现的数字是什么？第二张又是什么？",
+    "reference": "第一张为1200:00:00，第二张为1199:49:33。",
+    "behavior": "answer",
+    "facts": [
+      "1200:00:00",
+      "第二张底片上也有数字:1199:49:33"
+    ],
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "1200:00:00",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          54
+        ],
+        "locations": [
+          "OEBPS/Text/part0006.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第三章 射手和农场主"
+        ]
+      },
+      {
+        "quote": "第二张底片上也有数字:1199:49:33",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          54
+        ],
+        "locations": [
+          "OEBPS/Text/part0006.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第三章 射手和农场主"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-dev-12",
+    "split": "development",
+    "group": "cosmic_flicker",
+    "type": "detail",
+    "question": "第六章汪淼向沙瑞山提出的具体观测要求，涉及哪一种背景辐射？希望观察的振幅范围是多少？",
+    "reference": "宇宙3K微波背景辐射整体上的各向同性波动，振幅百分之一至百分之五。",
+    "behavior": "answer",
+    "facts": [
+      "宇宙3K微波背景辐射整体上的各向同性的波动，振幅在百分之一至百分之五之间"
+    ],
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "宇宙3K微波背景辐射整体上的各向同性的波动，振幅在百分之一至百分之五之间",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          158
+        ],
+        "locations": [
+          "OEBPS/Text/part0009.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第六章 宇宙闪烁之一"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-dev-13",
+    "split": "development",
+    "group": "silent_spring",
+    "type": "detail",
+    "question": "第八章白沐霖给叶文洁看的英文书叫什么？作者是谁，书主要描述哪类环境危害？",
+    "reference": "Silent Spring《寂静的春天》，Rachel Carson（蕾切尔·卡逊）著，描述杀虫剂滥用对环境的危害。",
+    "behavior": "answer",
+    "facts": [
+      "书名是《SILENT SPRING》（《寂静的春天》），作者是Rachel Carson",
+      "只是描述杀虫剂的滥用对环境造成的危害"
+    ],
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "书名是《SILENT SPRING》（《寂静的春天》），作者是Rachel Carson",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          201
+        ],
+        "locations": [
+          "OEBPS/Text/part0011.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第八章 寂静的春天"
+        ]
+      },
+      {
+        "quote": "只是描述杀虫剂的滥用对环境造成的危害",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          203
+        ],
+        "locations": [
+          "OEBPS/Text/part0011.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第八章 寂静的春天"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-dev-14",
+    "split": "development",
+    "group": "human_computer",
+    "type": "paraphrase",
+    "question": "第十八章冯·诺伊曼构想用大量人力代替计算硬件时，最低需要多少人？是否要求他们都是数学家？",
+    "reference": "最少三千万人，使用普通人或普通劳动力，而不是数学家。",
+    "behavior": "answer",
+    "facts": [
+      "我们不会用数学家的，我们用普通人，普通劳动力",
+      "最少要三千万人"
+    ],
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "我们不会用数学家的，我们用普通人，普通劳动力",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          439,
+          440
+        ],
+        "locations": [
+          "OEBPS/Text/part0021.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第十八章 三体、牛顿、冯·诺伊曼、秦始皇、三日连珠"
+        ]
+      },
+      {
+        "quote": "最少要三千万人",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          440
+        ],
+        "locations": [
+          "OEBPS/Text/part0021.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第十八章 三体、牛顿、冯·诺伊曼、秦始皇、三日连珠"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-dev-15",
+    "split": "development",
+    "group": "human_computer",
+    "type": "distinction",
+    "question": "第十八章演示人列计算机的与门时，黑旗和白旗分别代表什么？什么输入情况下输出黑旗？",
+    "reference": "黑旗代表1，白旗代表0；只有两个输入都举黑旗时才输出黑旗，其余输出白旗。",
+    "behavior": "answer",
+    "facts": [
+      "白色代表０，黑色代表1",
+      "如果他们都举黑旗，你就举黑旗，其他的情况你都举白旗"
+    ],
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "白色代表０，黑色代表1",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          447
+        ],
+        "locations": [
+          "OEBPS/Text/part0021.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第十八章 三体、牛顿、冯·诺伊曼、秦始皇、三日连珠"
+        ]
+      },
+      {
+        "quote": "如果他们都举黑旗，你就举黑旗，其他的情况你都举白旗",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          447
+        ],
+        "locations": [
+          "OEBPS/Text/part0021.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第十八章 三体、牛顿、冯·诺伊曼、秦始皇、三日连珠"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-dev-16",
+    "split": "development",
+    "group": "guzheng_execution",
+    "type": "distinction",
+    "question": "第三十二章古筝行动为什么设法让审判日号白天经过？请结合纳米丝最小间距解释，不能只回答便于观察。",
+    "reference": "材料限制使拉丝最小间距为五十厘米；夜里人躺着容易处于空当中，白天即使坐着或蹲着也会被覆盖。",
+    "behavior": "answer",
+    "facts": [
+      "拉丝的间距最小就是五十厘米，再小材料不够了",
+      "夜里船上的人睡觉啊，都是躺着的，五十厘米的空当太大了"
+    ],
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "拉丝的间距最小就是五十厘米，再小材料不够了",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          729
+        ],
+        "locations": [
+          "OEBPS/Text/part0035.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第三十二章 古筝行动"
+        ]
+      },
+      {
+        "quote": "夜里船上的人睡觉啊，都是躺着的，五十厘米的空当太大了",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          730
+        ],
+        "locations": [
+          "OEBPS/Text/part0035.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第三十二章 古筝行动"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-dev-17",
+    "split": "development",
+    "group": "guzheng_execution",
+    "type": "paraphrase",
+    "question": "古筝行动讨论中，有人担心硬盘或光盘也被切开。计算机专家为什么认为多数信息仍可恢复？",
+    "reference": "纳米细丝极其锋利，切口整齐；在这种情况下硬盘、光盘或集成电路存储体中绝大部分信息可以恢复。",
+    "behavior": "answer",
+    "facts": [
+      "那种细丝极其锋利，切口一定很齐",
+      "其中的信息绝大部分都可以恢复"
+    ],
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "那种细丝极其锋利，切口一定很齐",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          726
+        ],
+        "locations": [
+          "OEBPS/Text/part0035.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第三十二章 古筝行动"
+        ]
+      },
+      {
+        "quote": "其中的信息绝大部分都可以恢复",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          726
+        ],
+        "locations": [
+          "OEBPS/Text/part0035.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第三十二章 古筝行动"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-dev-18",
+    "split": "development",
+    "group": "eto_motives",
+    "type": "paraphrase",
+    "question": "第二十八章伊文斯用“物种共产主义”表达什么核心理念？这种平等仅限于人类内部吗？",
+    "reference": "地球上所有生命物种生来平等，不只限于人类；拯救鸟或昆虫与拯救人类没有区别。",
+    "behavior": "answer",
+    "facts": [
+      "地球上的所有生命物种，生来平等",
+      "拯救一种鸟或昆虫与拯救人类没有区别"
+    ],
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "地球上的所有生命物种，生来平等",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          663
+        ],
+        "locations": [
+          "OEBPS/Text/part0031.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第二十八章 伊文斯"
+        ]
+      },
+      {
+        "quote": "拯救一种鸟或昆虫与拯救人类没有区别",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          663
+        ],
+        "locations": [
+          "OEBPS/Text/part0031.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第二十八章 伊文斯"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-dev-19",
+    "split": "development",
+    "group": "ye_father",
+    "type": "detail",
+    "question": "第七章走上批判台、始终不认罪不自杀也不麻木的物理学教授叫什么？",
+    "reference": "叶哲泰。",
+    "behavior": "answer",
+    "facts": [
+      "叶哲泰从文革开始一直活到了现在，并且一直处于第一阶段，他不认罪，不自杀，也不麻木"
+    ],
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "叶哲泰从文革开始一直活到了现在，并且一直处于第一阶段，他不认罪，不自杀，也不麻木",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          171
+        ],
+        "locations": [
+          "OEBPS/Text/part0010.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第七章 疯狂年代"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-dev-20",
+    "split": "development",
+    "group": "cosmic_flicker",
+    "type": "multi_evidence",
+    "question": "结合第六章和第十章：汪淼要求观测的背景辐射波动振幅范围是什么？第十章他又用什么编码表解读打印的波动曲线？",
+    "reference": "振幅百分之一至百分之五；用莫尔斯电码表解读波峰间距离。",
+    "behavior": "answer",
+    "facts": [
+      "振幅在百分之一至百分之五之间",
+      "将波峰间的距离与他刚拿出来的那张莫尔斯电码表对照起来"
+    ],
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "振幅在百分之一至百分之五之间",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          158
+        ],
+        "locations": [
+          "OEBPS/Text/part0009.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第六章 宇宙闪烁之一"
+        ]
+      },
+      {
+        "quote": "将波峰间的距离与他刚拿出来的那张莫尔斯电码表对照起来",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          257
+        ],
+        "locations": [
+          "OEBPS/Text/part0013.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第十章 宇宙闪烁之二"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-dev-21",
+    "split": "development",
+    "group": "guzheng_execution",
+    "type": "multi_evidence",
+    "question": "结合汪淼在第六章对自己研究领域的介绍，以及第三十二章古筝行动方案：他的专业与行动使用的飞刃材料之间有什么联系？",
+    "reference": "汪淼研究纳米材料；古筝行动使用由他及团队制造、称为飞刃的纳米细丝材料。",
+    "behavior": "answer",
+    "facts": [
+      "我搞纳米材料",
+      "这些细丝是汪教授他们制造出来的那种叫‘飞刃’的纳米材料"
+    ],
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "我搞纳米材料",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          158,
+          159
+        ],
+        "locations": [
+          "OEBPS/Text/part0009.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第六章 宇宙闪烁之一"
+        ]
+      },
+      {
+        "quote": "这些细丝是汪教授他们制造出来的那种叫‘飞刃’的纳米材料",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          724
+        ],
+        "locations": [
+          "OEBPS/Text/part0035.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第三十二章 古筝行动"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-dev-22",
+    "split": "development",
+    "group": "countdown",
+    "type": "multi_evidence",
+    "question": "结合第三章和第十章：请分别写出第三章第一张底片上的数字，以及第十章第一串莫尔斯译码得到的数字，并说明两者的呈现方式。",
+    "reference": "第三章底片上直接出现数字，如1200:00:00；第十章背景辐射波动经莫尔斯电码解读得到数字，如1108:21:37。",
+    "behavior": "answer",
+    "facts": [
+      "1200:00:00",
+      "将波峰间的距离与他刚拿出来的那张莫尔斯电码表对照起来",
+      "这是1108:21:37"
+    ],
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [
+      {
+        "quote": "1200:00:00",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          54
+        ],
+        "locations": [
+          "OEBPS/Text/part0006.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第三章 射手和农场主"
+        ]
+      },
+      {
+        "quote": "将波峰间的距离与他刚拿出来的那张莫尔斯电码表对照起来",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          257
+        ],
+        "locations": [
+          "OEBPS/Text/part0013.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第十章 宇宙闪烁之二"
+        ]
+      },
+      {
+        "quote": "这是1108:21:37",
+        "alternative_quotes": [],
+        "acceptable_indexes": [
+          258
+        ],
+        "locations": [
+          "OEBPS/Text/part0013.xhtml#section-0/scene-0"
+        ],
+        "chapters": [
+          "第十章 宇宙闪烁之二"
+        ]
+      }
+    ],
+    "evidence_applicable": true
+  },
+  {
+    "id": "tb-dev-23",
+    "split": "development",
+    "group": "ding_house_price",
+    "type": "unanswerable",
+    "question": "仅依据第二章《台球》，丁仪三个月前买的这套三居室，成交价究竟是多少人民币？请不要估算。",
+    "reference": "第二章只交代三居室及三个月前买房，没有提供成交价，无法据此给出人民币金额。",
+    "behavior": "abstain",
+    "facts": [],
+    "support_anchors": [
+      "这套房子是三个月前买的"
+    ],
+    "absence_check": {
+      "chapters": [
+        2
+      ],
+      "field": "房屋成交价",
+      "search_terms": [
+        "房价",
+        "成交",
+        "售价",
+        "人民币",
+        "万元"
+      ],
+      "review_method": "逐段核对第二章房屋与买房描述；关键词记录用于辅助定位，不将零命中单独视为缺失证明。",
+      "scope_locations": [
+        "OEBPS/Text/part0005.xhtml#section-0/scene-0"
+      ],
+      "keyword_occurrences": {
+        "房价": 0,
+        "成交": 0,
+        "售价": 0,
+        "人民币": 0,
+        "万元": 0
+      },
+      "review_status": "AI scoped-text review; human confirmation pending"
+    },
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [],
+    "evidence_applicable": false
+  },
+  {
+    "id": "tb-dev-24",
+    "split": "development",
+    "group": "silent_spring",
+    "type": "unanswerable",
+    "question": "仅依据第八章，白沐霖拿给叶文洁看的那一本《寂静的春天》，实体书具体购买价是多少？",
+    "reference": "第八章说明书名、作者及翻译内参背景，但没有交代该实体书的购买价，无法确定。",
+    "behavior": "abstain",
+    "facts": [],
+    "support_anchors": [
+      "这本书引起了上级的重视，要搞内参"
+    ],
+    "absence_check": {
+      "chapters": [
+        8
+      ],
+      "field": "该实体书购买价",
+      "search_terms": [
+        "书价",
+        "定价",
+        "购买",
+        "售价",
+        "人民币"
+      ],
+      "review_method": "逐段核对书籍出现、转交及内参翻译段落；不从出版年份或现实售价推算。",
+      "scope_locations": [
+        "OEBPS/Text/part0011.xhtml#section-0/scene-0"
+      ],
+      "keyword_occurrences": {
+        "书价": 0,
+        "定价": 0,
+        "购买": 0,
+        "售价": 0,
+        "人民币": 0
+      },
+      "review_status": "AI scoped-text review; human confirmation pending"
+    },
+    "annotation_review": "AI source checked; independent human review pending",
+    "evidence": [],
+    "evidence_applicable": false
+  }
+]

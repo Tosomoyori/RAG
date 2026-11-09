@@ -1,0 +1,18 @@
+description: Re-score saved development answers after evidence annotation review; no API calls
+prompts:
+  - '{{case_id}}'
+providers:
+  - id: file://pilot_replay.cjs
+tests:
+  - vars: {case_id: tb-dev-01}
+  - vars: {case_id: tb-dev-02}
+  - vars: {case_id: tb-dev-03}
+  - vars: {case_id: tb-dev-04}
+  - vars: {case_id: tb-dev-05}
+  - vars: {case_id: tb-dev-06}
+  - vars: {case_id: tb-dev-07}
+  - vars: {case_id: tb-dev-08}
+defaultTest:
+  assert:
+    - type: javascript
+      value: file://pilot_checks.cjs

@@ -1,0 +1,26 @@
+{
+  "name": "rag-evaluation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Evaluation tooling for the bilingual RAG service",
+  "scripts": {
+    "eval:threebody:holdout": "promptfoo eval -c eval/threebody/promptfooconfig.holdout.yaml --no-cache --max-concurrency 1 --no-share --no-progress-bar --no-table",
+    "eval:threebody:generation:replay": "promptfoo eval -c eval/threebody/promptfooconfig.generation-comparison-replay.yaml --no-cache --max-concurrency 1 --no-share --no-progress-bar --no-table",
+    "eval:threebody:generation:compare": "promptfoo eval -c eval/threebody/promptfooconfig.generation-comparison.yaml --no-cache --max-concurrency 1 --no-share --no-progress-bar --no-table",
+    "eval:threebody:retrieval": "promptfoo eval -c eval/threebody/promptfooconfig.retrieval.yaml --no-cache --max-concurrency 1 --no-share --no-progress-bar --no-table",
+    "eval:threebody:calibrate:sources": "promptfoo eval -c eval/threebody/promptfooconfig.calibration-sources.yaml --no-cache --max-concurrency 1 --no-share --no-progress-bar --no-table",
+    "eval:threebody:regrade:sources": "promptfoo eval -c eval/threebody/promptfooconfig.regrade-sources.yaml --no-cache --max-concurrency 1 --no-share --no-progress-bar --no-table",
+    "eval:threebody:calibrate": "promptfoo eval -c eval/threebody/promptfooconfig.calibration.yaml --no-cache --max-concurrency 1 --no-share --no-progress-bar --no-table",
+    "eval:threebody:dev": "promptfoo eval -c eval/threebody/promptfooconfig.development.yaml --no-cache --max-concurrency 1 --no-share --no-progress-bar --no-table",
+    "eval:threebody:pilot": "promptfoo eval -c eval/threebody/promptfooconfig.pilot.yaml --no-cache --max-concurrency 1 --no-share --no-progress-bar --no-table",
+    "eval:threebody:replay": "promptfoo eval -c eval/threebody/promptfooconfig.pilot-replay.yaml --no-cache --max-concurrency 1 --no-share --no-progress-bar --no-table",
+    "eval:rag": "promptfoo eval -c eval/promptfoo/promptfooconfig.yaml --no-cache --max-concurrency 1 --no-share --no-progress-bar --no-table --output eval/reports/react/raw/baseline.json",
+    "eval:rag:report": "node eval/promptfoo/report.cjs",
+    "eval:semantic:calibrate": "promptfoo eval -c eval/promptfoo/promptfooconfig.semantic-calibration.yaml --no-cache --max-concurrency 2 --no-share --no-table --output eval/reports/react/raw/semantic-study/calibration.json",
+    "eval:semantic": "promptfoo eval -c eval/promptfoo/promptfooconfig.semantic.yaml --no-cache --max-concurrency 2 --no-share --no-table --output eval/reports/react/raw/semantic-study/prompts.json",
+    "eval:semantic:report": "node eval/promptfoo/semantic-report.cjs"
+  },
+  "devDependencies": {
+    "promptfoo": "0.125.1"
+  }
+}

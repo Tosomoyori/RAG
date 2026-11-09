@@ -1,0 +1,307 @@
+{
+  "run": "holdout-20261106-01",
+  "review_identity": "AI source review under frozen review-protocol-v1; not independent human audit",
+  "post_output_tuning": false,
+  "historical_scores_unchanged": true,
+  "cases": [
+    {
+      "id": "tb-test-01",
+      "verdict": "supported_with_scope_limit",
+      "finding": "回答正确说明严寒时脱水，并承认当前片段缺少恢复生产条件。未检索到块119/120，完整正文明确给出较长恒纪元时浸泡复活；这是检索导致的必要事实缺失，不是全书没有答案，也未凭记忆补答。",
+      "answer_anchor": "没有提供相关信息",
+      "evidence": [
+        {
+          "index": 137,
+          "quote": "重新变成人干以度过漫漫长夜",
+          "chapter": "第四章 三体、周文王、长夜"
+        }
+      ],
+      "corpus_only_evidence": [
+        {
+          "index": 120,
+          "quote": "当较长的恒纪元到来时，再集体浸泡复活，生产和建设"
+        }
+      ]
+    },
+    {
+      "id": "tb-test-02",
+      "verdict": "supported",
+      "finding": "两层球壳、外层大洞和内层小洞均与原文一致。补充的实际机器内壁光源也有块301支持，区分了理论模型与模拟装置。",
+      "answer_anchor": "两层球壳",
+      "evidence": [
+        {
+          "index": 297,
+          "quote": "宇宙之球是由两层球壳构成的",
+          "chapter": "第十二章 三体、墨子、烈焰"
+        },
+        {
+          "index": 298,
+          "quote": "外层球壳上有一个大洞，内层球壳上有大量小洞",
+          "chapter": "第十二章 三体、墨子、烈焰"
+        },
+        {
+          "index": 301,
+          "quote": "没有洞，我在外壳的内壁上安装了一个光源",
+          "chapter": "第十二章 三体、墨子、烈焰"
+        }
+      ]
+    },
+    {
+      "id": "tb-test-03",
+      "verdict": "supported",
+      "finding": "恒纪元的稳定绕行与乱纪元的引力夺取关系正确；哥白尼与汪淼的游戏身份可由块378的对话衔接支持，未凭外部设定补身份。",
+      "answer_anchor": "三颗太阳",
+      "evidence": [
+        {
+          "index": 379,
+          "quote": "当我们的行星围绕着其中的一颗太阳做稳定运行时，就是恒纪元",
+          "chapter": "第十六章 三体、哥白尼、宇宙橄榄球、三日凌空"
+        },
+        {
+          "index": 379,
+          "quote": "使其在三颗太阳的引力范围内游移不定时，就是乱纪元",
+          "chapter": "第十六章 三体、哥白尼、宇宙橄榄球、三日凌空"
+        },
+        {
+          "index": 378,
+          "quote": "教皇对汪淼点点头",
+          "chapter": "第十六章 三体、哥白尼、宇宙橄榄球、三日凌空"
+        }
+      ]
+    },
+    {
+      "id": "tb-test-04",
+      "verdict": "supported",
+      "finding": "洛希极限及撕裂为两半符合问题要求；参考答案中的较小一半成为巨月未被回答，但问题未明确要求月球身份，不额外当成必答项。灾变补充来自当前片段。",
+      "answer_anchor": "洛希极限",
+      "evidence": [
+        {
+          "index": 510,
+          "quote": "潮汐力均超过洛希极限",
+          "chapter": "第二十章 三体、爱因斯坦、单摆、大撕裂"
+        },
+        {
+          "index": 510,
+          "quote": "第三个太阳将行星撕成了两半",
+          "chapter": "第二十章 三体、爱因斯坦、单摆、大撕裂"
+        }
+      ]
+    },
+    {
+      "id": "tb-test-05",
+      "verdict": "supported",
+      "finding": "约一千与星际舰队远征两项均正确；十分之一光速的附加陈述有当前第二十一章片段支持。",
+      "answer_anchor": "一千",
+      "evidence": [
+        {
+          "index": 521,
+          "quote": "阵列中的星体总数是一千左右",
+          "chapter": "第二十一章 三体、远征"
+        },
+        {
+          "index": 522,
+          "quote": "那是伟大的三体星际舰队，马上就要起航远征了",
+          "chapter": "第二十一章 三体、远征"
+        }
+      ]
+    },
+    {
+      "id": "tb-test-06",
+      "verdict": "supported",
+      "finding": "潘寒当众承认及对组织的责任心两项与第二十二章审问对话一致，没有把受害者和凶手倒置。",
+      "answer_anchor": "潘寒",
+      "evidence": [
+        {
+          "index": 527,
+          "quote": "“是不是你杀了申玉菲同志？”有人质问道。\n“是我。”潘寒镇静地说",
+          "chapter": "第二十二章 地球叛军"
+        },
+        {
+          "index": 527,
+          "quote": "我这是出于对组织的责任心",
+          "chapter": "第二十二章 地球叛军"
+        }
+      ]
+    },
+    {
+      "id": "tb-test-07",
+      "verdict": "supported",
+      "finding": "不回答无法定位、回复暴露距离与位置的解释有支持；回答明确指出详细定位机制来自第三十三章，第二十四章提供警告，避免了把所有解释都归到题目指定章节。",
+      "answer_anchor": "第三十三章",
+      "evidence": [
+        {
+          "index": 583,
+          "quote": "只要不回答，这个世界就无法定位发射源",
+          "chapter": "第二十四章 红岸之六"
+        },
+        {
+          "index": 584,
+          "quote": "如果回答，发射源将被定位，你们的行星系将遭到入侵",
+          "chapter": "第二十四章 红岸之六"
+        }
+      ]
+    },
+    {
+      "id": "tb-test-08",
+      "verdict": "supported",
+      "finding": "1379号和技术进步后一个人值守均有第三十三章原文支持，正确区分最初人数与当前人数。",
+      "answer_anchor": "1379",
+      "evidence": [
+        {
+          "index": 751,
+          "quote": "1379号监听站已经存在了上千年",
+          "chapter": "第三十三章 监听员"
+        },
+        {
+          "index": 751,
+          "quote": "现在只有一个人值守了",
+          "chapter": "第三十三章 监听员"
+        }
+      ]
+    },
+    {
+      "id": "tb-test-09",
+      "verdict": "supported_core_with_inference",
+      "finding": "技术差距和虫子没有被灭绝的核心类比有支持。附加列举把原文对虫子总体的灭虫手段统一写成消灭蝗虫，范围有所缩窄，措辞应更严谨；保留自动分数，不把满分等同于所有附加断言完全精确。",
+      "answer_anchor": "消灭蝗虫",
+      "evidence": [
+        {
+          "index": 858,
+          "quote": "它们的技术与我们的差距，远大于我们与三体文明的差距",
+          "chapter": "第三十五章 虫　子"
+        },
+        {
+          "index": 859,
+          "quote": "虫子并没有被灭绝",
+          "chapter": "第三十五章 虫　子"
+        },
+        {
+          "index": 859,
+          "quote": "虫子并没有被灭绝",
+          "chapter": "第三十五章 虫　子"
+        }
+      ]
+    },
+    {
+      "id": "tb-test-10",
+      "verdict": "supported",
+      "finding": "1968～1987是基地存续年份，1989.03.21是落款日期，回答正确区分两组日期。",
+      "answer_anchor": "1989.03.21",
+      "evidence": [
+        {
+          "index": 863,
+          "quote": "（1968～1987）",
+          "chapter": "第三十六章 尾声·遗址"
+        },
+        {
+          "index": 863,
+          "quote": "中国科学院\n1989.03.21",
+          "chapter": "第三十六章 尾声·遗址"
+        }
+      ]
+    },
+    {
+      "id": "tb-test-11",
+      "verdict": "supported",
+      "finding": "僻静的小咖啡厅和七人正确；额外地点西城区云河咖啡馆可在第十九章短信块481核对，不是编造店名。",
+      "answer_anchor": "西城区云河咖啡馆",
+      "evidence": [
+        {
+          "index": 478,
+          "quote": "聚会地点是一处僻静的小咖啡厅",
+          "chapter": "第十九章 聚　会"
+        },
+        {
+          "index": 478,
+          "quote": "连自己在内也只有七个人",
+          "chapter": "第十九章 聚　会"
+        },
+        {
+          "index": 481,
+          "quote": "见到潘寒，在西城区云河咖啡馆",
+          "chapter": "第十九章 聚　会"
+        }
+      ]
+    },
+    {
+      "id": "tb-test-12",
+      "verdict": "supported",
+      "finding": "金属天线基座和人类的落日均与第三十六章一致，所引块862与864确在实际上下文中。",
+      "answer_anchor": "巨大的金属基座",
+      "evidence": [
+        {
+          "index": 862,
+          "quote": "“岩石”原来是一个巨大的金属基座",
+          "chapter": "第三十六章 尾声·遗址"
+        },
+        {
+          "index": 862,
+          "quote": "这是天线的基座",
+          "chapter": "第三十六章 尾声·遗址"
+        }
+      ]
+    },
+    {
+      "id": "tb-test-13",
+      "verdict": "supported",
+      "finding": "约四光年、半人马座三星与1379号监听站均有第二十四章和第三十三章片段支持。",
+      "answer_anchor": "四光年",
+      "evidence": [
+        {
+          "index": 584,
+          "quote": "这些信息的发射源距地球只有四光年左右",
+          "chapter": "第二十四章 红岸之六"
+        },
+        {
+          "index": 584,
+          "quote": "它只能来自距我们最近的恒星系：半人马座三星",
+          "chapter": "第二十四章 红岸之六"
+        }
+      ]
+    },
+    {
+      "id": "tb-test-14",
+      "verdict": "supported",
+      "finding": "137号严寒/战国与141号烈焰/东汉的配对准确，没有把两个文明的编号或时期交换。",
+      "answer_anchor": "东汉",
+      "evidence": [
+        {
+          "index": 139,
+          "quote": "第137号文明在严寒中毁灭了，该文明进化至战国层次",
+          "chapter": "第四章 三体、周文王、长夜"
+        },
+        {
+          "index": 312,
+          "quote": "第141号文明在烈焰中毁灭了，该文明进化至东汉层次",
+          "chapter": "第十二章 三体、墨子、烈焰"
+        }
+      ]
+    },
+    {
+      "id": "tb-test-15",
+      "verdict": "supported",
+      "finding": "问题所问街道和门牌号确未由第十九章给出，回答恰当说明无法确认，同时保留有证据的区名和店名。参考答案只写一处小咖啡厅，遗漏了实际存在的店名信息；原题和参考不改写，范围限制单独记录。",
+      "answer_anchor": "门牌号",
+      "evidence": [
+        {
+          "index": 481,
+          "quote": "见到潘寒，在西城区云河咖啡馆",
+          "chapter": "第十九章 聚　会"
+        }
+      ]
+    },
+    {
+      "id": "tb-test-16",
+      "verdict": "supported",
+      "finding": "无法给眼睛数目的拒答符合第三十三章明确没有生物形态描述的陈述；没有从影视形象推断外观。",
+      "answer_anchor": "无法确定",
+      "evidence": [
+        {
+          "index": 751,
+          "quote": "三体信息中没有包含对三体人生物形态的任何描述",
+          "chapter": "第三十三章 监听员"
+        }
+      ]
+    }
+  ]
+}

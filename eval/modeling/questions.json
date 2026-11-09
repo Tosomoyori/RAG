@@ -1,0 +1,911 @@
+[
+  {
+    "id": "paper-b-01",
+    "doc": "paper-b",
+    "question": "依据生产决策论文摘要，问题一两种情形的最少检测次数分别是多少？不要把平均抽样次数当成最少次数。",
+    "reference": "情形一221次，情形二122次。",
+    "type": "distinction",
+    "behavior": "answer",
+    "evidence": [
+      {
+        "quote": "情形一的最少需检测样本为221次",
+        "locations": [
+          {
+            "doc": "paper-b",
+            "page": 1,
+            "start": 457,
+            "end": 473
+          }
+        ]
+      },
+      {
+        "quote": "样本为122次",
+        "locations": [
+          {
+            "doc": "paper-b",
+            "page": 1,
+            "start": 484,
+            "end": 491
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "paper-b-02",
+    "doc": "paper-b",
+    "question": "生产决策论文第9页正文报告的情形一、情形二平均抽样次数分别是多少？",
+    "reference": "分别为222.303次和122.246次。",
+    "type": "numeric",
+    "behavior": "answer",
+    "evidence": [
+      {
+        "quote": "平均抽取样本数量:222.303",
+        "locations": [
+          {
+            "doc": "paper-b",
+            "page": 9,
+            "start": 97,
+            "end": 113
+          }
+        ]
+      },
+      {
+        "quote": "平均抽取样本数量:122.246",
+        "locations": [
+          {
+            "doc": "paper-b",
+            "page": 9,
+            "start": 245,
+            "end": 261
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "paper-b-03",
+    "doc": "paper-b",
+    "question": "生产决策论文问题二的情况六，零件、成品如何检测，次品如何处理，最低总成本是多少？",
+    "reference": "两种零件均不检测，成品不检测，次品直接报废；最低总成本34.084。",
+    "type": "multi_fact",
+    "behavior": "answer",
+    "evidence": [
+      {
+        "quote": "对零部件1与零部件2均不进行检测，不检测装配好的成品",
+        "locations": [
+          {
+            "doc": "paper-b",
+            "page": 16,
+            "start": 287,
+            "end": 313
+          },
+          {
+            "doc": "paper-b",
+            "page": 27,
+            "start": 11,
+            "end": 37
+          }
+        ]
+      },
+      {
+        "quote": "最低总成本为34.084",
+        "locations": [
+          {
+            "doc": "paper-b",
+            "page": 16,
+            "start": 329,
+            "end": 341
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "paper-b-04",
+    "doc": "paper-b",
+    "question": "生产决策论文问题三将生产过程抽象成什么结构、怎样求解？摘要报告的最小成本与最大利润分别是多少？",
+    "reference": "多叉树，自底向上动态规划递归求解；最小生产成本137.08元，最大利润62.91元。",
+    "type": "multi_fact",
+    "behavior": "answer",
+    "evidence": [
+      {
+        "quote": "生产流程抽象为一棵多叉树",
+        "locations": [
+          {
+            "doc": "paper-b",
+            "page": 1,
+            "start": 865,
+            "end": 877
+          },
+          {
+            "doc": "paper-b",
+            "page": 27,
+            "start": 403,
+            "end": 415
+          }
+        ]
+      },
+      {
+        "quote": "从树的底部往上递归求解",
+        "locations": [
+          {
+            "doc": "paper-b",
+            "page": 1,
+            "start": 908,
+            "end": 919
+          }
+        ]
+      },
+      {
+        "quote": "最小生产成本137.08元",
+        "locations": [
+          {
+            "doc": "paper-b",
+            "page": 1,
+            "start": 1151,
+            "end": 1164
+          }
+        ]
+      },
+      {
+        "quote": "最大利润62.91元",
+        "locations": [
+          {
+            "doc": "paper-b",
+            "page": 1,
+            "start": 1173,
+            "end": 1183
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "paper-b-05",
+    "doc": "paper-b",
+    "question": "生产决策论文问题四将0.1次品率代入后，对应区间和问题三重新计算的最小成本分别是什么？",
+    "reference": "区间(0.0718,0.1235)，最小成本136.697。",
+    "type": "numeric",
+    "behavior": "answer",
+    "evidence": [
+      {
+        "quote": "区间范围为(0.0718,0.1235)",
+        "locations": [
+          {
+            "doc": "paper-b",
+            "page": 27,
+            "start": 116,
+            "end": 136
+          }
+        ]
+      },
+      {
+        "quote": "最小成本结果为：136.697",
+        "locations": [
+          {
+            "doc": "paper-b",
+            "page": 27,
+            "start": 149,
+            "end": 164
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "paper-b-06",
+    "doc": "paper-b",
+    "question": "依据生产决策论文的90%置信水平情形，似然比在哪个范围继续抽样，何时接受或拒收批次？",
+    "reference": "0.1111至9之间继续；小于0.1111接受，大于9拒收。",
+    "type": "conditions",
+    "behavior": "answer",
+    "evidence": [
+      {
+        "quote": "0.1111≤L≤9之间，继续抽样检测",
+        "locations": [
+          {
+            "doc": "paper-b",
+            "page": 9,
+            "start": 10,
+            "end": 29
+          }
+        ]
+      },
+      {
+        "quote": "当似然L>9时",
+        "locations": [
+          {
+            "doc": "paper-b",
+            "page": 8,
+            "start": 918,
+            "end": 925
+          }
+        ]
+      },
+      {
+        "quote": "当似然比L<0.1111时",
+        "locations": [
+          {
+            "doc": "paper-b",
+            "page": 8,
+            "start": 956,
+            "end": 969
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "paper-b-07",
+    "doc": "paper-b",
+    "question": "生产决策论文模型评价中，对问题一、二、三分别列出了什么主要不足？",
+    "reference": "SPRT依赖假设次品率上下限；线性成本未覆盖市场和原材料价格动态因素；递归模型依赖静态数据，面对动态变量适应性与鲁棒性受限。",
+    "type": "multi_fact",
+    "behavior": "answer",
+    "evidence": [
+      {
+        "quote": "SPRT方法过于依赖于假设次品率的上下限设定",
+        "locations": [
+          {
+            "doc": "paper-b",
+            "page": 27,
+            "start": 558,
+            "end": 580
+          }
+        ]
+      },
+      {
+        "quote": "模型假设成本为线性关系",
+        "locations": [
+          {
+            "doc": "paper-b",
+            "page": 27,
+            "start": 598,
+            "end": 609
+          }
+        ]
+      },
+      {
+        "quote": "模型的递归过程依赖于静态数据",
+        "locations": [
+          {
+            "doc": "paper-b",
+            "page": 27,
+            "start": 667,
+            "end": 681
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "paper-b-08",
+    "doc": "paper-b",
+    "question": "生产决策论文正文给出的实验GPU具体型号和显存容量各是什么？",
+    "reference": "正文未报告GPU型号和显存容量，无法确定。",
+    "type": "unanswerable",
+    "behavior": "abstain",
+    "evidence": []
+  },
+  {
+    "id": "paper-c-01",
+    "doc": "paper-c",
+    "question": "蔬菜定价补货论文的数据预处理中，退货负销量如何处理，为什么可以这样做？",
+    "reference": "直接加和；退货负销量与对应进货数据抵消。",
+    "type": "paraphrase",
+    "behavior": "answer",
+    "evidence": [
+      {
+        "quote": "退货的数据销量是负数",
+        "locations": [
+          {
+            "doc": "paper-c",
+            "page": 6,
+            "start": 121,
+            "end": 131
+          }
+        ]
+      },
+      {
+        "quote": "直接以附件2为原始数据进行加和",
+        "locations": [
+          {
+            "doc": "paper-c",
+            "page": 6,
+            "start": 149,
+            "end": 164
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "paper-c-02",
+    "doc": "paper-c",
+    "question": "蔬菜定价补货论文将商品归为哪六个品类？",
+    "reference": "辣椒类、花叶类、水生根茎类、食用菌、花菜类、茄类。",
+    "type": "detail",
+    "behavior": "answer",
+    "evidence": [
+      {
+        "quote": "辣椒类、花叶类、水生根茎类、食用菌、花菜类、茄类",
+        "locations": [
+          {
+            "doc": "paper-c",
+            "page": 6,
+            "start": 265,
+            "end": 289
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "paper-c-03",
+    "doc": "paper-c",
+    "question": "蔬菜论文问题二如何由批发价和加成率算单价？为什么预测日销量可以直接作为补货量？",
+    "reference": "单价=(1+加成率)×批发价；不考虑损耗率时假设补货量等于销量，过多造成库存，过少造成未满足需求。",
+    "type": "multi_fact",
+    "behavior": "answer",
+    "evidence": [
+      {
+        "quote": "P单价=(1+α加成率)*P批发",
+        "locations": [
+          {
+            "doc": "paper-c",
+            "page": 12,
+            "start": 18,
+            "end": 34
+          },
+          {
+            "doc": "paper-c",
+            "page": 12,
+            "start": 1369,
+            "end": 1385
+          }
+        ]
+      },
+      {
+        "quote": "我们假设其补货量=销量（在不考虑损耗率的前提下）",
+        "locations": [
+          {
+            "doc": "paper-c",
+            "page": 12,
+            "start": 292,
+            "end": 316
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "paper-c-04",
+    "doc": "paper-c",
+    "question": "蔬菜论文问题三使用哪段日期的数据？单价、批发价和销量缺失值分别怎样填补？",
+    "reference": "2023年6月23日至6月30日；单价、批发价用该单品这一周其他非缺失值的平均值，销量用0。",
+    "type": "multi_fact",
+    "behavior": "answer",
+    "evidence": [
+      {
+        "quote": "2023年6月23日到2023年6月30日的数据",
+        "locations": [
+          {
+            "doc": "paper-c",
+            "page": 1,
+            "start": 963,
+            "end": 987
+          },
+          {
+            "doc": "paper-c",
+            "page": 4,
+            "start": 365,
+            "end": 389
+          },
+          {
+            "doc": "paper-c",
+            "page": 13,
+            "start": 53,
+            "end": 77
+          },
+          {
+            "doc": "paper-c",
+            "page": 13,
+            "start": 224,
+            "end": 248
+          }
+        ]
+      },
+      {
+        "quote": "平均值替代缺失值，对于销量则用0替代缺失值",
+        "locations": [
+          {
+            "doc": "paper-c",
+            "page": 1,
+            "start": 1010,
+            "end": 1031
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "paper-c-05",
+    "doc": "paper-c",
+    "question": "蔬菜论文问题三用哪个Python库求解0-1规划？报告的目标函数最大值是多少，最终给出多少种单品？",
+    "reference": "ortools.linear_solver；1614.5633219257443元；33种。",
+    "type": "numeric",
+    "behavior": "answer",
+    "evidence": [
+      {
+        "quote": "ortools.linear_solver库",
+        "locations": [
+          {
+            "doc": "paper-c",
+            "page": 14,
+            "start": 396,
+            "end": 418
+          }
+        ]
+      },
+      {
+        "quote": "1614.5633219257443元",
+        "locations": [
+          {
+            "doc": "paper-c",
+            "page": 14,
+            "start": 445,
+            "end": 464
+          }
+        ]
+      },
+      {
+        "quote": "进货的33种单品",
+        "locations": [
+          {
+            "doc": "paper-c",
+            "page": 14,
+            "start": 477,
+            "end": 485
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "paper-c-06",
+    "doc": "paper-c",
+    "question": "蔬菜定价补货论文在模型缺点中列出了哪两项未充分考虑的因素？",
+    "reference": "运输、天气等原因的损耗，以及实际生活中不同单品之间的关联。",
+    "type": "paraphrase",
+    "behavior": "answer",
+    "evidence": [
+      {
+        "quote": "运输、天气等原因下的损耗",
+        "locations": [
+          {
+            "doc": "paper-c",
+            "page": 17,
+            "start": 28,
+            "end": 40
+          }
+        ]
+      },
+      {
+        "quote": "没有考虑到各单品在实际生活中的关联度",
+        "locations": [
+          {
+            "doc": "paper-c",
+            "page": 17,
+            "start": 65,
+            "end": 83
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "paper-c-07",
+    "doc": "paper-c",
+    "question": "蔬菜论文问题三的0-1决策变量取1和0分别表示什么？可售单品数量和最小陈列量要求是什么？",
+    "reference": "1表示进货，0表示不进货；27至33种，最小陈列量2.5千克。",
+    "type": "conditions",
+    "behavior": "answer",
+    "evidence": [
+      {
+        "quote": "如果第i种单品进货则Xi为1",
+        "locations": [
+          {
+            "doc": "paper-c",
+            "page": 14,
+            "start": 83,
+            "end": 97
+          }
+        ]
+      },
+      {
+        "quote": "不进货则Xi为0",
+        "locations": [
+          {
+            "doc": "paper-c",
+            "page": 14,
+            "start": 105,
+            "end": 113
+          }
+        ]
+      },
+      {
+        "quote": "可售单品总数控制在27-33个",
+        "locations": [
+          {
+            "doc": "paper-c",
+            "page": 1,
+            "start": 902,
+            "end": 917
+          },
+          {
+            "doc": "paper-c",
+            "page": 2,
+            "start": 539,
+            "end": 554
+          },
+          {
+            "doc": "paper-c",
+            "page": 4,
+            "start": 592,
+            "end": 607
+          },
+          {
+            "doc": "paper-c",
+            "page": 14,
+            "start": 204,
+            "end": 219
+          }
+        ]
+      },
+      {
+        "quote": "最小陈列量2.5千克",
+        "locations": [
+          {
+            "doc": "paper-c",
+            "page": 1,
+            "start": 927,
+            "end": 937
+          },
+          {
+            "doc": "paper-c",
+            "page": 2,
+            "start": 564,
+            "end": 574
+          },
+          {
+            "doc": "paper-c",
+            "page": 4,
+            "start": 555,
+            "end": 565
+          },
+          {
+            "doc": "paper-c",
+            "page": 14,
+            "start": 138,
+            "end": 148
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "paper-c-08",
+    "doc": "paper-c",
+    "question": "蔬菜定价补货论文正文提供的项目GitHub或Gitee代码仓库地址是什么？请给出完整链接。",
+    "reference": "正文未提供项目GitHub或Gitee仓库地址，无法给出链接。",
+    "type": "unanswerable",
+    "behavior": "abstain",
+    "evidence": []
+  },
+  {
+    "id": "statistics-01",
+    "doc": "statistics",
+    "question": "数据泄露统计论文的BP网络使用哪四个输入属性、多少个隐藏节点、哪两类输出？",
+    "reference": "输入泄露规模、泄露原因、数据类型、所属行业；3个隐藏节点；严重和轻微两类输出。",
+    "type": "multi_fact",
+    "behavior": "answer",
+    "evidence": [
+      {
+        "quote": "选取泄露规模，泄露原因，数据类型，所属行业四个维度作为输入",
+        "locations": [
+          {
+            "doc": "statistics",
+            "page": 16,
+            "start": 520,
+            "end": 549
+          }
+        ]
+      },
+      {
+        "quote": "我们设置隐节点为3",
+        "locations": [
+          {
+            "doc": "statistics",
+            "page": 16,
+            "start": 651,
+            "end": 660
+          }
+        ]
+      },
+      {
+        "quote": "我们对严重程度分为严重和轻微",
+        "locations": [
+          {
+            "doc": "statistics",
+            "page": 16,
+            "start": 669,
+            "end": 683
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "statistics-02",
+    "doc": "statistics",
+    "question": "数据泄露统计论文正文如何从国外案例得到BP训练集，训练了多少次？",
+    "reference": "41条国外案例，剔除重复属性后剩26条作为训练集，训练55748次。",
+    "type": "numeric",
+    "behavior": "answer",
+    "evidence": [
+      {
+        "quote": "41条近4年国外数据泄露的案例",
+        "locations": [
+          {
+            "doc": "statistics",
+            "page": 17,
+            "start": 166,
+            "end": 181
+          }
+        ]
+      },
+      {
+        "quote": "剩下26条案例作为训练集",
+        "locations": [
+          {
+            "doc": "statistics",
+            "page": 17,
+            "start": 272,
+            "end": 284
+          }
+        ]
+      },
+      {
+        "quote": "55748次训练后训练结束",
+        "locations": [
+          {
+            "doc": "statistics",
+            "page": 1,
+            "start": 708,
+            "end": 721
+          },
+          {
+            "doc": "statistics",
+            "page": 17,
+            "start": 297,
+            "end": 310
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "statistics-03",
+    "doc": "statistics",
+    "question": "数据泄露统计论文国内案例共多少条，其中严重与轻微分别多少条、各占多少？",
+    "reference": "52条；严重36条约69%，轻微16条约31%。",
+    "type": "numeric",
+    "behavior": "answer",
+    "evidence": [
+      {
+        "quote": "案例总共统计52例",
+        "locations": [
+          {
+            "doc": "statistics",
+            "page": 21,
+            "start": 167,
+            "end": 176
+          }
+        ]
+      },
+      {
+        "quote": "36例占比69%",
+        "locations": [
+          {
+            "doc": "statistics",
+            "page": 21,
+            "start": 193,
+            "end": 201
+          }
+        ]
+      },
+      {
+        "quote": "16例占比31%",
+        "locations": [
+          {
+            "doc": "statistics",
+            "page": 21,
+            "start": 214,
+            "end": 222
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "statistics-04",
+    "doc": "statistics",
+    "question": "数据泄露论文全部78条数据的决策树中，原因、规模、类型和行业的重要度依次是多少？",
+    "reference": "0.47076074、0.4035692、0.12567006、0。",
+    "type": "numeric",
+    "behavior": "answer",
+    "evidence": [
+      {
+        "quote": "0.47076074",
+        "locations": [
+          {
+            "doc": "statistics",
+            "page": 19,
+            "start": 107,
+            "end": 117
+          }
+        ]
+      },
+      {
+        "quote": "0.4035692",
+        "locations": [
+          {
+            "doc": "statistics",
+            "page": 19,
+            "start": 137,
+            "end": 146
+          }
+        ]
+      },
+      {
+        "quote": "0.12567006",
+        "locations": [
+          {
+            "doc": "statistics",
+            "page": 19,
+            "start": 167,
+            "end": 177
+          }
+        ]
+      },
+      {
+        "quote": "行业类型对是否严重的影响程度几乎可以忽略，为0",
+        "locations": [
+          {
+            "doc": "statistics",
+            "page": 19,
+            "start": 177,
+            "end": 200
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "statistics-05",
+    "doc": "statistics",
+    "question": "数据泄露论文国外26条样本中，原因重要度和行业重要度分别是多少？不要使用国内样本或全部样本的结果。",
+    "reference": "原因0.64135654，行业0.17857143。",
+    "type": "distinction",
+    "behavior": "answer",
+    "evidence": [
+      {
+        "quote": "0.64135654",
+        "locations": [
+          {
+            "doc": "statistics",
+            "page": 20,
+            "start": 50,
+            "end": 60
+          }
+        ]
+      },
+      {
+        "quote": "0.17857143",
+        "locations": [
+          {
+            "doc": "statistics",
+            "page": 20,
+            "start": 133,
+            "end": 143
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "statistics-06",
+    "doc": "statistics",
+    "question": "数据泄露论文问卷受访者主要集中在哪个年龄段？认为个人隐私被泄露的人占多少？",
+    "reference": "41至65岁；90.2%。",
+    "type": "multi_fact",
+    "behavior": "answer",
+    "evidence": [
+      {
+        "quote": "统计人群主要集中在41-65岁之间的群体",
+        "locations": [
+          {
+            "doc": "statistics",
+            "page": 7,
+            "start": 251,
+            "end": 271
+          }
+        ]
+      },
+      {
+        "quote": "高达90.2%的人选择了是",
+        "locations": [
+          {
+            "doc": "statistics",
+            "page": 7,
+            "start": 359,
+            "end": 372
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "statistics-07",
+    "doc": "statistics",
+    "question": "数据泄露统计论文报告的BP预测准确率是多少？国内决策树中泄露原因和规模的重要度分别是多少？",
+    "reference": "91.66%；国内原因0.60894457，规模0.34410886。",
+    "type": "multi_fact",
+    "behavior": "answer",
+    "evidence": [
+      {
+        "quote": "准确率达到了91.66%",
+        "locations": [
+          {
+            "doc": "statistics",
+            "page": 18,
+            "start": 26,
+            "end": 38
+          }
+        ]
+      },
+      {
+        "quote": "0.60894457",
+        "locations": [
+          {
+            "doc": "statistics",
+            "page": 21,
+            "start": 20,
+            "end": 30
+          }
+        ]
+      },
+      {
+        "quote": "0.34410886",
+        "locations": [
+          {
+            "doc": "statistics",
+            "page": 21,
+            "start": 50,
+            "end": 60
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "statistics-08",
+    "doc": "statistics",
+    "question": "数据泄露统计论文正文给出的BP训练或数据划分随机种子具体整数值是多少？",
+    "reference": "正文未报告随机种子整数值，无法确定。",
+    "type": "unanswerable",
+    "behavior": "abstain",
+    "evidence": []
+  }
+]
